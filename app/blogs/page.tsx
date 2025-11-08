@@ -11,7 +11,7 @@ import { BlogNode } from "@/interfaces";
 export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [filteredPosts, setBlogPosts] = useState<BlogNode[]>();
+  const [blogPosts, setBlogPosts] = useState<BlogNode[]>();
 
   useEffect(() => {
     Promise.all(blogsList.map((name) => getBlogsList(name)))
@@ -19,20 +19,26 @@ export default function BlogsPage() {
       .catch(console.error);
   }, [blogsList]);
 
-  // const filteredPosts = useMemo(() => {
-  //   return blogPosts?.filter((post) => {
-  //     const matchesSearch =
-  //       searchQuery === "" ||
-  //       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //       post.brief.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredPosts = useMemo(() => {
+    return blogPosts?.filter((post) => {
+      const matchesSearch =
+        searchQuery === "" ||
+        post.node.title
+          .toLowerCase()
+          .trim()
+          .includes(searchQuery.toLowerCase()) ||
+        post.node.brief
+          .toLowerCase()
+          .trim()
+          .includes(searchQuery.toLowerCase());
 
-  //     const matchesTags =
-  //       selectedTags.length === 0 ||
-  //       selectedTags.some((tag) => post?.tags?.includes({ name: "" }));
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.some((tag) => post.node.tags?.some((t) => t.name === tag));
 
-  //     return matchesSearch && matchesTags;
-  //   });
-  // }, [searchQuery, selectedTags]);
+      return matchesSearch && matchesTags;
+    });
+  }, [searchQuery, selectedTags, blogPosts]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -109,7 +115,7 @@ export default function BlogsPage() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      {tagsList.map(({ name }) => (
+                      {post.node.tags.map(({ name }) => (
                         <span
                           key={name}
                           className="inline-block bg-secondary/50 text-secondary-foreground text-xs px-2 py-1 rounded"
