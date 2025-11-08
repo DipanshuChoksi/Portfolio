@@ -14,7 +14,7 @@ export default function Footer() {
               opportunities. Feel free to reach out!
             </p>
             <a
-              href="mailto:hello@example.com"
+              href="mailto:dipanshuchoksi@gmail.com"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:opacity-90"
             >
               <Mail size={20} />
