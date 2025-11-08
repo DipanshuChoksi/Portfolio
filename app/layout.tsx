@@ -26,11 +26,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
         <div className="flex min-h-screen flex-col bg-background text-foreground">
-          <Header />
           <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
+            <Header />
             {children}
+            <Footer />
           </ThemeProvider>
-          <Footer />
           <Analytics />
         </div>
       </body>
