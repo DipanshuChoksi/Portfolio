@@ -1,0 +1,233 @@
+/* ────────────────────────────────────────────────
+   📦 IMPORTS
+─────────────────────────────────────────────────── */
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+/* ────────────────────────────────────────────────
+   🌙 DARK MODE VARIANT
+─────────────────────────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ────────────────────────────────────────────────
+   🌞 LIGHT THEME
+─────────────────────────────────────────────────── */
+:root {
+  /* Core Colors */
+  --text: #091a18;
+  --background: #f3fbfa;
+  --primary: #1a7a6c;
+  --secondary: #76ead6;
+  --accent: #14ccae;
+
+  /* Semantic Tokens */
+  --foreground: var(--text);
+  --card: var(--background);
+  --card-foreground: var(--text);
+  --popover: var(--background);
+  --popover-foreground: var(--text);
+
+  /* Interactive */
+  --primary-foreground: #f3fbfa;
+  --secondary-foreground: #091a18;
+  --accent-foreground: #ffffff;
+
+  /* Muted / Neutral */
+  --muted: #e0f4f2;
+  --muted-foreground: #4d6b67;
+
+  /* Destructive */
+  --destructive: #c23b3b;
+  --destructive-foreground: #ffffff;
+
+  /* Borders & Rings */
+  --border: #d4ebe8;
+  --input: #cde7e3;
+  --ring: #76ead6;
+
+  /* Charts (derived from your palette) */
+  --chart-1: #1a7a6c;
+  --chart-2: #14ccae;
+  --chart-3: #76ead6;
+  --chart-4: #0f544b;
+  --chart-5: #32ebcd;
+
+  /* Radius */
+  --radius: 0.625rem;
+
+  /* Sidebar */
+  --sidebar: #f3fbfa;
+  --sidebar-foreground: #091a18;
+  --sidebar-primary: #1a7a6c;
+  --sidebar-primary-foreground: #f3fbfa;
+  --sidebar-accent: #14ccae;
+  --sidebar-accent-foreground: #091a18;
+  --sidebar-border: #d4ebe8;
+  --sidebar-ring: #76ead6;
+}
+
+/* ────────────────────────────────────────────────
+   🌚 DARK THEME
+─────────────────────────────────────────────────── */
+.dark {
+  /* Core Colors */
+  --text: #e6f6f4;
+  --background: #040d0b;
+  --primary: #86e5d6;
+  --secondary: #158875;
+  --accent: #32ebcd;
+
+  /* Semantic Tokens */
+  --foreground: var(--text);
+  --card: var(--background);
+  --card-foreground: var(--text);
+  --popover: var(--background);
+  --popover-foreground: var(--text);
+
+  /* Interactive */
+  --primary-foreground: #040d0b;
+  --secondary-foreground: #e6f6f4;
+  --accent-foreground: #040d0b;
+
+  /* Muted / Neutral */
+  --muted: #0e2d29;
+  --muted-foreground: #8dbeb6;
+
+  /* Destructive */
+  --destructive: #a13131;
+  --destructive-foreground: #e6f6f4;
+
+  /* Borders & Rings */
+  --border: #1c3e3a;
+  --input: #1c3e3a;
+  --ring: #32ebcd;
+
+  /* Charts (derived from your palette) */
+  --chart-1: #32ebcd;
+  --chart-2: #86e5d6;
+  --chart-3: #158875;
+  --chart-4: #14ccae;
+  --chart-5: #76ead6;
+
+  /* Sidebar */
+  --sidebar: #0a201d;
+  --sidebar-foreground: #e6f6f4;
+  --sidebar-primary: #32ebcd;
+  --sidebar-primary-foreground: #040d0b;
+  --sidebar-accent: #158875;
+  --sidebar-accent-foreground: #e6f6f4;
+  --sidebar-border: #1c3e3a;
+  --sidebar-ring: #32ebcd;
+}
+
+/* ────────────────────────────────────────────────
+   🧱 THEME TOKENS (INLINE)
+─────────────────────────────────────────────────── */
+@theme inline {
+  /* Fonts */
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+
+  /* Core */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Surfaces */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Brand & Interactive */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Neutral & Borders */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ────────────────────────────────────────────────
+   🧩 BASE LAYER
+─────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-in forwards;
+  }
+}
+
+.prose {
+  --tw-prose-body: theme(colors.foreground);
+  --tw-prose-headings: theme(colors.foreground);
+  --tw-prose-links: theme(colors.primary);
+  --tw-prose-bold: var(--tw-foreground);
+}
