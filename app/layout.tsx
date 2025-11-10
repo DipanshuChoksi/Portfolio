@@ -7,14 +7,45 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { siteConfig } from "@/config";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dipanshu Choksi",
-  description: "Aspiring software engineer showcasing projects and expertise",
-  generator: "v0.app",
+  title: siteConfig.name,
+  authors: [
+    {
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  ],
+  creator: siteConfig.name,
+  description: siteConfig.description,
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Tailwind",
+    "Server Components",
+    "ShadCN",
+    "JavaScript",
+    "TypeScript",
+    "JSX",
+    "TSX",
+    "JS",
+    "Node.js",
+    "Blog",
+    "Technical Blog",
+  ],
+  openGraph: {
+    description: siteConfig.description,
+    locale: "en_US",
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    type: "website",
+    url: siteConfig.url,
+  },
 };
 
 export default function RootLayout({
