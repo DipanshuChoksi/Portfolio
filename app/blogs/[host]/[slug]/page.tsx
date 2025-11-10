@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { fetchPost } from "../../getBlogsList";
 import { useEffect, useState } from "react";
 import { BlogPage } from "@/interfaces";
+import ShimmerUI from "@/components/shimmer-ui-blog";
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -31,8 +32,10 @@ export default function BlogPostPage() {
     }
     loadPost();
   }, [slug, host]);
-  // getBlogsList();
   // const relatedPosts = post ? getRelatedPosts(slug) : [];
+
+  if (loading) return <ShimmerUI />;
+  if (error) return <div> Error: {error}</div>;
 
   if (!post) {
     return (
@@ -51,66 +54,63 @@ export default function BlogPostPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
-      {loading || error ? (
-        <div>{loading ? <div>Loading...</div> : <div>{error}</div>}</div>
-      ) : (
-        <main className="flex-1">
-          <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-            {/* Back button */}
-            <Link href="/blogs" className="inline-block mb-8">
-              <Button variant="outline" size="sm">
-                <ArrowLeft className="size-4 mr-2" />
-                Back to blog
-              </Button>
-            </Link>
-            {/* Cover Image */}
-            <div className="mb-8 overflow-hidden rounded-lg">
-              <img
-                src={post?.coverImage?.url || "/placeholder.svg"}
-                alt={post.title}
-                className="w-full h-96 object-cover"
-              />
-            </div>
-            {/* Post Metadata */}
-            <div className="mb-8">
-              <h1 className="text-balance text-4xl font-bold mb-4">
-                {post.title}
-              </h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-                <div className="flex items-center gap-2">
-                  <Calendar className="size-4" />
-                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="size-4" />
-                  {post.readTimeInMinutes} min read
-                </div>
+      <main className="flex-1">
+        <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+          {/* Back button */}
+          <Link href="/blogs" className="inline-block mb-8">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="size-4 mr-2" />
+              Back to blog
+            </Button>
+          </Link>
+          {/* Cover Image */}
+          <div className="mb-8 overflow-hidden rounded-lg">
+            <img
+              src={post?.coverImage?.url || "/placeholder.svg"}
+              alt={post.title}
+              className="w-full h-96 object-cover"
+            />
+          </div>
+          {/* Post Metadata */}
+          <div className="mb-8">
+            <h1 className="text-balance text-4xl font-bold mb-4">
+              {post.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+              <div className="flex items-center gap-2">
+                <Calendar className="size-4" />
+                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </div>
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <Link
-                    key={tag.name}
-                    href={`/blogs?tag=${tag}`}
-                    className="inline-block bg-secondary/50 text-secondary-foreground hover:bg-secondary text-xs px-3 py-1 rounded transition-colors"
-                  >
-                    {tag.name}
-                  </Link>
-                ))}
+              <div className="flex items-center gap-2">
+                <Clock className="size-4" />
+                {post.readTimeInMinutes} min read
               </div>
             </div>
-            {/* Post Content */}
-            <div className="prose prose-invert max-w-none mb-12">
-              <div
-                className="pose text-foreground dark:text-foreground"
-                dangerouslySetInnerHTML={{ __html: post.content.html }}
-              />
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <Link
+                  key={tag.name}
+                  href={`/blogs?tag=${tag}`}
+                  className="inline-block bg-secondary/50 text-secondary-foreground hover:bg-secondary text-xs px-3 py-1 rounded transition-colors"
+                >
+                  {tag.name}
+                </Link>
+              ))}
             </div>
-            {/* Related Posts
+          </div>
+          {/* Post Content */}
+          <div className="prose prose-invert max-w-none mb-12">
+            <div
+              className="pose text-foreground dark:text-foreground"
+              dangerouslySetInnerHTML={{ __html: post.content.html }}
+            />
+          </div>
+          {/* Related Posts
             {relatedPosts.length > 0 && (
               <div className="mt-16 pt-8 border-t border-border">
                 <h2 className="text-2xl font-bold mb-6">Related Posts</h2>
@@ -135,9 +135,8 @@ export default function BlogPostPage() {
                 </div>
               </div>
             )} */}
-          </article>
-        </main>
-      )}
+        </article>
+      </main>
     </div>
   );
 }
