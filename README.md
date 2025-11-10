@@ -1,4 +1,4 @@
-# Portfolio — Next.js 14 + TypeScript + shadcn/ui
+# Portfolio
 
 A fast, elegant personal site to showcase who I am, what I build, and what I know.  
 Built with **Next.js 14**, **TypeScript**, and **shadcn/ui**. Deployed on **Vercel**.
