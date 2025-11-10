@@ -9,6 +9,13 @@ import { blogsList, tagsList } from "@/consts";
 import { BlogNode } from "@/interfaces";
 import ShimmerUIBlogPage from "@/components/shimmer-ui-blogPage";
 
+/**
+ * Render the BlogsPage UI that aggregates posts from configured blogs and lets users search and filter by tags.
+ *
+ * Shows a loading placeholder while fetching posts, provides a search input and tag filters, and lists matching posts with title, brief, tags, publication date, and read time.
+ *
+ * @returns The BlogsPage React element.
+ */
 export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);

@@ -24,6 +24,11 @@ const actionTypes = {
 
 let count = 0
 
+/**
+ * Produce a numeric string identifier by incrementing an internal counter and wrapping at Number.MAX_SAFE_INTEGER.
+ *
+ * @returns The incremented counter as a string; after reaching Number.MAX_SAFE_INTEGER the counter wraps to "0".
+ */
 function genId() {
   count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()
@@ -130,6 +135,13 @@ const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 
+/**
+ * Apply an action to the in-memory toast state and notify all subscribers of the new state.
+ *
+ * Dispatches the provided `action` to the reducer to produce the next `memoryState`, then calls each registered listener with the updated state.
+ *
+ * @param action - The action to apply to the toast state
+ */
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
@@ -139,6 +151,15 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, 'id'>
 
+/**
+ * Creates and shows a toast with the given properties.
+ *
+ * @param props - Initial toast properties (title, description, action, and other toast options)
+ * @returns An object with:
+ *  - `id`: the toast's unique identifier
+ *  - `dismiss()`: marks the toast closed (schedules its removal)
+ *  - `update(props)`: updates the toast's properties by merging the provided fields
+ */
 function toast({ ...props }: Toast) {
   const id = genId()
 
@@ -168,6 +189,11 @@ function toast({ ...props }: Toast) {
   }
 }
 
+/**
+ * React hook that subscribes to the module's in-memory toast state and exposes helpers to create and dismiss toasts.
+ *
+ * @returns An object containing the current toast state (including `toasts`), a `toast` factory that adds a new toast and returns its control methods, and a `dismiss` function that dismisses a specific toast by id or all toasts when no id is provided.
+ */
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 

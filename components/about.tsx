@@ -1,5 +1,13 @@
 import { aboutPara } from "@/consts";
 
+/**
+ * Renders an "About Me" section containing a styled card of paragraphs.
+ *
+ * Maps over the imported `aboutPara` array and renders each entry as a paragraph
+ * inside a rounded, bordered card within a responsive container.
+ *
+ * @returns A React element representing the About section
+ */
 export default function About() {
   return (
     <section id="about" className="border-b border-border">

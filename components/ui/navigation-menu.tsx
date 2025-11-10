@@ -5,6 +5,15 @@ import { ChevronDownIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
+/**
+ * Render a navigation menu root with an optional positioned viewport.
+ *
+ * @param className - Additional CSS classes to apply to the root element
+ * @param children - Menu content (triggers, lists, items, etc.)
+ * @param viewport - Whether to render the positioned viewport element; defaults to `true`
+ * @param props - Additional props forwarded to the underlying navigation root
+ * @returns The rendered navigation menu root element
+ */
 function NavigationMenu({
   className,
   children,
@@ -29,6 +38,13 @@ function NavigationMenu({
   )
 }
 
+/**
+ * Renders a styled navigation menu list container for use inside the navigation menu.
+ *
+ * @param className - Additional CSS class names to apply to the list container
+ * @param props - Additional props forwarded to the underlying NavigationMenu List primitive
+ * @returns A React element representing the navigation menu list container
+ */
 function NavigationMenuList({
   className,
   ...props
@@ -45,6 +61,12 @@ function NavigationMenuList({
   )
 }
 
+/**
+ * Renders a navigation menu item element with a standardized data-slot and base positioning class.
+ *
+ * @param className - Additional CSS class names to append to the base `relative` class.
+ * @returns A React element representing a navigation menu item.
+ */
 function NavigationMenuItem({
   className,
   ...props
@@ -62,6 +84,11 @@ const navigationMenuTriggerStyle = cva(
   'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1',
 )
 
+/**
+ * Renders a navigation menu trigger with the component's default trigger styling and a chevron icon that rotates when opened.
+ *
+ * @returns A Trigger element for the navigation menu with merged `className` and a chevron indicator. 
+ */
 function NavigationMenuTrigger({
   className,
   children,
@@ -82,6 +109,15 @@ function NavigationMenuTrigger({
   )
 }
 
+/**
+ * Render the navigation menu content panel with responsive layout and state-driven animations.
+ *
+ * Renders a styled content container for a navigation menu that handles positioning, responsive sizing,
+ * open/closed animations, and state-driven visual variants. Additional props are passed through to the
+ * underlying content element.
+ *
+ * @returns A JSX element representing the navigation menu content panel with responsive layout and state-driven animations.
+ */
 function NavigationMenuContent({
   className,
   ...props
@@ -99,6 +135,12 @@ function NavigationMenuContent({
   )
 }
 
+/**
+ * Render a positioned Radix NavigationMenu viewport wrapped in an absolutely positioned container.
+ *
+ * @param className - Additional CSS classes merged with the viewport's default styling
+ * @returns A React element representing the positioned navigation menu viewport
+ */
 function NavigationMenuViewport({
   className,
   ...props
@@ -119,6 +161,12 @@ function NavigationMenuViewport({
   )
 }
 
+/**
+ * Render a navigation menu link with the component's standard styling and forwarded props.
+ *
+ * @param className - Additional CSS classes to merge with the component's default styles
+ * @returns A React element representing a navigation menu link with merged `className` and all other props forwarded
+ */
 function NavigationMenuLink({
   className,
   ...props
@@ -135,6 +183,12 @@ function NavigationMenuLink({
   )
 }
 
+/**
+ * Renders the navigation menu indicator displayed beneath an open menu trigger.
+ *
+ * @param className - Additional CSS class names to apply to the indicator container
+ * @returns The rendered NavigationMenu indicator element
+ */
 function NavigationMenuIndicator({
   className,
   ...props

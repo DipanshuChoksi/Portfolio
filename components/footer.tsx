@@ -1,5 +1,10 @@
 import { Mail } from "lucide-react";
 
+/**
+ * Footer section containing contact information and social links.
+ *
+ * @returns A JSX element rendering a "Get In Touch" column with an email action, a "Follow" column with social icons (GitHub, LinkedIn, X), and a bottom bar showing © current year and the author name.
+ */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 

@@ -1,5 +1,10 @@
 import { interests } from "@/consts";
 
+/**
+ * Render the "Interests & Passions" section containing a header and a responsive grid of interest cards.
+ *
+ * @returns A React element: a section with a heading and a responsive grid of cards, each displaying an interest's title and description.
+ */
 export default function Interests() {
   return (
     <section id="interests" className="border-b border-border">

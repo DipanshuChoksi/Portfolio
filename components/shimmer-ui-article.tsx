@@ -1,3 +1,11 @@
+/**
+ * Render a skeleton (shimmer) placeholder layout for an article page.
+ *
+ * Renders a static set of placeholder elements (back button, cover image, title, metadata, tags, and content blocks)
+ * styled for a pulsing loading state.
+ *
+ * @returns A JSX element representing the article page shimmer UI
+ */
 function ShimmerUIArticlePage() {
   return (
     <main className="flex-1">

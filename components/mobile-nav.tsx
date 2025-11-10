@@ -15,6 +15,14 @@ interface MobileNavProps {
   navLinks: Array<{ href: string; label: string }>;
 }
 
+/**
+ * Render a mobile menu button and a right-side navigation sheet for small screens.
+ *
+ * @param isOpen - Whether the navigation sheet is open.
+ * @param onOpenChange - Callback invoked with the new open state when the sheet should open or close.
+ * @param navLinks - Array of navigation entries; each item must have `href` (destination URL) and `label` (link text).
+ * @returns A React element containing the mobile menu button and a right-side sheet that lists the provided navigation links.
+ */
 export function MobileNav({ isOpen, onOpenChange, navLinks }: MobileNavProps) {
   return (
     <>

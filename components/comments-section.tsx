@@ -19,6 +19,12 @@ interface CommentsSectionProps {
   postSlug: string
 }
 
+/**
+ * Renders a comments UI for a blog post with a form to submit new comments and a list of existing comments.
+ *
+ * @param postSlug - The post's slug used to associate submitted comments with the post
+ * @returns The rendered comments section JSX element
+ */
 export function CommentsSection({ postSlug }: CommentsSectionProps) {
   const [comments, setComments] = useState<Comment[]>([])
   const [name, setName] = useState("")

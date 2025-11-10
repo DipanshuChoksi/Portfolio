@@ -21,6 +21,13 @@ const buttonGroupVariants = cva(
   },
 )
 
+/**
+ * Renders an accessible container that groups controls and applies orientation-specific styling.
+ *
+ * @param className - Additional CSS classes merged with the component's variant styles.
+ * @param orientation - Layout orientation for the group: "horizontal" or "vertical".
+ * @returns The rendered group container element.
+ */
 function ButtonGroup({
   className,
   orientation,
@@ -37,6 +44,15 @@ function ButtonGroup({
   )
 }
 
+/**
+ * Renders a styled text/label element intended for placement inside a ButtonGroup.
+ *
+ * Renders either a plain `div` or a Radix `Slot` (when `asChild` is true) with styling for muted background, spacing, border, rounded corners, small font, and SVG sizing/interaction rules.
+ *
+ * @param className - Additional CSS class names to merge with the component's base styles.
+ * @param asChild - If `true`, renders a `Slot` so the caller can provide a custom element; otherwise renders a `div`.
+ * @returns The rendered `div` or `Slot` element with the ButtonGroupText styling applied.
+ */
 function ButtonGroupText({
   className,
   asChild = false,
@@ -57,6 +73,12 @@ function ButtonGroupText({
   )
 }
 
+/**
+ * Renders a Separator element styled for use inside a ButtonGroup.
+ *
+ * @param orientation - Direction of the separator within the group; `"vertical"` produces a vertical divider and `"horizontal"` produces a horizontal divider.
+ * @returns A Separator element with ButtonGroup-specific styling and attributes.
+ */
 function ButtonGroupSeparator({
   className,
   orientation = 'vertical',

@@ -24,6 +24,11 @@ const actionTypes = {
 
 let count = 0
 
+/**
+ * Produce the next numeric id as a string by incrementing a global counter.
+ *
+ * @returns The next id in sequence as a base-10 string; the counter wraps to 0 after reaching Number.MAX_SAFE_INTEGER.
+ */
 function genId() {
   count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()
@@ -130,6 +135,11 @@ const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 
+/**
+ * Apply an action to the global toast store and notify all subscribers of the new state.
+ *
+ * @param action - The action to dispatch to the reducer which updates the in-memory state and causes listeners to be called with the updated state
+ */
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
@@ -139,6 +149,15 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, 'id'>
 
+/**
+ * Create and show a toast notification and return controls for it.
+ *
+ * @param props - Properties for the toast (all Toast fields except `id`)
+ * @returns An object containing:
+ *  - `id`: the generated toast identifier
+ *  - `dismiss`: a function that closes the toast
+ *  - `update`: a function that updates the toast's properties
+ */
 function toast({ ...props }: Toast) {
   const id = genId()
 
@@ -168,6 +187,11 @@ function toast({ ...props }: Toast) {
   }
 }
 
+/**
+ * Provides reactive access to the global toast store and helper actions for creating and dismissing toasts.
+ *
+ * @returns An object with the current toast state and helpers: `toasts` — array of active toasts; `toast` — function to create a new toast; `dismiss(toastId?)` — dismisses the specified toast or all toasts when `toastId` is omitted.
+ */
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 

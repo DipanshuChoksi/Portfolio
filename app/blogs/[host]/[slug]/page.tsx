@@ -8,6 +8,13 @@ import { useEffect, useState } from "react";
 import { BlogPage } from "@/interfaces";
 import ShimmerUIBlogPage from "@/components/shimmer-ui-article";
 
+/**
+ * Renders the blog post page for the current route's host and slug, fetching post data on mount and presenting loading, error, not-found, and full-post states.
+ *
+ * Shows a loading shimmer while the post is being fetched, an error message if the fetch fails, a "Post not found" view when no post is available, and the full post layout when data is present (cover image, title, publication date, read time, tags, and HTML content).
+ *
+ * @returns The rendered blog post page UI reflecting the current fetch state: loading shimmer, error view, not-found view with a back button, or the full post content and metadata.
+ */
 export default function BlogPostPage() {
   const params = useParams();
   const slug = params?.slug as string;

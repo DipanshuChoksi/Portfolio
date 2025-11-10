@@ -1,6 +1,14 @@
 import { projects } from "@/consts";
 import { ExternalLink, Github } from "lucide-react";
 
+/**
+ * Render the "Featured Projects" section containing a responsive grid of project cards.
+ *
+ * Each card displays a project image (falls back to a placeholder), title, description,
+ * tag badges, and action links for the project's source code and live site.
+ *
+ * @returns A React element containing the projects section with a grid of project cards
+ */
 export default function Projects() {
   return (
     <section id="projects" className="border-b border-border">

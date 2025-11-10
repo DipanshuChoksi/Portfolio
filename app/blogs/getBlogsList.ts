@@ -1,5 +1,11 @@
 import { BlogPage, BlogNode } from "@/interfaces";
 
+/**
+ * Fetches up to the first 10 blog post nodes for a Hashnode publication derived from `name`.
+ *
+ * @param name - The publication identifier (subdomain) without the `.hashnode.dev` suffix
+ * @returns An array of `BlogNode` objects extracted from the publication's posts edges (empty array if none)
+ */
 export async function getBlogsList(name: string): Promise<BlogNode[]> {
   const stream = await fetch("https://gql.hashnode.com", {
     headers: { "Content-Type": "application/json" },
@@ -41,6 +47,13 @@ export async function getBlogsList(name: string): Promise<BlogNode[]> {
   return nodeList;
 }
 
+/**
+ * Fetches a single blog post from Hashnode for the given host and slug.
+ *
+ * @param host - The publication host (without the `.hashnode.dev` suffix)
+ * @param slug - The post slug
+ * @returns The post object containing `id`, `title`, `content.html`, `publishedAt`, `coverImage.url`, `tags`, and `readTimeInMinutes`
+ */
 export async function fetchPost({
   host,
   slug,

@@ -20,6 +20,13 @@ const navItems = [
   { href: "/blogs", label: "Blog", icon: BookOpen },
 ];
 
+/**
+ * Renders the application's vertical navigation sidebar with header, navigable menu, and footer.
+ *
+ * Menu entries are generated from `navItems`; the current pathname determines which entry is highlighted.
+ *
+ * @returns The sidebar JSX element containing header, menu items, and footer with a theme toggle.
+ */
 export function SidebarNav() {
   const pathname = usePathname();
 

@@ -25,6 +25,16 @@ const badgeVariants = cva(
   },
 )
 
+/**
+ * Render a styled badge element with variant-controlled appearance.
+ *
+ * Renders a span by default and applies classes from `badgeVariants` merged with any `className`.
+ *
+ * @param className - Additional class names to merge with the badge's computed classes
+ * @param variant - Visual variant to apply (controls color, border, and hover/focus styles)
+ * @param asChild - When true, renders the provided child element instead of a span
+ * @returns The badge element with variant classes and any additional props applied
+ */
 function Badge({
   className,
   variant,

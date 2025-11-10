@@ -6,6 +6,11 @@ import { MobileNav } from "@/components/mobile-nav";
 import { useState } from "react";
 import { navLinks } from "@/consts";
 
+/**
+ * Renders the site's sticky top header with logo, responsive navigation, theme toggle, and mobile navigation drawer.
+ *
+ * @returns The header JSX element containing the logo, desktop navigation links, theme toggle, and mobile navigation control.
+ */
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 

@@ -13,6 +13,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
+/**
+ * Wraps the cmdk Command primitive with a consistent set of default styles and a `data-slot="command"` attribute.
+ *
+ * @returns The rendered Command primitive element with the default classes merged with any provided `className` and all forwarded props.
+ */
 function Command({
   className,
   ...props
@@ -29,6 +34,20 @@ function Command({
   )
 }
 
+/**
+ * Render a Dialog-based command palette containing a styled Command component.
+ *
+ * Renders an accessible Dialog with a visually hidden header (title and description) and a content area
+ * that hosts the Command component. The Command receives children provided to this component and
+ * the DialogContent merges provided `className` with default layout styles.
+ *
+ * @param title - Visible title text for the command palette (used in the dialog header)
+ * @param description - Short description for the command palette (used in the dialog header)
+ * @param children - Elements rendered inside the Command component (command input, groups, items, etc.)
+ * @param className - Additional CSS classes applied to the DialogContent container
+ * @param showCloseButton - When true, a close button is shown inside the DialogContent
+ * @returns The rendered Dialog element containing the command palette UI
+ */
 function CommandDialog({
   title = 'Command Palette',
   description = 'Search for a command to run...',
@@ -60,6 +79,12 @@ function CommandDialog({
   )
 }
 
+/**
+ * Renders a styled command-palette input with a leading search icon.
+ *
+ * @param className - Additional CSS classes to apply to the input element.
+ * @returns The wrapper element containing the search icon and the cmdk input.
+ */
 function CommandInput({
   className,
   ...props
@@ -82,6 +107,11 @@ function CommandInput({
   )
 }
 
+/**
+ * Renders a styled command list (Cmdk) with vertical scrolling and a data-slot of "command-list".
+ *
+ * @returns The rendered CommandPrimitive.List element with scrolling constraints and merged `className`.
+ */
 function CommandList({
   className,
   ...props
@@ -98,6 +128,12 @@ function CommandList({
   )
 }
 
+/**
+ * Renders a styled empty state for the command palette when no results are found.
+ *
+ * @param props - Props forwarded to the underlying Cmdk Empty component.
+ * @returns The CommandPrimitive.Empty element.
+ */
 function CommandEmpty({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
@@ -110,6 +146,12 @@ function CommandEmpty({
   )
 }
 
+/**
+ * A styled wrapper around the Cmdk Group primitive that marks the element with `data-slot="command-group"`.
+ *
+ * @param props - Props forwarded to the underlying Cmdk Group; `className` is merged with the component's default group and heading styles.
+ * @returns The rendered Cmdk Group element with applied layout and heading typography styles.
+ */
 function CommandGroup({
   className,
   ...props
@@ -126,6 +168,11 @@ function CommandGroup({
   )
 }
 
+/**
+ * Renders a styled separator used inside the command palette.
+ *
+ * @returns A CommandPrimitive.Separator element with command-specific styling and a `data-slot="command-separator"` attribute.
+ */
 function CommandSeparator({
   className,
   ...props
@@ -139,6 +186,13 @@ function CommandSeparator({
   )
 }
 
+/**
+ * Renders a styled command palette item.
+ *
+ * The element applies selection, disabled, and icon layout styles and forwards all props to the underlying Cmdk Item.
+ *
+ * @returns The rendered command item element with selection, disabled, and icon-layout styling.
+ */
 function CommandItem({
   className,
   ...props
@@ -155,6 +209,13 @@ function CommandItem({
   )
 }
 
+/**
+ * Renders a right-aligned, small keyboard shortcut label for command items.
+ *
+ * @param className - Additional class names to apply to the span
+ * @param props - Remaining props are forwarded to the underlying `span` element
+ * @returns A `span` element styled as a right-aligned, small, tracking-wide shortcut indicator
+ */
 function CommandShortcut({
   className,
   ...props

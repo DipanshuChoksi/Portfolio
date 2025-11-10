@@ -1,5 +1,11 @@
 import { cn } from '@/lib/utils'
 
+/**
+ * Renders a styled keyboard key (<kbd>) element with standardized classes and optional additional classes.
+ *
+ * @param className - Additional class names to merge with the component's default classes
+ * @returns The rendered `<kbd>` element with composed classes and `data-slot="kbd"`
+ */
 function Kbd({ className, ...props }: React.ComponentProps<'kbd'>) {
   return (
     <kbd
@@ -15,6 +21,13 @@ function Kbd({ className, ...props }: React.ComponentProps<'kbd'>) {
   )
 }
 
+/**
+ * Renders a container for grouped keyboard key elements.
+ *
+ * @param className - Additional CSS class names merged with the component's default layout classes
+ * @param props - Other HTML attributes and event handlers forwarded to the underlying `<kbd>` element
+ * @returns A `<kbd>` element with `data-slot="kbd-group"` and merged classes that visually groups keyboard keys
+ */
 function KbdGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <kbd

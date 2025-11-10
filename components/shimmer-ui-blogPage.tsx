@@ -1,3 +1,10 @@
+/**
+ * Renders a pulse-animated skeleton layout representing a blog page while content is loading.
+ *
+ * The layout includes placeholders for the title, description lines, tag chips, and metadata (date and read time).
+ *
+ * @returns A JSX element representing the blog page skeleton placeholder.
+ */
 function ShimmerUIBlogPage() {
   return (
     <div className="animate-pulse block rounded-lg border border-border p-6">

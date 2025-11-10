@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { Mail, ExternalLink } from "lucide-react";
 
+/**
+ * Renders the "About" hero section with name, title, short bio, action buttons, social links, and a profile image.
+ *
+ * @returns The hero section as a JSX element.
+ */
 export default function Hero() {
   return (
     <section id="about" className="border-b border-border">

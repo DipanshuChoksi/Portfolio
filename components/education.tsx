@@ -1,5 +1,10 @@
 import { educationHistory } from "@/consts";
 
+/**
+ * Render the Education section containing a card for each entry in the educationHistory array.
+ *
+ * @returns A JSX element representing the Education section, with each education entry rendered as a styled card showing degree, school, period, and description.
+ */
 export default function Education() {
   return (
     <section id="education" className="border-b border-border">

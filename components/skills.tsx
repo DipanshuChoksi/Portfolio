@@ -1,5 +1,12 @@
 import { skillCategories } from "@/consts";
 
+/**
+ * Render the "Skills & Technologies" section as a responsive grid of category cards.
+ *
+ * Each card displays a category title and a wrap of pill-like skill badges sourced from `skillCategories`.
+ *
+ * @returns A JSX element containing the skills section with responsive layout and styled category cards.
+ */
 export default function Skills() {
   return (
     <section id="skills" className="border-b border-border">

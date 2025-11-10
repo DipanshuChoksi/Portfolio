@@ -5,6 +5,11 @@ import * as SwitchPrimitive from '@radix-ui/react-switch'
 
 import { cn } from '@/lib/utils'
 
+/**
+ * Render a theme-aware toggle switch built on Radix UI primitives.
+ *
+ * @returns A React element for a styled switch that forwards its props to the underlying Radix Switch root.
+ */
 function Switch({
   className,
   ...props
