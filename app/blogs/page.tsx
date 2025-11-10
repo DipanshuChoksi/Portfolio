@@ -16,11 +16,25 @@ export default function BlogsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    Promise.all(blogsList.map((name) => getBlogsList(name)))
-      .then((data) => setBlogPosts(data.flat()))
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    async function loadBlogs() {
+      setLoading(true);
+      try {
+        const data = await Promise.allSettled(
+          blogsList.map((name) => getBlogsList(name))
+        );
+        setBlogPosts(
+          data
+            .filter((item) => item.status === "fulfilled")
+            .flatMap((item) => item.value)
+        );
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadBlogs();
   }, [blogsList]);
 
   const filteredPosts = useMemo(() => {

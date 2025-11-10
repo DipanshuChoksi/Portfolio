@@ -12,26 +12,28 @@ export default function BlogPostPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const host = params?.host as string;
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [post, setPost] = useState<null | BlogPage>(null);
 
   useEffect(() => {
+    if (!slug || !host) return;
     setLoading(true);
     async function loadPost() {
       try {
-        const data = await fetchPost({ host: host, slug: slug });
+        const data = await fetchPost({ host, slug });
         setPost(data);
-        setLoading(false);
       } catch (error) {
-        setLoading(false);
         setError(
           error instanceof Error ? error?.message : "internal server error"
         );
+      } finally {
+        setLoading(false);
       }
     }
     loadPost();
   }, [slug, host]);
+
   // const relatedPosts = post ? getRelatedPosts(slug) : [];
 
   if (loading) return <ShimmerUIBlogPage />;
