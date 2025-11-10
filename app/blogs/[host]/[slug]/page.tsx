@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { fetchPost } from "../../getBlogsList";
 import { useEffect, useState } from "react";
 import { BlogPage } from "@/interfaces";
-import ShimmerUI from "@/components/shimmer-ui-blog";
+import ShimmerUIBlogPage from "@/components/shimmer-ui-article";
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -34,7 +34,7 @@ export default function BlogPostPage() {
   }, [slug, host]);
   // const relatedPosts = post ? getRelatedPosts(slug) : [];
 
-  if (loading) return <ShimmerUI />;
+  if (loading) return <ShimmerUIBlogPage />;
   if (error) return <div> Error: {error}</div>;
 
   if (!post) {

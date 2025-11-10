@@ -7,16 +7,20 @@ import { Input } from "@/components/ui/input";
 import { getBlogsList } from "./getBlogsList";
 import { blogsList, tagsList } from "@/consts";
 import { BlogNode } from "@/interfaces";
+import ShimmerUIBlogPage from "@/components/shimmer-ui-blogPage";
 
 export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [blogPosts, setBlogPosts] = useState<BlogNode[]>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     Promise.all(blogsList.map((name) => getBlogsList(name)))
       .then((data) => setBlogPosts(data.flat()))
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, [blogsList]);
 
   const filteredPosts = useMemo(() => {
@@ -94,54 +98,58 @@ export default function BlogsPage() {
           </div>
 
           {/* Blog Posts Grid */}
-          <div className="space-y-6">
-            {(filteredPosts ? filteredPosts.length : 0) > 0 ? (
-              filteredPosts?.map((post, ind) => (
-                <Link
-                  key={ind}
-                  href={`/blogs/${post.node.publication.domainInfo.hashnodeSubdomain}/${post.node.slug}`}
-                  className="group block rounded-lg border border-border p-6 transition-all hover:border-primary hover:shadow-lg"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                          {post?.node.title}
-                        </h2>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {post.node.brief}
-                        </p>
+          {loading ? (
+            <ShimmerUIBlogPage />
+          ) : (
+            <div className="space-y-6">
+              {(filteredPosts ? filteredPosts.length : 0) > 0 ? (
+                filteredPosts?.map((post, ind) => (
+                  <Link
+                    key={ind}
+                    href={`/blogs/${post.node.publication.domainInfo.hashnodeSubdomain}/${post.node.slug}`}
+                    className="group block rounded-lg border border-border p-6 transition-all hover:border-primary hover:shadow-lg"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                            {post?.node.title}
+                          </h2>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {post.node.brief}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {post.node.tags.map(({ name }) => (
+                          <span
+                            key={name}
+                            className="inline-block bg-secondary/50 text-secondary-foreground text-xs px-2 py-1 rounded"
+                          >
+                            {name}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span>
+                          {new Date(post.node.publishedAt).toLocaleDateString()}
+                        </span>
+                        <span>{post.node.readTimeInMinutes} min read</span>
                       </div>
                     </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {post.node.tags.map(({ name }) => (
-                        <span
-                          key={name}
-                          className="inline-block bg-secondary/50 text-secondary-foreground text-xs px-2 py-1 rounded"
-                        >
-                          {name}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>
-                        {new Date(post.node.publishedAt).toLocaleDateString()}
-                      </span>
-                      <span>{post.node.readTimeInMinutes} min read</span>
-                    </div>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <div className="text-center py-6">
-                <p className="text-muted-foreground">
-                  No posts found matching your criteria.
-                </p>
-              </div>
-            )}
-          </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="text-center py-6">
+                  <p className="text-muted-foreground">
+                    No posts found matching your criteria.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </main>
     </div>

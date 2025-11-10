@@ -1,4 +1,4 @@
-function ShimmerUI() {
+function ShimmerUIArticlePage() {
   return (
     <main className="flex-1">
       <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 animate-pulse">
@@ -37,4 +37,4 @@ function ShimmerUI() {
   );
 }
 
-export default ShimmerUI;
+export default ShimmerUIArticlePage;
