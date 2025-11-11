@@ -1,6 +1,10 @@
-import { interests } from "@/consts";
+import { interestSection } from "@/interfaces";
 
-export default function Interests() {
+export default function Interests({
+  interestContent,
+}: {
+  interestContent: interestSection;
+}) {
   return (
     <section id="interests" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
@@ -9,12 +13,12 @@ export default function Interests() {
             Interests & Passions
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            Areas I'm passionate about and actively exploring in my career.
+            {interestContent.description}
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {interests.map((interest) => (
+          {interestContent.interest_items.map((interest) => (
             <div
               key={interest.title}
               className="rounded-xl border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"

@@ -1,4 +1,6 @@
+import { socialsArr } from "@/consts";
 import { Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +12,7 @@ export default function Footer() {
           <div>
             <h3 className="mb-4 text-2xl font-bold">Get In Touch</h3>
             <p className="mb-6 max-w-sm text-muted-foreground leading-relaxed">
-              I'm always interested in hearing about new projects and
+              I&apos;m always interested in hearing about new projects and
               opportunities. Feel free to reach out!
             </p>
             <a
@@ -25,45 +27,23 @@ export default function Footer() {
           <div>
             <h3 className="mb-4 text-2xl font-bold">Follow</h3>
             <div className="flex gap-4">
-              <a
-                href="https://github.com/dipanshuchoksi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-lg border border-border transition-all hover:bg-secondary hover:border-accent"
-                aria-label="GitHub"
-              >
-                <img
-                  src="/icon.github.svg"
-                  alt="logo of Github"
-                  className="h-[28px]"
-                />
-              </a>
-              <a
-                href="https://linkedin.com/in/dipanshu-choksi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-lg border border-border transition-all hover:bg-secondary hover:border-accent"
-                aria-label="LinkedIn"
-              >
-                <img
-                  src="/icon.linkedin.svg"
-                  alt="logo of linkedin"
-                  className="h-[25px]"
-                />
-              </a>
-              <a
-                href="https://x.com/dipanshuchoksi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-lg border border-border transition-all hover:bg-secondary hover:border-accent"
-                aria-label="Twitter"
-              >
-                <img
-                  src="/icon.twitter.svg"
-                  alt="logo of X(formerly known as twitter)"
-                  className="h-[28px]"
-                />
-              </a>
+              {socialsArr.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-12 items-center justify-center rounded-lg border border-border transition-all hover:bg-secondary hover:border-accent"
+                  aria-label={item.name}
+                >
+                  <Image
+                    src={item.path}
+                    alt={"logo of " + item.name}
+                    height={30}
+                    width={30}
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>

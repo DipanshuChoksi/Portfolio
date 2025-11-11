@@ -6,13 +6,13 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { getBlogsList } from "./getBlogsList";
 import { blogsList, tagsList } from "@/consts";
-import { BlogNode } from "@/interfaces";
+import { BlogNodeInterface } from "@/interfaces";
 import ShimmerUIBlogPage from "@/components/shimmer-ui-blogPage";
 
 export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [blogPosts, setBlogPosts] = useState<BlogNode[]>();
+  const [blogPosts, setBlogPosts] = useState<BlogNodeInterface[]>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,20 +35,14 @@ export default function BlogsPage() {
     }
 
     loadBlogs();
-  }, [blogsList]);
+  }, []);
 
   const filteredPosts = useMemo(() => {
     return blogPosts?.filter((post) => {
       const matchesSearch =
         searchQuery === "" ||
-        post.node.title
-          .toLowerCase()
-          .trim()
-          .includes(searchQuery.toLowerCase()) ||
-        post.node.brief
-          .toLowerCase()
-          .trim()
-          .includes(searchQuery.toLowerCase());
+        post.node.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.node.brief.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesTags =
         selectedTags.length === 0 ||
@@ -117,9 +111,9 @@ export default function BlogsPage() {
           ) : (
             <div className="space-y-6">
               {(filteredPosts ? filteredPosts.length : 0) > 0 ? (
-                filteredPosts?.map((post, ind) => (
+                filteredPosts?.map((post) => (
                   <Link
-                    key={ind}
+                    key={post.node.id}
                     href={`/blogs/${post.node.publication.domainInfo.hashnodeSubdomain}/${post.node.slug}`}
                     className="group block rounded-lg border border-border p-6 transition-all hover:border-primary hover:shadow-lg"
                   >

@@ -1,6 +1,10 @@
-import { aboutPara } from "@/consts";
+import { aboutSection } from "@/interfaces";
 
-export default function About() {
+export default function About({
+  aboutContent,
+}: {
+  aboutContent: aboutSection;
+}) {
   return (
     <section id="about" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
@@ -9,7 +13,7 @@ export default function About() {
         </div>
 
         <div className="rounded-xl border border-border bg-card p-8 max-w-3xl flex flex-col gap-4">
-          {aboutPara.map((para, idx) => (
+          {aboutContent.map((para, idx) => (
             <p className="text-muted-foreground leading-relaxed" key={idx}>
               {para}
             </p>

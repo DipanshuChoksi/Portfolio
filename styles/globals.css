@@ -197,5 +197,5 @@
   --tw-prose-body: theme(colors.foreground);
   --tw-prose-headings: theme(colors.foreground);
   --tw-prose-links: theme(colors.primary);
-  --tw-prose-bold: var(--tw-foreground);
+  --tw-prose-bold: theme(colors.foreground);
 }

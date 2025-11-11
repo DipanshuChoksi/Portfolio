@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   authors: [
     {
       name: siteConfig.name,
-      url: siteConfig.url,
     },
   ],
   creator: siteConfig.name,
@@ -44,7 +43,6 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.name,
     type: "website",
-    url: siteConfig.url,
   },
 };
 

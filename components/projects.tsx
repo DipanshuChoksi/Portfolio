@@ -1,7 +1,12 @@
-import { projects } from "@/consts";
+import { projectSection } from "@/interfaces";
 import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
 
-export default function Projects() {
+export default function Projects({
+  projectsContent,
+}: {
+  projectsContent: projectSection;
+}) {
   return (
     <section id="projects" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
@@ -9,23 +14,24 @@ export default function Projects() {
           <h2 className="text-3xl font-bold sm:text-4xl mb-3">
             Featured Projects
           </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            Here are some of my recent projects. Each one showcases different
-            technologies and problem-solving approaches.
+          <p className="text-muted-foreground max-w-3xl">
+            {projectsContent.description}
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {projectsContent.projects.map((project, index) => (
             <div
               key={index}
               className="group overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-accent hover:shadow-lg"
             >
               <div className="relative h-48 w-full overflow-hidden bg-secondary">
-                <img
+                <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                  height={200}
+                  width={350}
                 />
               </div>
 

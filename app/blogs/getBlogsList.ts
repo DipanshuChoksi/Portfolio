@@ -1,6 +1,6 @@
-import { BlogPage, BlogNode } from "@/interfaces";
+import { BlogPageInterface, BlogNodeInterface } from "@/interfaces";
 
-export async function getBlogsList(name: string): Promise<BlogNode[]> {
+export async function getBlogsList(name: string): Promise<BlogNodeInterface[]> {
   try {
     const stream = await fetch("https://gql.hashnode.com", {
       headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ export async function getBlogsList(name: string): Promise<BlogNode[]> {
       }),
     });
     const data = await stream.json();
-    let nodeList: BlogNode[] = data?.data?.publication?.posts?.edges;
+    let nodeList: BlogNodeInterface[] = data?.data?.publication?.posts?.edges;
     if (nodeList) return nodeList;
   } catch (error) {
     console.error;
@@ -52,7 +52,7 @@ export async function fetchPost({
 }: {
   host: string;
   slug: string;
-}): Promise<BlogPage | null> {
+}): Promise<BlogPageInterface | null> {
   const query = `
     query SinglePost($host: String!, $slug: String!) {
       publication(host: $host) {

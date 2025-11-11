@@ -1,19 +1,22 @@
-import { educationHistory } from "@/consts";
+import { educationSection } from "@/interfaces";
 
-export default function Education() {
+export default function Education({
+  educationContent,
+}: {
+  educationContent: educationSection;
+}) {
   return (
     <section id="education" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h2 className="text-3xl font-bold sm:text-4xl mb-3">Education</h2>
           <p className="text-muted-foreground max-w-2xl">
-            My educational background and continuous learning journey in
-            software development.
+            {educationContent.description}
           </p>
         </div>
 
         <div className="space-y-6">
-          {educationHistory.map((education, index) => (
+          {educationContent.history.map((education, index) => (
             <div
               key={index}
               className="rounded-xl border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
@@ -29,7 +32,7 @@ export default function Education() {
                   {education.period}
                 </span>
               </div>
-              <p className="text-muted-foreground">{education.description}</p>
+              <p className="text-muted-foreground">{education?.description}</p>
             </div>
           ))}
         </div>

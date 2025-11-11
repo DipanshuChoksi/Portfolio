@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Clock, Calendar, ArrowLeft, Divide } from "lucide-react";
+import { Clock, Calendar, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fetchPost } from "../../getBlogsList";
 import { useEffect, useState } from "react";
-import { BlogPage } from "@/interfaces";
+import { BlogPageInterface } from "@/interfaces";
 import ShimmerUIBlogPage from "@/components/shimmer-ui-article";
+import Image from "next/image";
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -14,7 +15,7 @@ export default function BlogPostPage() {
   const host = params?.host as string;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [post, setPost] = useState<null | BlogPage>(null);
+  const [post, setPost] = useState<null | BlogPageInterface>(null);
 
   useEffect(() => {
     if (!slug || !host) return;
@@ -67,10 +68,12 @@ export default function BlogPostPage() {
           </Link>
           {/* Cover Image */}
           <div className="mb-8 overflow-hidden rounded-lg">
-            <img
+            <Image
               src={post?.coverImage?.url || "/placeholder.svg"}
               alt={post.title}
               className="w-full h-96 object-cover"
+              height={100}
+              width={150}
             />
           </div>
           {/* Post Metadata */}

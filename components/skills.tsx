@@ -1,6 +1,10 @@
-import { skillCategories } from "@/consts";
+import { skillsSection } from "@/interfaces";
 
-export default function Skills() {
+export default function Skills({
+  skillsContent,
+}: {
+  skillsContent: skillsSection;
+}) {
   return (
     <section id="skills" className="border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
@@ -8,14 +12,13 @@ export default function Skills() {
           <h2 className="text-3xl font-bold sm:text-4xl mb-3">
             Skills & Technologies
           </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            I have experience with a diverse set of technologies and tools that
-            I leverage to build robust, scalable applications.
+          <p className="text-muted-foreground max-w-3xl">
+            {skillsContent.description}
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {skillCategories.map((category) => (
+          {skillsContent.skills_items.map((category) => (
             <div
               key={category.category}
               className="rounded-xl border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
