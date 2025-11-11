@@ -8,6 +8,7 @@ import { navLinks } from "@/consts";
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [currTab, setCurrTab] = useState(0);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-sm">
@@ -23,14 +24,20 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden gap-6 lg:gap-8 md:flex">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, idx) => (
+              <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground whitespace-nowrap"
+                className={
+                  "transition-colors hover:text-foreground whitespace-nowrap" +
+                  (currTab == idx
+                    ? "text-lg font-bold text-foreground"
+                    : "text-sm font-medium text-muted-foreground")
+                }
+                onClick={() => setCurrTab(idx)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 

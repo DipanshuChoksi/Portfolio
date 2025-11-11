@@ -8,6 +8,8 @@ import {
   SheetTitle,
   SheetClose,
 } from "@/components/ui/sheet";
+import { useState } from "react";
+import Link from "next/link";
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -16,6 +18,8 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ isOpen, onOpenChange, navLinks }: MobileNavProps) {
+  const [currTab, setCurrTab] = useState(0);
+
   return (
     <>
       {/* Mobile Menu Button - Only visible on small screens */}
@@ -34,14 +38,18 @@ export function MobileNav({ isOpen, onOpenChange, navLinks }: MobileNavProps) {
             <SheetTitle className="text-2xl">Menu</SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col gap-4 p-4">
-            {navLinks.map((link) => (
+            {navLinks.map((link, idx) => (
               <SheetClose asChild key={link.href}>
-                <a
+                <Link
                   href={link.href}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
+                  className={
+                    "text-lg font-medium hover:text-primary/70 transition-colors py-2 " +
+                    (currTab == idx ? "text-primary" : "text-foreground")
+                  }
+                  onClick={() => setCurrTab(idx)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </SheetClose>
             ))}
           </nav>
