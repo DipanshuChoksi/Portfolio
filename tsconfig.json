@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "app/blogs/getBlogsList.ts"
+    "app/(main)/blogs/getBlogsList.ts",
+    "app/admin/components/Sidebar.tsx"
   ],
   "exclude": ["node_modules"]
 }

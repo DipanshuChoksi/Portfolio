@@ -1,13 +1,11 @@
 import type React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import "../styles/globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { siteConfig } from "@/config";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -54,14 +52,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
-          <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
-          <Analytics />
-        </div>
+        <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
