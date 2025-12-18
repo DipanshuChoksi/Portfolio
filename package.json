@@ -40,6 +40,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@vercel/analytics": "^1.6.1",
     "autoprefixer": "^10.4.22",
+    "bcrypt": "^6.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.1.1",
@@ -47,6 +48,7 @@
     "embla-carousel-react": "8.6.0",
     "input-otp": "1.4.2",
     "lucide-react": "^0.561.0",
+    "mongoose": "^9.0.2",
     "next": "16.0.10",
     "next-themes": "^0.4.6",
     "react": "19.2.3",
@@ -62,6 +64,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",

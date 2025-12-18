@@ -1,6 +1,3 @@
-import { Analytics } from "@vercel/analytics/next";
-import { ThemeProvider } from "@/components/theme-provider";
-
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
