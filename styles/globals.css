@@ -41,6 +41,8 @@
   --destructive: #c23b3b;
   --destructive-foreground: #ffffff;
 
+  --blue-button: #42a4ff;
+
   /* Borders & Rings */
   --border: #d4ebe8;
   --input: #cde7e3;
@@ -84,6 +86,7 @@
   --card-foreground: var(--text);
   --popover: var(--background);
   --popover-foreground: var(--text);
+  --blue-button: #3279a8;
 
   /* Interactive */
   --primary-foreground: #040d0b;
@@ -138,6 +141,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-blue-button: var(--blue-button);
 
   /* Brand & Interactive */
   --color-primary: var(--primary);
