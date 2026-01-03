@@ -1,3 +1,1 @@
-module.exports = {
-  safelist: ["dark"],
-};
+export const safelist = ["dark"];
