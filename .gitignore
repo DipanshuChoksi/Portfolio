@@ -44,3 +44,4 @@ todo
 *.excalidraw
 *.rest
 todo.txt
+req.http
