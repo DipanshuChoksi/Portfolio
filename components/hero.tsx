@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { Mail, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { socialsArr } from "@/consts";
 import { heroSection } from "@/interfaces";
 
 export default function Hero({ heroContent }: { heroContent: heroSection }) {
   return (
-    <section id="hero" className="border-b border-border">
+    <section
+      id="hero"
+      className="h-screen border-b border-border flex justify-center  items-center relative bottom-24"
+    >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <div className="flex flex-col justify-center">

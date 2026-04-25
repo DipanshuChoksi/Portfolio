@@ -6,7 +6,7 @@ export default function About({
   aboutContent: aboutSection;
 }) {
   return (
-    <section id="about" className="border-b border-border">
+    <section id="about" className="h-screen">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h2 className="text-3xl font-bold sm:text-4xl mb-3">About Me</h2>

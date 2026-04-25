@@ -25,18 +25,6 @@ export const navLinks = [
   { href: "/#education", label: "Education" },
   { href: "/blogs", label: "Blog" },
   { href: "/#contact", label: "Contact" },
-  { href: "/admin", label: "Admin" },
-];
-
-export const adminNavLinks = [
-  { href: "/admin/hero", label: "Hero" },
-  { href: "/admin/about", label: "About" },
-  { href: "/admin/projects", label: "Projects" },
-  { href: "/admin/skills", label: "Skills" },
-  { href: "/admin/education", label: "Education" },
-  { href: "/admin/blogs", label: "Blog" },
-  { href: "/admin/contact", label: "Contact" },
-  { href: "/admin/theme", label: "Theme" },
 ];
 
 export const socialsArr = [
