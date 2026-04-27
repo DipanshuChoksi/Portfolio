@@ -2,12 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { socialsArr } from "@/consts";
 import { heroSection } from "@/interfaces";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
 export default function Hero({ heroContent }: { heroContent: heroSection }) {
   return (
     <section
       id="hero"
-      className="h-screen border-b border-border flex justify-center  items-center relative bottom-24"
+      className="h-screen border-b border-border flex justify-center  items-center relative bottom-24 snap-start"
     >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
@@ -15,9 +17,7 @@ export default function Hero({ heroContent }: { heroContent: heroSection }) {
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl text-balance">
               {heroContent.name}
             </h1>
-            <p className="mb-4 text-lg text-muted-foreground sm:text-xl">
-              {heroContent.role}
-            </p>
+            <p className="mb-4 text-lg text-muted-foreground sm:text-xl">{heroContent.role}</p>
             <p className="mb-8 max-w-lg text-base text-muted-foreground leading-relaxed">
               {heroContent.description}
             </p>
@@ -27,10 +27,10 @@ export default function Hero({ heroContent }: { heroContent: heroSection }) {
                 <Link
                   key={item.name}
                   href={item.url}
-                  className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 font-medium transition-colors hover:bg-secondary"
+                  className={cn(navigationMenuTriggerStyle(), "border border-border px-5 py-7")}
                 >
-                  {item.name}
-                  <item.icon size={18} />
+                  {`${item.name} `}
+                  <item.icon size={18} className="ml-1" />
                 </Link>
               ))}
             </div>
@@ -42,15 +42,10 @@ export default function Hero({ heroContent }: { heroContent: heroSection }) {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-lg border border-border transition-all hover:bg-secondary hover:border-accent"
+                  className={cn(navigationMenuTriggerStyle(), "px-3 py-7 bg-primary/50")}
                   aria-label={item.name}
                 >
-                  <Image
-                    src={item.path}
-                    alt={"logo of " + item.name}
-                    height={30}
-                    width={30}
-                  />
+                  <Image src={item.path} alt={"logo of " + item.name} height={30} width={30} />
                 </a>
               ))}
             </div>
@@ -64,6 +59,7 @@ export default function Hero({ heroContent }: { heroContent: heroSection }) {
                 className="object-cover object-center h-full w-full rounded-2xl"
                 height={300}
                 width={240}
+                priority
               />
             </div>
           </div>

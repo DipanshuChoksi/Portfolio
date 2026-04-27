@@ -1,20 +1,12 @@
 import { interestSection } from "@/interfaces";
 
-export default function Interests({
-  interestContent,
-}: {
-  interestContent: interestSection;
-}) {
+export default function Interests({ interestContent }: { interestContent: interestSection }) {
   return (
-    <section id="interests" className="border-b border-border">
+    <section id="interests" className="border-b border-border h-screen snap-start">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold sm:text-4xl mb-3">
-            Interests & Passions
-          </h2>
-          <p className="text-muted-foreground max-w-2xl">
-            {interestContent.description}
-          </p>
+          <h2 className="text-3xl font-bold sm:text-4xl mb-3">Interests & Passions</h2>
+          <p className="text-muted-foreground max-w-2xl">{interestContent.description}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -24,9 +16,7 @@ export default function Interests({
               className="rounded-xl border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
             >
               <h3 className="mb-2 text-lg font-semibold">{interest.title}</h3>
-              <p className="text-sm text-muted-foreground">
-                {interest.description}
-              </p>
+              <p className="text-sm text-muted-foreground">{interest.description}</p>
             </div>
           ))}
         </div>

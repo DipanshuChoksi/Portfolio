@@ -5,10 +5,19 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import { useState } from "react";
 import { navLinks } from "@/consts";
+import {
+  NavigationMenu,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "./ui/navigation-menu";
+import { NavigationMenuItem } from "@radix-ui/react-navigation-menu";
+import useIntersectionObserver from "@/hooks/useIntersectionOberver";
+
+// TODO: After clicking on any navitem it takes us to that section or page, but after that when user comeback to the home page, it doesn't work anymore, it is stuck to the prev navitem section only.
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [currTab, setCurrTab] = useState(0);
+  const { activeSection, setActiveSection } = useIntersectionObserver();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-sm">
@@ -17,40 +26,37 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-bold text-base sm:text-lg whitespace-nowrap hover:text-primary transition-colors"
+            className="text-lg font-bold md:text-xl whitespace-nowrap hover:text-primary transition-colors"
           >
             {"<Dipanshu />"}
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden gap-6 lg:gap-8 md:flex">
+          <NavigationMenu className="hidden md:flex">
             {navLinks.map((link, idx) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={
-                  "transition-colors hover:text-foreground whitespace-nowrap" +
-                  (currTab == idx
-                    ? "text-lg font-bold text-foreground"
-                    : "text-sm font-medium text-muted-foreground")
-                }
-                onClick={() => setCurrTab(idx)}
+              <NavigationMenuItem
+                key={idx}
+                className="transition-colors hover:opacity-70"
+                onClick={() => setActiveSection(link.label.toLowerCase())}
+                asChild
               >
-                {link.label}
-              </Link>
+                <NavigationMenuLink
+                  asChild
+                  active={link.label.toLowerCase() === activeSection || false}
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <Link href={link.href}>{link.label}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
             ))}
-          </nav>
+          </NavigationMenu>
 
           {/* Right Section */}
           <div className="flex items-center gap-2 sm:gap-4">
             <ThemeToggle />
 
             {/* Mobile Menu Button */}
-            <MobileNav
-              isOpen={isDrawerOpen}
-              onOpenChange={setIsDrawerOpen}
-              navLinks={navLinks}
-            />
+            <MobileNav isOpen={isDrawerOpen} onOpenChange={setIsDrawerOpen} navLinks={navLinks} />
           </div>
         </div>
       </div>

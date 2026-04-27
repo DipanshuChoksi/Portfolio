@@ -1,11 +1,6 @@
 import { Mail, ExternalLink } from "lucide-react";
 
-export const blogsList = [
-  "create-your-own",
-  "let-us-learn",
-  "dsa-demystified",
-  "my-learnings-004",
-];
+export const blogsList = ["create-your-own", "let-us-learn", "dsa-demystified", "my-learnings-004"];
 
 export const tagsList = [
   { name: "introduction" },
@@ -14,17 +9,19 @@ export const tagsList = [
 ];
 
 export const aboutContent = [
-  `I'm an aspiring Software Engineer who loves solving complex problems and building systems that scale gracefully. I focus on writing clean, maintainable, and high-performance code guided by solid design principles. My mission is to engineer software that's not only functional but also meaningful and delightful to use.`,
-  `When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community.I'm always eager to collaborate and learn from other talented developers.`,
+  `I’m a passionate full-stack developer with a strong focus on building scalable, user-centric web applications and solving complex backend challenges. I enjoy turning ideas into real products that are not only functional but also efficient, maintainable, and impactful. My journey in software development has been driven by curiosity, consistency, and a deep interest in understanding how systems work beneath the surface.
+My expertise primarily lies in backend development, distributed systems, and full-stack engineering, with hands-on experience in technologies like JavaScript, React, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.
+I have worked on multiple ambitious projects, including social platforms, meeting applications, e-commerce systems, Reddit-style communities, vehicle maintenance platforms, and book-sharing applications like PageTalks. These projects helped me develop strong engineering thinking—from writing clean code and managing authentication flows to handling real-world challenges like state management, API design, and production-level architecture decisions.
+My long-term goal is to grow into a Staff-level engineer by mastering backend systems, platform engineering, observability, and large-scale distributed architecture. I believe great engineers are not just builders, but problem solvers who create clarity in complexity. I’m always learning, building, and pushing myself toward deeper technical excellence while creating products that deliver meaningful value.`,
 ];
 
 export const navLinks = [
   { href: "/#about", label: "About" },
+  { href: "/#education", label: "Education" },
   { href: "/#projects", label: "Projects" },
   { href: "/#skills", label: "Skills" },
-  { href: "/#education", label: "Education" },
-  { href: "/blogs", label: "Blog" },
   { href: "/#contact", label: "Contact" },
+  { href: "/blogs", label: "Blog" },
 ];
 
 export const socialsArr = [
@@ -98,8 +95,7 @@ export const heroContent = {
 };
 
 export const interestContent = {
-  description:
-    "Areas I'm passionate about and actively exploring in my career.",
+  description: "Areas I'm passionate about and actively exploring in my career.",
   interest_items: [
     {
       title: "Open Source",
@@ -108,23 +104,19 @@ export const interestContent = {
     },
     {
       title: "Cloud Architecture",
-      description:
-        "Exploring scalable cloud solutions and modern deployment strategies.",
+      description: "Exploring scalable cloud solutions and modern deployment strategies.",
     },
     {
       title: "AI & Machine Learning",
-      description:
-        "Interested in integrating AI/ML capabilities into web applications.",
+      description: "Interested in integrating AI/ML capabilities into web applications.",
     },
     {
       title: "Web Performance",
-      description:
-        "Optimizing applications for speed and delivering exceptional user experiences.",
+      description: "Optimizing applications for speed and delivering exceptional user experiences.",
     },
     {
       title: "DevOps",
-      description:
-        "Automating deployment pipelines and improving development workflows.",
+      description: "Automating deployment pipelines and improving development workflows.",
     },
   ],
 };

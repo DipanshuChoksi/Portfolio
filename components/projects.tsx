@@ -2,21 +2,13 @@ import { projectSection } from "@/interfaces";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 
-export default function Projects({
-  projectsContent,
-}: {
-  projectsContent: projectSection;
-}) {
+export default function Projects({ projectsContent }: { projectsContent: projectSection }) {
   return (
-    <section id="projects" className="border-b border-border">
+    <section id="projects" className="border-b border-border h-screen snap-start">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold sm:text-4xl mb-3">
-            Featured Projects
-          </h2>
-          <p className="text-muted-foreground max-w-3xl">
-            {projectsContent.description}
-          </p>
+          <h2 className="text-3xl font-bold sm:text-4xl mb-3">Featured Projects</h2>
+          <p className="text-muted-foreground max-w-3xl">{projectsContent.description}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
