@@ -81,7 +81,7 @@ export const projectContent = {
 export const heroContent = {
   name: "Dipanshu Choksi",
   role: "Software Engineer",
-  image_path: "/me.jpeg",
+  image_path: "/me.png",
   description:
     "I build beautiful, performant web applications with a focus on user experience and clean code. Passionate about open source and learning new frameworks and technologies.",
   call_to_action: [

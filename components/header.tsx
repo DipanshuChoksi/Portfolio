@@ -36,7 +36,7 @@ export default function Header() {
             {navLinks.map((link, idx) => (
               <NavigationMenuItem
                 key={idx}
-                className="transition-colors hover:opacity-70"
+                className="transition-colors hover:opacity-70 bg-transparent"
                 onClick={() => setActiveSection(link.label.toLowerCase())}
                 asChild
               >

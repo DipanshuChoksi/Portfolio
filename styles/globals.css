@@ -1,132 +1,114 @@
-/* ────────────────────────────────────────────────
-   📦 IMPORTS
-─────────────────────────────────────────────────── */
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-/* ────────────────────────────────────────────────
-   🌙 DARK MODE VARIANT
-─────────────────────────────────────────────────── */
 @custom-variant dark (&:where(.dark, .dark *));
-
-/* ────────────────────────────────────────────────
-   🌞 LIGHT THEME
-─────────────────────────────────────────────────── */
 :root {
   /* Core Colors */
-  --text: #091a18;
-  --background: #f3fbfa;
-  --primary: #1a7a6c;
-  --secondary: #76ead6;
-  --accent: #14ccae;
+  --text: #0a0a0a;
+  --background: #ffffff;
+  --primary: #0d9488;
+  --secondary: #f4f4f5;
+  --accent: #14b8a6;
 
   /* Semantic Tokens */
   --foreground: var(--text);
-  --card: var(--background);
+  --card: #ffffff;
   --card-foreground: var(--text);
-  --popover: var(--background);
+  --popover: #ffffff;
   --popover-foreground: var(--text);
 
   /* Interactive */
-  --primary-foreground: #f3fbfa;
-  --secondary-foreground: #091a18;
+  --primary-foreground: #ffffff;
+  --secondary-foreground: #18181b;
   --accent-foreground: #ffffff;
 
   /* Muted / Neutral */
-  --muted: #e0f4f2;
-  --muted-foreground: #4d6b67;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
 
   /* Destructive */
-  --destructive: #c23b3b;
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-
-  --blue-button: #42a4ff;
+  --blue-button: #0d9488;
 
   /* Borders & Rings */
-  --border: #d4ebe8;
-  --input: #cde7e3;
-  --ring: #76ead6;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #0d9488;
 
-  /* Charts (derived from your palette) */
-  --chart-1: #1a7a6c;
-  --chart-2: #14ccae;
-  --chart-3: #76ead6;
-  --chart-4: #0f544b;
-  --chart-5: #32ebcd;
+  /* Charts */
+  --chart-1: #0d9488;
+  --chart-2: #14b8a6;
+  --chart-3: #2dd4bf;
+  --chart-4: #5eead4;
+  --chart-5: #99f6e4;
 
   /* Radius */
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 
   /* Sidebar */
-  --sidebar: #f3fbfa;
-  --sidebar-foreground: #091a18;
-  --sidebar-primary: #1a7a6c;
-  --sidebar-primary-foreground: #f3fbfa;
-  --sidebar-accent: #14ccae;
-  --sidebar-accent-foreground: #091a18;
-  --sidebar-border: #d4ebe8;
-  --sidebar-ring: #76ead6;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #0d9488;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #0d9488;
 }
 
-/* ────────────────────────────────────────────────
-   🌚 DARK THEME
-─────────────────────────────────────────────────── */
 .dark {
   /* Core Colors */
-  --text: #e6f6f4;
-  --background: #040d0b;
-  --primary: #86e5d6;
-  --secondary: #158875;
-  --accent: #32ebcd;
+  --text: #fafafa;
+  --background: #09090b;
+  --primary: #2dd4bf;
+  --secondary: #27272a;
+  --accent: #14b8a6;
 
   /* Semantic Tokens */
   --foreground: var(--text);
-  --card: var(--background);
+  --card: #18181b;
   --card-foreground: var(--text);
-  --popover: var(--background);
+  --popover: #18181b;
   --popover-foreground: var(--text);
-  --blue-button: #3279a8;
+  --blue-button: #2dd4bf;
 
   /* Interactive */
-  --primary-foreground: #040d0b;
-  --secondary-foreground: #e6f6f4;
-  --accent-foreground: #040d0b;
+  --primary-foreground: #09090b;
+  --secondary-foreground: #fafafa;
+  --accent-foreground: #09090b;
 
   /* Muted / Neutral */
-  --muted: #0e2d29;
-  --muted-foreground: #8dbeb6;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
 
   /* Destructive */
-  --destructive: #a13131;
-  --destructive-foreground: #e6f6f4;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fef2f2;
 
   /* Borders & Rings */
-  --border: #1c3e3a;
-  --input: #1c3e3a;
-  --ring: #32ebcd;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #2dd4bf;
 
-  /* Charts (derived from your palette) */
-  --chart-1: #32ebcd;
-  --chart-2: #86e5d6;
-  --chart-3: #158875;
-  --chart-4: #14ccae;
-  --chart-5: #76ead6;
+  /* Charts */
+  --chart-1: #2dd4bf;
+  --chart-2: #14b8a6;
+  --chart-3: #0d9488;
+  --chart-4: #0f766e;
+  --chart-5: #134e4a;
 
   /* Sidebar */
-  --sidebar: #0a201d;
-  --sidebar-foreground: #e6f6f4;
-  --sidebar-primary: #32ebcd;
-  --sidebar-primary-foreground: #040d0b;
-  --sidebar-accent: #158875;
-  --sidebar-accent-foreground: #e6f6f4;
-  --sidebar-border: #1c3e3a;
-  --sidebar-ring: #32ebcd;
+  --sidebar: #09090b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #2dd4bf;
+  --sidebar-primary-foreground: #09090b;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #2dd4bf;
 }
-
-/* ────────────────────────────────────────────────
-   🧱 THEME TOKENS (INLINE)
-─────────────────────────────────────────────────── */
 @theme inline {
   /* Fonts */
   --font-sans: "Geist", "Geist Fallback";
@@ -184,9 +166,6 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* ────────────────────────────────────────────────
-   🧩 BASE LAYER
-─────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
