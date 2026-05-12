@@ -10,17 +10,16 @@ export const tagsList = [
 
 export const aboutContent = [
   `I’m a passionate full-stack developer with a strong focus on building scalable, user-centric web applications and solving complex backend challenges. I enjoy turning ideas into real products that are not only functional but also efficient, maintainable, and impactful. My journey in software development has been driven by curiosity, consistency, and a deep interest in understanding how systems work beneath the surface.
-My expertise primarily lies in backend development, distributed systems, and full-stack engineering, with hands-on experience in technologies like JavaScript, React, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.
-I have worked on multiple ambitious projects, including social platforms, meeting applications, e-commerce systems, Reddit-style communities, vehicle maintenance platforms, and book-sharing applications like PageTalks. These projects helped me develop strong engineering thinking—from writing clean code and managing authentication flows to handling real-world challenges like state management, API design, and production-level architecture decisions.
-My long-term goal is to grow into a Staff-level engineer by mastering backend systems, platform engineering, observability, and large-scale distributed architecture. I believe great engineers are not just builders, but problem solvers who create clarity in complexity. I’m always learning, building, and pushing myself toward deeper technical excellence while creating products that deliver meaningful value.`,
+My expertise primarily lies in backend development with hands-on experience in technologies like JavaScript, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like React, Next.js, Tailwind CSS, and shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.
+I have worked on multiple ambitious projects, including social platforms, meeting applications. These projects helped me develop strong engineering thinking—from writing clean code and managing authentication flows to handling real-world challenges like state management, API design, and production-level architecture decisions.`,
 ];
 
 export const navLinks = [
   { href: "/#about", label: "About" },
-  { href: "/#education", label: "Education" },
+  { href: "/#achievements", label: "Achievements" },
   { href: "/#projects", label: "Projects" },
   { href: "/#skills", label: "Skills" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#education", label: "Education" },
   { href: "/blogs", label: "Blog" },
 ];
 
@@ -43,7 +42,7 @@ export const socialsArr = [
 ];
 
 export const educationContent = {
-  description: `My educational background and continuous learning journey in software development.`,
+  description: `My educational background.`,
   history: [
     {
       school: "ITM(sls) Baroda University",
@@ -56,6 +55,59 @@ export const educationContent = {
       school: "Sarwa Mangal School",
       degree: "High School",
       period: "2020 - 2022",
+    },
+  ],
+};
+
+export const achievementsContent = {
+  hackathons: [
+    {
+      title: "Winner",
+      event: "HackITM Company Edition Hackathon 2025",
+      year: "2025",
+      description:
+        "Led a highly collaborative team to build an AI-driven system focused on 'One Candidate, One Profile,' enabling intelligent candidate-JD matching using advanced resume analysis.",
+    },
+    {
+      title: "1st Rank",
+      event: "Cryptors 2025",
+      year: "2025",
+      description:
+        "Solved complex problem-solving and puzzle challenges, securing 1st place among 100+ participants.",
+      certificateUrl: "#",
+    },
+    {
+      title: "2nd Rank",
+      event: "CodeClash 2025",
+      year: "2025",
+      description:
+        "Ranked 2nd in competitive DSA coding contest, demonstrating strong algorithmic and analytical skills.",
+      certificateUrl: "#",
+    },
+    {
+      title: "2nd Place",
+      event: "LabSeva",
+      year: "2025",
+      description:
+        "Collaborated in a cross-functional team to design an innovative prototype that streamlines blood sample collection and delivers automated results via SMS and email.",
+      certificateUrl: "#",
+    },
+  ],
+  certifications: [
+    {
+      title: "NamsteNodeJS",
+      issuer: "Namaste Dev",
+      year: "2024",
+      description:
+        "Learnt to build a resilient, well-tested, performant backend using NodeJS and implemented a webapp for developers to connect based on their interests.",
+      certificateUrl: "#",
+    },
+    {
+      title: "DSA & Aptitude",
+      issuer: "TakeUForward",
+      year: "Ongoing",
+      description:
+        "Actively upskilling in DSA and Aptitude via Take U Forward, improving analytical thinking and algorithmic problem-solving.",
     },
   ],
 };
@@ -74,6 +126,43 @@ export const projectContent = {
         github: "https://github.com/DipanshuChoksi/Influx",
         live: "/#",
       },
+      status: "Active",
+    },
+    {
+      title: "CLario",
+      description:
+        "An AI-powered newsletter intelligence platform that extracts, summarizes, organizes, and delivers insights from newsletters and email feeds.",
+      image: "/placeholder.svg",
+      tags: ["Next.js", "TypeScript", "Node.js", "AI"],
+      links: {
+        github: "https://github.com/DipanshuChoksi/CLario",
+        live: "/#",
+      },
+      status: "Active",
+    },
+    {
+      title: "DC-Tools",
+      description:
+        "A modular developer infrastructure toolkit for ingestion, extraction, automation, AI workflows, and scalable developer productivity systems.",
+      image: "/placeholder.svg",
+      tags: ["TypeScript", "Node.js", "Monorepo", "Infrastructure"],
+      links: {
+        github: "https://github.com/DipanshuChoksi/DC-Tools",
+        live: "/#",
+      },
+      status: "Active",
+    },
+    {
+      title: "RIP",
+      description:
+        "A modern content ingestion and processing pipeline focused on extracting, transforming, and organizing data from multiple sources efficiently.",
+      image: "/placeholder.svg",
+      tags: ["TypeScript", "Node.js", "Data Pipeline", "Backend"],
+      links: {
+        github: "https://github.com/DipanshuChoksi/RIP-Resume-Intelligence-Platform",
+        live: "/#",
+      },
+      status: "Active",
     },
   ],
 };
@@ -90,33 +179,6 @@ export const heroContent = {
       name: " Get in Touch",
       url: "mailto:dipanshuchoksi@gmail.com",
       icon: Mail,
-    },
-  ],
-};
-
-export const interestContent = {
-  description: "Areas I'm passionate about and actively exploring in my career.",
-  interest_items: [
-    {
-      title: "Open Source",
-      description:
-        "Contributing to meaningful open source projects and helping the developer community.",
-    },
-    {
-      title: "Cloud Architecture",
-      description: "Exploring scalable cloud solutions and modern deployment strategies.",
-    },
-    {
-      title: "AI & Machine Learning",
-      description: "Interested in integrating AI/ML capabilities into web applications.",
-    },
-    {
-      title: "Web Performance",
-      description: "Optimizing applications for speed and delivering exceptional user experiences.",
-    },
-    {
-      title: "DevOps",
-      description: "Automating deployment pipelines and improving development workflows.",
     },
   ],
 };

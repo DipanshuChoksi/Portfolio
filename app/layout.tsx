@@ -51,11 +51,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
+      <body className="font-sans antialiased relative">
         <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
         <Analytics />
+        <div className="fixed z-50 bottom-4 right-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/95 text-primary">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span className="text-sm font-medium tracking-wide">PORTFOLIO</span>
+        </div>
       </body>
     </html>
   );

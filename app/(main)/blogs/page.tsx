@@ -19,13 +19,9 @@ export default function BlogsPage() {
     async function loadBlogs() {
       setLoading(true);
       try {
-        const data = await Promise.allSettled(
-          blogsList.map((name) => getBlogsList(name))
-        );
+        const data = await Promise.allSettled(blogsList.map((name) => getBlogsList(name)));
         setBlogPosts(
-          data
-            .filter((item) => item.status === "fulfilled")
-            .flatMap((item) => item.value)
+          data.filter((item) => item.status === "fulfilled").flatMap((item) => item.value)
         );
       } catch (err) {
         console.error(err);
@@ -59,44 +55,54 @@ export default function BlogsPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background/50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+
       <main className="flex-1">
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h1 className="text-balance text-3xl font-bold mb-2">Blog Posts</h1>
-            <p className="text-muted-foreground">
-              Insights and tutorials on web development
-            </p>
+        <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mb-6 animate-in slide-in-from-bottom-4 duration-700">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl  text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+              Blog Posts
+            </h1>
+            <div className="h-1.5 w-20 bg-primary rounded-full my-2"></div>
+            <p className="text-muted-foreground text-lg">My insights on various topics</p>
           </div>
 
           {/* Search Bar */}
-          <div className="mb-8">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 size-5 text-muted-foreground" />
+          <div
+            className="mb-6 animate-in slide-in-from-bottom-6 duration-700"
+            style={{ animationDelay: "100ms", animationFillMode: "both" }}
+          >
+            <div className="relative group">
+              <Search className="absolute left-4 top-3.5 size-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
               <Input
                 type="text"
                 placeholder="Search by title or description..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="pl-12 py-6 text-base bg-card/40 backdrop-blur-md border-border/50 rounded-2xl focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all shadow-sm"
               />
             </div>
           </div>
 
           {/* Tag Filters */}
-          <div className="mb-8">
-            <p className="text-sm font-medium text-foreground mb-3">
-              Filter by tags:
+          <div
+            className="mb-12 animate-in slide-in-from-bottom-6 duration-700"
+            style={{ animationDelay: "200ms", animationFillMode: "both" }}
+          >
+            <p className="text-sm font-bold text-foreground/80 mb-4 uppercase tracking-wider">
+              Filter by tags
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {tagsList.map(({ name }) => (
                 <button
                   key={name}
                   onClick={() => toggleTag(name)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 border ${
                     selectedTags.includes(name)
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                      ? "bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20 scale-105"
+                      : "bg-card/40 text-muted-foreground border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30"
                   }`}
                 >
                   {name}
@@ -111,49 +117,64 @@ export default function BlogsPage() {
           ) : (
             <div className="space-y-6">
               {(filteredPosts ? filteredPosts.length : 0) > 0 ? (
-                filteredPosts?.map((post) => (
+                filteredPosts?.map((post, index) => (
                   <Link
                     key={post.node.id}
                     href={`/blogs/${post.node.publication.domainInfo.hashnodeSubdomain}/${post.node.slug}`}
-                    className="group block rounded-lg border border-border p-6 transition-all hover:border-primary hover:shadow-lg"
+                    className="group block rounded-2xl border border-border/50 bg-card/20 backdrop-blur-md p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 animate-in slide-in-from-bottom-6"
+                    style={{ animationDelay: `${(index % 5) * 100}ms`, animationFillMode: "both" }}
                   >
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
-                          <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                          <h2 className="text-2xl font-bold group-hover:text-primary transition-colors">
                             {post?.node.title}
                           </h2>
-                          <p className="text-sm text-muted-foreground mt-1">
+                          <p className="text-base text-muted-foreground mt-2 line-clamp-2 leading-relaxed">
                             {post.node.brief}
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 pt-2">
                         {post.node.tags.map(({ name }) => (
                           <span
                             key={name}
-                            className="inline-block bg-secondary/50 text-secondary-foreground text-xs px-2 py-1 rounded"
+                            className="inline-flex items-center bg-secondary/80 text-secondary-foreground text-xs font-medium px-2.5 py-1 rounded-md"
                           >
                             {name}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center justify-between text-sm text-muted-foreground/80 font-medium pt-4 border-t border-border/30">
                         <span>
-                          {new Date(post.node.publishedAt).toLocaleDateString()}
+                          {new Date(post.node.publishedAt).toLocaleDateString(undefined, {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
                         </span>
-                        <span>{post.node.readTimeInMinutes} min read</span>
+                        <span className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
+                          {post.node.readTimeInMinutes} min read
+                        </span>
                       </div>
                     </div>
                   </Link>
                 ))
               ) : (
-                <div className="text-center py-6">
-                  <p className="text-muted-foreground">
-                    No posts found matching your criteria.
-                  </p>
+                <div className="text-center py-16 rounded-2xl border border-dashed border-border/60 bg-card/10">
+                  <p className="text-lg text-muted-foreground font-medium">No posts found.</p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedTags([]);
+                    }}
+                    className="mt-4 text-primary hover:underline font-medium"
+                  >
+                    Clear filters
+                  </button>
                 </div>
               )}
             </div>
