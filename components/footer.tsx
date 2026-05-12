@@ -3,44 +3,67 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer id="contact" className="border-t border-border bg-card">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer
+      id="contact"
+      className="border-t border-border/50 bg-background/50 relative overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2">
-          <div>
-            <h3 className="mb-4 text-2xl font-bold">Get In Touch</h3>
-            <p className="mb-6 max-w-sm text-muted-foreground leading-relaxed">
-              I&apos;m always interested in hearing about new projects and
-              opportunities. Feel free to reach out!
+          <div className="animate-in slide-in-from-bottom-4 duration-700">
+            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+              Get In Touch
+            </h2>
+            <div className="h-1.5 w-16 bg-primary rounded-full mb-6"></div>
+
+            <p className="mb-8 max-w-sm text-muted-foreground leading-relaxed text-lg">
+              I&apos;m always open to new opportunities, collaborations, and interesting
+              conversations.
             </p>
             <a
               href="mailto:dipanshuchoksi@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:opacity-90"
+              className="inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 font-bold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-[0_0_25px_rgba(13,148,136,0.5)] focus:ring-2 focus:ring-primary/50 group"
             >
-              <Mail size={20} />
-              Send me an email
+              <Mail
+                size={20}
+                className="transition-transform group-hover:-translate-y-0.5 group-hover:rotate-6"
+              />
+              Say Hello
             </a>
           </div>
 
-          <div>
-            <h3 className="mb-4 text-2xl font-bold">Follow</h3>
-            <div className="flex gap-4">
+          <div
+            className="animate-in slide-in-from-bottom-6 duration-700"
+            style={{ animationDelay: "150ms", animationFillMode: "both" }}
+          >
+            <h3 className="mb-6 text-xl font-bold tracking-tight">Connect with me</h3>
+            <div className="flex flex-wrap gap-4">
               {socialsArr.map((item) => (
                 <a
                   key={item.name}
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-lg border border-border transition-all hover:bg-secondary hover:border-accent"
+                  className="group flex h-14 w-14 items-center justify-center rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-primary/10 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
                   aria-label={item.name}
                 >
                   <Image
                     src={item.path}
                     alt={"logo of " + item.name}
-                    height={30}
-                    width={30}
+                    height={28}
+                    width={28}
+                    className="dark:hidden transition-transform duration-300 group-hover:scale-110 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0"
+                  />
+                  <Image
+                    src={item.path.replace(".svg", ".light.svg")}
+                    alt={"logo of " + item.name}
+                    height={28}
+                    width={28}
+                    className="hidden dark:block transition-transform duration-300 group-hover:scale-110 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0"
                   />
                 </a>
               ))}
@@ -48,10 +71,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            © {currentYear} Dipanshu Choksi. All rights reserved.
+        <div className="mt-20 border-t border-border/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground font-medium">
+            © 2026 Dipanshu Choksi. All rights reserved.
           </p>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>Built with</span>
+            <span className="text-primary animate-pulse">❤</span>
+            <span>in Next.js</span>
+          </div>
         </div>
       </div>
     </footer>
