@@ -4,11 +4,11 @@ export default function Skills({ skillsContent }: { skillsContent: skillsSection
   return (
     <section
       id="skills"
-      className="border-b border-border min-h-[80vh] py-20 flex items-center bg-background/50"
+      className="border-b border-border min-h-[80vh] py-20 flex items-center bg-background/50 snap-start"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="mb-16 animate-in slide-in-from-bottom-4 duration-700">
-          <h2 className="text-xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+          <h2 className="text-3xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
             Skills & Technologies
           </h2>
           <div className="h-1.5 w-20 bg-primary rounded-full mb-6"></div>
@@ -36,7 +36,7 @@ export default function Skills({ skillsContent }: { skillsContent: skillsSection
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-flex items-center rounded-lg bg-secondary/80 border border-border/50 px-3.5 py-1.5 text-sm font-medium text-foreground/90 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5 hover:shadow-md hover:shadow-primary/20 cursor-default"
+                      className="inline-flex items-center rounded-lg bg-secondary/80 border border-border/50 px-3.5 py-1.5 text-sm font-medium text-foreground/90 cursor-default"
                     >
                       {skill}
                     </span>

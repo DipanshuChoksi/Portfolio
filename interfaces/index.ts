@@ -49,17 +49,19 @@ export interface educationSection {
 
 export interface projectSection {
   description: string;
-  projects: {
-    title: string;
-    description: string;
-    image: string;
-    tags: string[];
-    links: {
-      github: string;
-      live: string;
-    };
-    status: "Active" | "WIP";
-  }[];
+  projects: project[];
+}
+
+export interface project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  links: {
+    github: string;
+    live: string;
+  };
+  status: "Active" | "WIP";
 }
 
 export interface heroSection {

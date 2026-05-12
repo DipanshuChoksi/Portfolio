@@ -9,9 +9,9 @@ export default function Hero({ heroContent }: { heroContent: heroSection }) {
   return (
     <section
       id="hero"
-      className="h-screen border-b border-border flex justify-center items-center relative bottom-24 snap-start"
+      className="min-h-screen border-b border-border pt-20 md:pt-0 flex justify-center items-center snap-start"
     >
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 -mt-12 md:-mt-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <div className="flex flex-col justify-center animate-in slide-in-from-bottom-8 fade-in duration-1000">
             <h1 className="mb-2 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-balance">

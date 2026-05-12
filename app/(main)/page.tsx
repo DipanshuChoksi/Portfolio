@@ -13,9 +13,12 @@ import {
   skillContent,
 } from "@/consts";
 
+import { SnapEnforcer } from "@/components/snap-enforcer";
+
 export default function Home() {
   return (
     <main className="flex-1 Home pt-20 sm:pt-0">
+      <SnapEnforcer />
       <Hero heroContent={heroContent} />
       <About aboutContent={aboutContent} />
       <Achievements achievementsContent={achievementsContent} />

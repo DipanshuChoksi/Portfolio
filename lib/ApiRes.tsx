@@ -6,7 +6,6 @@ export default function apiResponse(
   successful: boolean,
   data?: any
 ): APIResponse {
-  
   const res: APIResponse = {
     message,
     status,

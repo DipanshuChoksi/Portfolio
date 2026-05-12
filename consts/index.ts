@@ -10,8 +10,7 @@ export const tagsList = [
 
 export const aboutContent = [
   `I’m a passionate full-stack developer with a strong focus on building scalable, user-centric web applications and solving complex backend challenges. I enjoy turning ideas into real products that are not only functional but also efficient, maintainable, and impactful. My journey in software development has been driven by curiosity, consistency, and a deep interest in understanding how systems work beneath the surface.
-My expertise primarily lies in backend development with hands-on experience in technologies like JavaScript, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like React, Next.js, Tailwind CSS, and shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.
-I have worked on multiple ambitious projects, including social platforms, meeting applications. These projects helped me develop strong engineering thinking—from writing clean code and managing authentication flows to handling real-world challenges like state management, API design, and production-level architecture decisions.`,
+My expertise primarily lies in backend development with hands-on experience in technologies like JavaScript, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like React, Next.js, Tailwind CSS, and shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.`,
 ];
 
 export const navLinks = [
@@ -86,10 +85,10 @@ export const achievementsContent = {
     },
     {
       title: "2nd Place",
-      event: "LabSeva",
+      event: "Illuminati Hackathon 2025",
       year: "2025",
       description:
-        "Collaborated in a cross-functional team to design an innovative prototype that streamlines blood sample collection and delivers automated results via SMS and email.",
+        "Collaborated in a cross-functional team to design an innovative prototype 'LabSeva' that streamlines blood sample collection and delivers automated results via SMS and email.",
       certificateUrl: "#",
     },
   ],
@@ -170,7 +169,7 @@ export const projectContent: projectSection = {
 export const heroContent = {
   name: "Dipanshu Choksi",
   role: "Software Engineer",
-  image_path: "/me.png",
+  image_path: "/me.jpeg",
   description:
     "I build beautiful, performant web applications with a focus on user experience and clean code. Passionate about open source and learning new frameworks and technologies.",
   call_to_action: [

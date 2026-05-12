@@ -8,7 +8,6 @@ const highlightPhrases = [
 ];
 
 function formatText(text: string) {
-  // Split by newlines first to render actual paragraphs
   return text.split("\n").map((line, lineIndex) => {
     const regex = new RegExp(`(${highlightPhrases.join("|")})`, "gi");
     const parts = line.split(regex);
@@ -33,11 +32,11 @@ export default function About({ aboutContent }: { aboutContent: aboutSection }) 
   return (
     <section
       id="about"
-      className="min-h-screen border-b py-20 border-border snap-start flex items-center"
+      className="border-b border-border py-20 flex items-center bg-background/50 snap-start"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="mb-12 animate-in slide-in-from-bottom-8 fade-in duration-1000">
-          <h2 className="text-xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
             About Me
           </h2>
           <div className="h-1.5 w-20 bg-primary rounded-full"></div>

@@ -25,9 +25,7 @@ export default function BlogPostPage() {
         const data = await fetchPost({ host, slug });
         setPost(data);
       } catch (error) {
-        setError(
-          error instanceof Error ? error?.message : "internal server error"
-        );
+        setError(error instanceof Error ? error?.message : "internal server error");
       } finally {
         setLoading(false);
       }
@@ -78,9 +76,7 @@ export default function BlogPostPage() {
           </div>
           {/* Post Metadata */}
           <div className="mb-8">
-            <h1 className="text-balance text-4xl font-bold mb-4">
-              {post.title}
-            </h1>
+            <h1 className="text-balance text-4xl font-bold mb-4">{post.title}</h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
               <div className="flex items-center gap-2">
                 <Calendar className="size-4" />

@@ -62,11 +62,11 @@ export default function BlogsPage() {
       <main className="flex-1">
         <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mb-6 animate-in slide-in-from-bottom-4 duration-700">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl  text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+            <h1 className="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
               Blog Posts
             </h1>
             <div className="h-1.5 w-20 bg-primary rounded-full my-2"></div>
-            <p className="text-muted-foreground text-lg">My insights on various topics</p>
+            <p className="text-muted-foreground text-lg">My insights on various topics.</p>
           </div>
 
           {/* Search Bar */}

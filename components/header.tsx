@@ -5,21 +5,17 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import { useState, useEffect } from "react";
 import { navLinks } from "@/consts";
-import {
-  NavigationMenu,
-  NavigationMenuLink,
-  navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
+import { NavigationMenu, NavigationMenuLink } from "./ui/navigation-menu";
 import { NavigationMenuItem } from "@radix-ui/react-navigation-menu";
 import useIntersectionObserver from "@/hooks/useIntersectionOberver";
 import { cn } from "@/lib/utils";
-
-// TODO: After clicking on any navitem it takes us to that section or page, but after that when user comeback to the home page, it doesn't work anymore, it is stuck to the prev navitem section only.
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { activeSection, setActiveSection } = useIntersectionObserver();
+  const pathname = usePathname();
 
   // Add scroll event listener for changing header background
   useEffect(() => {
@@ -40,11 +36,11 @@ export default function Header() {
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-4 font-medium">
           {/* Logo */}
           <Link
             href="/"
-            className="group text-lg font-black md:text-xl whitespace-nowrap transition-all duration-300 hover:scale-105"
+            className="group text-lg font-medium md:text-xl whitespace-nowrap transition-all duration-300 hover:scale-105"
           >
             <span className="text-primary group-hover:text-accent transition-colors">{"<"}</span>
             <span className="hidden sm:inline">
@@ -60,7 +56,15 @@ export default function Header() {
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden md:flex">
             {navLinks.map((link, idx) => {
-              const isActive = link.label.toLowerCase() === activeSection;
+              let isActive = link.label.toLowerCase() === activeSection;
+
+              if (
+                pathname !== "/" &&
+                pathname.startsWith("/blogs") &&
+                link.label.toLowerCase() === "blog"
+              ) {
+                isActive = true;
+              }
 
               return (
                 <NavigationMenuItem
@@ -73,14 +77,15 @@ export default function Header() {
                     asChild
                     active={isActive}
                     className={cn(
-                      navigationMenuTriggerStyle(),
-                      "transition-all duration-300 rounded-full px-4 py-2 mx-0.5 text-sm font-semibold",
-                      isActive
-                        ? "bg-primary/10 text-primary hover:bg-primary/20"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/80"
+                      "group inline-flex items-center justify-center px-4 py-2 text-sm font-semibold transition-colors bg-transparent",
+                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    <Link href={link.href}>{link.label}</Link>
+                    <Link href={link.href}>
+                      <span className={cn("nav-link-underline", isActive && "active")}>
+                        {link.label}
+                      </span>
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               );

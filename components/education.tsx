@@ -5,7 +5,7 @@ export default function Education({ educationContent }: { educationContent: educ
     <section id="education" className="border-b border-border snap-start flex items-center">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 w-full">
         <div className="mb-16 animate-in slide-in-from-bottom-8 fade-in duration-1000">
-          <h2 className="text-xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+          <h2 className="text-3xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
             Education
           </h2>
           <div className="h-1.5 w-20 bg-primary rounded-full mb-6"></div>

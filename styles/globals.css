@@ -7,9 +7,9 @@
   /* Core Colors */
   --text: #0a0a0a;
   --background: #ffffff;
-  --primary: #0d9488;
-  --secondary: #f4f4f5;
-  --accent: #14b8a6;
+  --primary: #f97316;
+  --secondary: #fff7ed; /* Soft Orange background */
+  --accent: #f97316; /* Vibrant Orange accent */
 
   /* Semantic Tokens */
   --foreground: var(--text);
@@ -20,7 +20,7 @@
 
   /* Interactive */
   --primary-foreground: #ffffff;
-  --secondary-foreground: #18181b;
+  --secondary-foreground: #9a3412;
   --accent-foreground: #ffffff;
 
   /* Muted / Neutral */
@@ -62,9 +62,9 @@
   /* Core Colors */
   --text: #fafafa;
   --background: #09090b;
-  --primary: #2dd4bf;
-  --secondary: #27272a;
-  --accent: #14b8a6;
+  --primary: #d46b15;
+  --secondary: #2a1a10; /* Deep muted orange for dark mode */
+  --accent: #d46b15; /* Brighter orange for dark mode visibility */
 
   /* Semantic Tokens */
   --foreground: var(--text);
@@ -76,7 +76,7 @@
 
   /* Interactive */
   --primary-foreground: #09090b;
-  --secondary-foreground: #fafafa;
+  --secondary-foreground: #ffedd5;
   --accent-foreground: #09090b;
 
   /* Muted / Neutral */
@@ -181,4 +181,19 @@
   --tw-prose-headings: theme(colors.foreground);
   --tw-prose-links: theme(colors.primary);
   --tw-prose-bold: theme(colors.foreground);
+}
+
+@layer components {
+  .nav-link-underline {
+    @apply relative;
+  }
+  .nav-link-underline::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-[2px] w-full origin-bottom-right scale-x-0 bg-primary transition-transform duration-300;
+  }
+  .group:hover .nav-link-underline::after,
+  .nav-link-underline:hover::after,
+  .nav-link-underline.active::after {
+    @apply origin-bottom-left scale-x-100;
+  }
 }

@@ -6,16 +6,12 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="border-t border-border/50 bg-background/50 relative overflow-hidden"
+      className="border-t border-border/50 bg-background/50 relative overflow-hidden snap-start"
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto  max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2">
           <div className="animate-in slide-in-from-bottom-4 duration-700">
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
+            <h2 className="text-3xl font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent inline-block">
               Get In Touch
             </h2>
             <div className="h-1.5 w-16 bg-primary rounded-full mb-6"></div>
