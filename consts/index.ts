@@ -1,5 +1,5 @@
 import { Mail, ExternalLink } from "lucide-react";
-
+import type { projectSection } from "../interfaces";
 export const blogsList = ["create-your-own", "let-us-learn", "dsa-demystified", "my-learnings-004"];
 
 export const tagsList = [
@@ -112,7 +112,7 @@ export const achievementsContent = {
   ],
 };
 
-export const projectContent = {
+export const projectContent: projectSection = {
   description:
     "Here are some of my recent projects. Each one showcases different technologies and problem-solving approaches.",
   projects: [

@@ -90,12 +90,12 @@ export default function Header() {
           {/* Right Section */}
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="hidden sm:block">
-              <a
+              <Link
                 href="/#contact"
                 className="inline-flex h-9 items-center justify-center rounded-full bg-primary/10 px-4 py-2 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 hover:shadow-lg hover:shadow-primary/20"
               >
                 Let&apos;s connect
-              </a>
+              </Link>
             </div>
 
             <ThemeToggle />
