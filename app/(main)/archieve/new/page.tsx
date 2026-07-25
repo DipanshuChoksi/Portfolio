@@ -1,20 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import NoteEditor from '@/components/NoteEditor';
 
-export default async function NotePage({ params }: { params: { slug: string } }) {
-    const { slug } = await params;
-
-    const filePath = path.join(process.cwd(), 'content', 'archieve', `${slug}.md`);
-
-    if (!fs.existsSync(filePath)) {
-        notFound();
-    }
-
-    const content = fs.readFileSync(filePath, 'utf-8');
-
+export default function NewNotePage() {
     return (
         <section className="py-20 flex flex-col items-center snap-start w-full min-h-screen">
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 w-full">
@@ -25,9 +12,12 @@ export default async function NotePage({ params }: { params: { slug: string } })
                         </span>
                     </Link>
                 </div>
-                <NoteEditor initialContent={content} slug={slug} />
+                <h1 className="text-3xl font-bold mb-6">Create New Note</h1>
+                <p className="text-sm text-muted-foreground mb-4">
+                    Note: To have this new note appear in the archive list, you currently need to manually add it to the dummyData array in the archive page.
+                </p>
+                <NoteEditor initialContent={"# New Note\n\nStart typing here..."} slug="new-note" />
             </div>
         </section>
     );
 }
-
