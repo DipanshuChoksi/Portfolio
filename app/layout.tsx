@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import { siteConfig } from "@/config";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body className="font-sans antialiased relative">
         <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
           {children}
+          <Toaster richColors position="bottom-right" />
         </ThemeProvider>
         <Analytics />
         <div className="fixed z-50 bottom-4 right-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/95 text-primary">

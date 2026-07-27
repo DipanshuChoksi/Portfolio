@@ -3,9 +3,14 @@ import path from 'path';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import NoteEditor from '@/components/NoteEditor';
+import { auth } from '@/auth';
 
 export default async function NotePage({ params }: { params: { slug: string } }) {
     const { slug } = await params;
+    
+    const session = await auth();
+    const canEdit = !!session?.user?.email && !!process.env.ADMIN_EMAIL && 
+                    session.user.email.trim().toLowerCase() === process.env.ADMIN_EMAIL.trim().toLowerCase();
 
     const filePath = path.join(process.cwd(), 'content', 'archieve', `${slug}.md`);
 
@@ -25,7 +30,7 @@ export default async function NotePage({ params }: { params: { slug: string } })
                         </span>
                     </Link>
                 </div>
-                <NoteEditor initialContent={content} slug={slug} />
+                <NoteEditor initialContent={content} slug={slug} canEdit={canEdit} isLoggedIn={!!session?.user} />
             </div>
         </section>
     );
