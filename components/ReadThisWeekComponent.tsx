@@ -21,7 +21,10 @@ function ReadThisWeekComponent({ items }: { items: ArchiveItem[] }) {
                             {item.visibility}
                         </span>
                     </div>
-                    <h3 className="font-semibold text-lg">{item.info}</h3>
+                    <h3 className="font-semibold text-lg">{item.title || item.info}</h3>
+                    {item.info && (
+                        <p className="text-sm text-gray-600 mt-1">{item.info}</p>
+                    )}
                     <p className="text-sm mt-2 text-blue-600 hover:underline">
                         <strong>Source:</strong>
                         <a

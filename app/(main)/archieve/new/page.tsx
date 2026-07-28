@@ -1,13 +1,7 @@
 import Link from 'next/link';
 import NoteEditor from '@/components/NoteEditor';
 
-import { auth } from '@/auth';
-
-export default async function NewNotePage() {
-    const session = await auth();
-    const canEdit = !!session?.user?.email && !!process.env.ADMIN_EMAIL && 
-                    session.user.email.trim().toLowerCase() === process.env.ADMIN_EMAIL.trim().toLowerCase();
-    
+export default function NewNotePage() {
     return (
         <section className="py-20 flex flex-col items-center snap-start w-full min-h-screen">
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 w-full">
@@ -19,10 +13,7 @@ export default async function NewNotePage() {
                     </Link>
                 </div>
                 <h1 className="text-3xl font-bold mb-6">Create New Note</h1>
-                <p className="text-sm text-muted-foreground mb-4">
-                    Note: To have this new note appear in the archive list, you currently need to manually add it to the dummyData array in the archive page.
-                </p>
-                <NoteEditor initialContent={"# New Note\n\nStart typing here..."} slug="new-note" canEdit={canEdit} isLoggedIn={!!session?.user} />
+                <NoteEditor initialContent={"Start typing your note here..."} slug="new-note" />
             </div>
         </section>
     );

@@ -1,11 +1,20 @@
 'use server';
 
-import { signIn, signOut } from '@/auth';
+import { signIn, signOut, auth } from '@/auth';
 
 export async function login() {
     await signIn('github');
 }
 
 export async function logout() {
-    await signOut();
+    await signOut({ redirectTo: '/archieve' });
+}
+
+export async function getAuthStatus() {
+    const session = await auth();
+    const isLoggedIn = !!session?.user;
+    const canEdit = isLoggedIn && !!process.env.ADMIN_EMAIL &&
+        session.user?.email?.trim().toLowerCase() === process.env.ADMIN_EMAIL.trim().toLowerCase();
+
+    return { isLoggedIn, canEdit };
 }

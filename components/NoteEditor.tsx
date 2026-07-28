@@ -1,51 +1,56 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
+import { useState } from 'react';
 import { saveMarkdownNote } from '@/app/actions/archive';
-import { Edit2, Save, X, LogOut } from 'lucide-react';
+import { LogOut, Save, X } from 'lucide-react';
 import NoteActions from '@/components/NoteActions';
+import Link from 'next/link';
 import { toast } from 'sonner';
-import { login, logout } from '@/app/actions/auth';
+import { logout } from '@/app/actions/auth';
+import { useRouter } from 'next/navigation';
+import { useAuthStatus } from '@/hooks/useAuthStatus';
+import { ArchiveItem } from '@/interfaces/archieve';
+import NotAuthorized from './NotAuthorized';
 
 interface NoteEditorProps {
     initialContent: string;
     slug: string;
     initialVisibility?: 'public' | 'private';
-    canEdit?: boolean;
-    isLoggedIn?: boolean;
+    initialMetadata?: Partial<ArchiveItem>;
 }
 
-export default function NoteEditor({ initialContent, slug, initialVisibility = 'public', canEdit = false, isLoggedIn = false }: NoteEditorProps) {
-    const [isEditing, setIsEditing] = useState(false);
+export default function NoteEditor({ initialContent, slug, initialVisibility = 'public', initialMetadata }: NoteEditorProps) {
+    const router = useRouter();
     const [content, setContent] = useState(initialContent);
     const [visibility, setVisibility] = useState(initialVisibility);
+    const [title, setTitle] = useState(initialMetadata?.title || '');
+    const [info, setInfo] = useState(initialMetadata?.info || '');
+    const [topics, setTopics] = useState(initialMetadata?.Topics?.join(', ') || '');
+    const [sourceTitle, setSourceTitle] = useState(initialMetadata?.Source?.title || '');
+    const [sourceUrl, setSourceUrl] = useState(initialMetadata?.Source?.url || '');
     const [isSaving, setIsSaving] = useState(false);
 
-    useEffect(() => {
-        if (isLoggedIn) {
-            // Add a small delay to ensure the Toaster component is mounted before firing
-            const timer = setTimeout(() => {
-                if (canEdit) {
-                    toast.success("You are authorized to edit notes.");
-                } else {
-                    toast.error("You are not authorized to edit notes.");
-                }
-            }, 100);
-            return () => clearTimeout(timer);
-        }
-    }, [isLoggedIn, canEdit]);
+    // Auth state
+    const { isLoggedIn, canEdit, authFetched } = useAuthStatus();
+
+    if (authFetched && !canEdit) {
+        return <NotAuthorized isLoggedIn={isLoggedIn} />;
+    }
 
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            await saveMarkdownNote(slug, content);
-            setIsEditing(false);
+            const response = await saveMarkdownNote(slug, content, visibility, {
+                title,
+                info,
+                Topics: topics.split(',').map(t => t.trim()).filter(Boolean),
+                Source: { title: sourceTitle, url: sourceUrl }
+            });
             toast.success("Note saved successfully!");
+            router.push(`/archieve/${response.slug}`);
         } catch (error) {
             console.error("Failed to save", error);
             toast.error("Failed to save note");
-        } finally {
             setIsSaving(false);
         }
     };
@@ -54,98 +59,87 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
         <div className="w-full flex flex-col gap-4 -mt-16">
             <div className="flex justify-end mb-2 gap-4">
                 <NoteActions content={content} slug={slug} />
-                {/* If the user is editing then show the cancel and save buttons else show the edit button or login to edit button. */}
-                {!isEditing ? (
-                    canEdit ? (
-                        <button
-                            onClick={() => setIsEditing(true)}
-                            className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-md border border-primary/20"
-                        >
-                            <Edit2 size={16} />
-                            <span>Edit Note</span>
-                        </button>
-                    ) : (
-                        <button
-                            onClick={() => login()}
-                            className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-md border border-primary/20"
-                        >
-                            <Edit2 size={16} />
-                            <span>Sign in to Edit</span>
-                        </button>
-                    )
-                ) : (
-                    <div className="flex gap-2">
-                        <button
-                            onClick={() => {
-                                setContent(initialContent);
-                                setIsEditing(false);
-                            }}
-                            className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-secondary text-secondary-foreground transition-all hover:bg-secondary/80 hover:shadow-md border border-border"
-                            disabled={isSaving}
-                        >
-                            <X size={16} />
-                            <span>Cancel</span>
-                        </button>
-                        <button
-                            onClick={handleSave}
-                            disabled={isSaving}
-                            className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-primary text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md"
-                        >
-                            <Save size={16} />
-                            <span>{isSaving ? 'Saving...' : 'Save Changes'}</span>
-                        </button>
-                    </div>
-                )}
+                <div className="flex gap-2">
+                    <Link
+                        href={slug === 'new-note' ? '/archieve' : `/archieve/${slug}`}
+                        className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-secondary text-secondary-foreground transition-all hover:bg-secondary/80 hover:shadow-md border border-border"
+                    >
+                        <X size={16} />
+                        <span>Cancel</span>
+                    </Link>
+                    <button
+                        onClick={handleSave}
+                        disabled={isSaving}
+                        className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-primary text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md"
+                    >
+                        <Save size={16} />
+                        <span>{isSaving ? 'Saving...' : 'Save Changes'}</span>
+                    </button>
+                </div>
             </div>
 
-            {isEditing ? (
-                <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-6 p-4 rounded-xl border border-border bg-card/50">
-                        <span className="text-sm font-semibold text-muted-foreground">Visibility:</span>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                                type="radio"
-                                name="visibility"
-                                value="public"
-                                checked={visibility === 'public'}
-                                onChange={(e) => setVisibility(e.target.value as 'public' | 'private')}
-                                className="text-primary focus:ring-primary accent-primary"
-                            />
-                            <span className="text-sm font-medium">Public</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                                type="radio"
-                                name="visibility"
-                                value="private"
-                                checked={visibility === 'private'}
-                                onChange={(e) => setVisibility(e.target.value as 'public' | 'private')}
-                                className="text-primary focus:ring-primary accent-primary"
-                            />
-                            <span className="text-sm font-medium">Private</span>
-                        </label>
+            <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-6 p-4 rounded-xl border border-border bg-card/50">
+                    <span className="text-sm font-semibold text-muted-foreground">Visibility:</span>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                            type="radio"
+                            name="visibility"
+                            value="public"
+                            checked={visibility === 'public'}
+                            onChange={(e) => setVisibility(e.target.value as 'public' | 'private')}
+                            className="text-primary focus:ring-primary accent-primary"
+                        />
+                        <span className="text-sm font-medium">Public</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                            type="radio"
+                            name="visibility"
+                            value="private"
+                            checked={visibility === 'private'}
+                            onChange={(e) => setVisibility(e.target.value as 'public' | 'private')}
+                            className="text-primary focus:ring-primary accent-primary"
+                        />
+                        <span className="text-sm font-medium">Private</span>
+                    </label>
+                </div>
+
+                <div className="flex flex-col gap-3 p-4 rounded-xl border border-border bg-card/50">
+                    <label className="text-sm font-semibold text-muted-foreground">Title:</label>
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full p-2 rounded-md border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+
+                    <label className="text-sm font-semibold text-muted-foreground">Description (info):</label>
+                    <input type="text" value={info} onChange={(e) => setInfo(e.target.value)} className="w-full p-2 rounded-md border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+
+                    <label className="text-sm font-semibold text-muted-foreground">Topics (comma separated):</label>
+                    <input type="text" value={topics} onChange={(e) => setTopics(e.target.value)} className="w-full p-2 rounded-md border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+
+                    <div className="flex gap-4">
+                        <div className="flex-1 flex flex-col gap-2">
+                            <label className="text-sm font-semibold text-muted-foreground">Source Title:</label>
+                            <input type="text" value={sourceTitle} onChange={(e) => setSourceTitle(e.target.value)} className="w-full p-2 rounded-md border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                        </div>
+                        <div className="flex-1 flex flex-col gap-2">
+                            <label className="text-sm font-semibold text-muted-foreground">Source URL:</label>
+                            <input type="text" value={sourceUrl} onChange={(e) => setSourceUrl(e.target.value)} className="w-full p-2 rounded-md border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                        </div>
                     </div>
-                    <textarea
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        className="w-full min-h-125 p-4 rounded-xl border border-border bg-card font-mono text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        placeholder="Write your markdown here..."
-                    />
                 </div>
-            ) : (
-                <div className="prose prose-lg dark:prose-invert max-w-none border border-transparent p-4">
-                    <ReactMarkdown>{content}</ReactMarkdown>
-                </div>
-            )}
+                <textarea
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    className="w-full min-h-125 p-4 rounded-xl border border-border bg-card font-mono text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    placeholder="Write your markdown here..."
+                />
+            </div>
 
             {isLoggedIn && (
                 <div className="flex justify-end mt-8 border-t border-border pt-8 pb-4">
                     <button
-                        onClick={() => {
+                        onClick={async () => {
                             toast.success("Logged out successfully");
-                            setTimeout(() => {
-                                logout();
-                            }, 500);
+                            await logout();
                         }}
                         className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-secondary/50 text-muted-foreground transition-all hover:bg-destructive hover:text-destructive-foreground hover:shadow-md border border-border"
                     >
