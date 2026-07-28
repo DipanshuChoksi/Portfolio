@@ -33,8 +33,6 @@ export const metadata: Metadata = {
     "TSX",
     "JS",
     "Node.js",
-    "Blog",
-    "Technical Blog",
   ],
   openGraph: {
     description: siteConfig.description,

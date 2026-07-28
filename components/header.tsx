@@ -60,8 +60,8 @@ export default function Header() {
 
               if (
                 pathname !== "/" &&
-                pathname.startsWith("/blogs") &&
-                link.label.toLowerCase() === "blog"
+                pathname.startsWith("/archieve") &&
+                link.label.toLowerCase() === "archive"
               ) {
                 isActive = true;
               }
