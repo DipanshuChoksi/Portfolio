@@ -9,6 +9,7 @@ import { Edit2 } from 'lucide-react';
 import RenderMarkdown from '@/components/RenderMarkdown';
 import NoteEditor from '@/components/NoteEditor';
 import { ArchiveItem } from '@/interfaces/archieve';
+import NoteActions from '@/components/NoteActions';
 
 export default async function NotePage({ params, searchParams }: { params: { slug: string }, searchParams: { edit?: string } }) {
     const { slug } = await params;
@@ -91,6 +92,7 @@ export default async function NotePage({ params, searchParams }: { params: { slu
                                 </span>
                             </Link>
                             <div className="flex gap-4">
+                                <NoteActions content={content || ""} slug={slug} />
                                 {canEdit && (
                                     <Link
                                         href={`/archieve/${slug}?edit=true`}
