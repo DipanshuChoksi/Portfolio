@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default async function NewProjectPage() {
-    const { canEdit, isLoggedIn } = await getAuthStatus();
+    const { canEdit } = await getAuthStatus();
 
     if (!canEdit) {
         redirect("/projects");

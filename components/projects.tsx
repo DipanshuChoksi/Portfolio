@@ -12,7 +12,7 @@ export default function Projects({ projectsContent }: { projectsContent: project
   return (
     <section
       id="projects"
-      className="border-b border-border pb-20 flex items-center bg-background/50 relative overflow-hidden snap-start"
+      className="border-b border-border py-20 flex items-center bg-background/50 relative overflow-hidden snap-start"
     >
       {/* Background decoration */}
       <div className="absolute top-1/3 left-0 w-150 h-150 bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>

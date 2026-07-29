@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import { useState, useEffect } from "react";
 import { navLinks } from "@/consts";
@@ -10,8 +9,9 @@ import { NavigationMenuItem } from "@radix-ui/react-navigation-menu";
 import useIntersectionObserver from "@/hooks/useIntersectionOberver";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { SettingsMenu } from "./settings-menu";
 
-export default function Header() {
+export default function Header({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { activeSection, setActiveSection } = useIntersectionObserver();
@@ -107,7 +107,7 @@ export default function Header() {
               </Link>
             </div>
 
-            <ThemeToggle />
+            <SettingsMenu isLoggedIn={isLoggedIn} />
 
             {/* Mobile Menu Button */}
             <MobileNav isOpen={isDrawerOpen} onOpenChange={setIsDrawerOpen} navLinks={navLinks} />

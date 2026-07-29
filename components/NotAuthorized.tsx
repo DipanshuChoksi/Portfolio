@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { login } from '@/app/actions/auth';
 
 export default function NotAuthorized({ isLoggedIn }: { isLoggedIn: boolean }) {
     const actionText = 'edit notes';
@@ -14,14 +13,6 @@ export default function NotAuthorized({ isLoggedIn }: { isLoggedIn: boolean }) {
                     : `You need to log in with an admin account to ${actionText}.`}
             </p>
             <div className="flex items-center gap-4">
-                {!isLoggedIn && (
-                    <button
-                        onClick={() => login()}
-                        className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
-                    >
-                        Log In with GitHub
-                    </button>
-                )}
                 <Link
                     href="/archieve"
                     className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium hover:bg-secondary/80 transition-colors shadow-sm border border-border"

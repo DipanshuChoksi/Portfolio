@@ -1,6 +1,6 @@
 import ProjectCard from "@/components/ProjectCard";
 import { projectContent } from "@/consts";
-import { ArrowLeft, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import connectDB from "@/lib/connectDB";
 import Project from "@/models/Project";

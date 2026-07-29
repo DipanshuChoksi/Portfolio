@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import { saveMarkdownNote } from '@/app/actions/archive';
-import { LogOut, Save, X } from 'lucide-react';
+import { Save, X } from 'lucide-react';
 import NoteActions from '@/components/NoteActions';
 import Link from 'next/link';
 import { toast } from 'sonner';
-import { logout } from '@/app/actions/auth';
 import { useRouter } from 'next/navigation';
 import { useAuthStatus } from '@/hooks/useAuthStatus';
 import { ArchiveItem } from '@/interfaces/archieve';
@@ -133,21 +132,6 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
                     placeholder="Write your markdown here..."
                 />
             </div>
-
-            {isLoggedIn && (
-                <div className="flex justify-end mt-8 border-t border-border pt-8 pb-4">
-                    <button
-                        onClick={async () => {
-                            toast.success("Logged out successfully");
-                            await logout();
-                        }}
-                        className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-secondary/50 text-muted-foreground transition-all hover:bg-destructive hover:text-destructive-foreground hover:shadow-md border border-border"
-                    >
-                        <LogOut size={16} />
-                        <span>Sign Out</span>
-                    </button>
-                </div>
-            )}
         </div>
     );
 }

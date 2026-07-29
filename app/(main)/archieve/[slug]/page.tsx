@@ -4,7 +4,7 @@ import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import connectDB from '@/lib/connectDB';
 import ArchiveNote from '@/models/ArchiveNote';
-import { getAuthStatus, login } from '@/app/actions/auth';
+import { getAuthStatus } from '@/app/actions/auth';
 import { Edit2 } from 'lucide-react';
 import RenderMarkdown from '@/components/RenderMarkdown';
 import NoteEditor from '@/components/NoteEditor';
@@ -69,16 +69,6 @@ export default async function NotePage({ params, searchParams }: { params: { slu
                                 </span>
                             </Link>
                             <div className="flex gap-4">
-                                {!isLoggedIn && (
-                                    <form action={login}>
-                                        <button
-                                            type="submit"
-                                            className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-md border border-primary/20"
-                                        >
-                                            <span>Login</span>
-                                        </button>
-                                    </form>
-                                )}
                                 {canEdit && (
                                     <Link
                                         href={`/archieve/${slug}?edit=true`}
