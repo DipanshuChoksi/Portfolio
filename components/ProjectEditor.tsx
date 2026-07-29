@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { saveProject } from "@/app/actions/project";
 import { Button } from "@/components/ui/button";
 import { pushImageToGitHub } from "@/app/actions/upload";
+import { useAuthStatus } from "@/hooks/useAuthStatus";
+import NotAuthorized from "./NotAuthorized";
 
 export default function ProjectEditor({ initialData, slug = "new-project" }: { initialData?: any; slug?: string }) {
     const router = useRouter();
@@ -18,6 +20,12 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
     const [github, setGithub] = useState(initialData?.links?.github || "");
     const [live, setLive] = useState(initialData?.links?.live || "");
     const [status, setStatus] = useState<'Active' | 'WIP'>(initialData?.status || "Active");
+
+    const { canEdit, isLoggedIn } = useAuthStatus()
+
+    if (!canEdit) {
+        return <NotAuthorized isLoggedIn={isLoggedIn} actionText="add new projects" basePage="projects" />
+    }
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {

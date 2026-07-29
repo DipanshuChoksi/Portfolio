@@ -33,7 +33,7 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
     const { isLoggedIn, canEdit, authFetched } = useAuthStatus();
 
     if (authFetched && !canEdit) {
-        return <NotAuthorized isLoggedIn={isLoggedIn} />;
+        return <NotAuthorized isLoggedIn={isLoggedIn} actionText='to edit notes' basePage='archive' />;
     }
 
     const handleSave = async () => {

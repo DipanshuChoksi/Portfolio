@@ -13,11 +13,37 @@ import { ArchiveItem } from '@/interfaces/archieve';
 export default async function NotePage({ params, searchParams }: { params: { slug: string }, searchParams: { edit?: string } }) {
     const { slug } = await params;
     const { edit: editSearchParam } = await searchParams;
-    const { canEdit, isLoggedIn } = await getAuthStatus();
+    const { canEdit } = await getAuthStatus();
     const isEditing = editSearchParam == "true";
     // If trying to edit without permission, redirect to view early to save a DB call
     if (isEditing && !canEdit) {
         redirect(`/archieve/${slug}`);
+    }
+
+    await connectDB();
+    const dbNote = await ArchiveNote.findOne({ slug }).lean();
+
+    if (dbNote?.visibility === 'private' && !canEdit) {
+        return (
+            <section className="py-20 flex flex-col items-center snap-start w-full min-h-screen">
+                <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 w-full">
+                    <div className="flex justify-between items-center w-full mb-8">
+                        <Link href="/archieve" className="text-primary inline-block group">
+                            <span className="nav-link-underline">
+                                &larr; Back to Archive
+                            </span>
+                        </Link>
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-12 mt-8 border border-dashed border-destructive/30 rounded-xl bg-destructive/5 text-center">
+                        <h2 className="text-2xl font-bold text-destructive mb-2">Private Note</h2>
+                        <p className="text-muted-foreground mb-6">This is a private note. You must login with the admin email to access this.</p>
+                        <Link href="/archieve" className="px-6 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium hover:bg-secondary/80 transition-colors border border-border">
+                            Back to Archive
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     const filePath = path.join(process.cwd(), 'content', 'archieve', `${slug}.md`);
@@ -27,10 +53,6 @@ export default async function NotePage({ params, searchParams }: { params: { slu
     }
 
     const content = fs.readFileSync(filePath, 'utf-8');
-
-
-    await connectDB();
-    const dbNote = await ArchiveNote.findOne({ slug }).lean();
 
     const initialMetadata: Partial<ArchiveItem> | undefined = dbNote ? {
         title: dbNote.title,

@@ -14,7 +14,6 @@ export const metadata = {
 export default async function ProjectsPage() {
   await connectDB();
   const dbProjects = await Project.find({}).sort({ createdAt: -1 }).lean();
-  const { canEdit } = await getAuthStatus();
 
   const activeProjects = dbProjects.length > 0
     ? dbProjects.map((p: any) => ({
@@ -41,15 +40,13 @@ export default async function ProjectsPage() {
             </h1>
             <div className="h-1.5 w-20 bg-primary rounded-full"></div>
           </div>
-          {canEdit && (
-            <Link
-              href="/projects/new"
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors shadow-md"
-            >
-              <Plus size={18} />
-              New Project
-            </Link>
-          )}
+          <Link
+            href="/projects/new"
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors shadow-md"
+          >
+            <Plus size={18} />
+            New Project
+          </Link>
         </div>
 
         <p className="text-muted-foreground max-w-3xl sm:text-xl mb-12 -mt-6 animate-in slide-in-from-bottom-8 fade-in duration-1000">

@@ -1,5 +1,3 @@
-import { getAuthStatus } from "@/app/actions/auth";
-import { redirect } from "next/navigation";
 import ProjectEditor from "@/components/ProjectEditor";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -10,11 +8,6 @@ export const metadata = {
 };
 
 export default async function NewProjectPage() {
-    const { canEdit } = await getAuthStatus();
-
-    if (!canEdit) {
-        redirect("/projects");
-    }
 
     return (
         <div className="flex-1 pt-32 pb-20 bg-background/50 relative overflow-hidden min-h-screen">
