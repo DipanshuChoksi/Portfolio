@@ -17,8 +17,7 @@ function ProjectCard({ project, index }: { project: project; index: number }) {
           width={350}
           loading="eager"
         />
-
-        <div className="absolute top-4 right-4 translate-y-[-20px] opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="absolute top-4 right-4 -translate-y-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <span className="bg-primary/90 text-primary-foreground text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             {project.status}

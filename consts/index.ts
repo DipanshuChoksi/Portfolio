@@ -8,6 +8,7 @@ My expertise primarily lies in backend development with hands-on experience in t
 ];
 
 export const navLinks = [
+  { href: "/#hero", label: "Hero" },
   { href: "/#about", label: "About" },
   { href: "/#achievements", label: "Achievements" },
   { href: "/#projects", label: "Projects" },

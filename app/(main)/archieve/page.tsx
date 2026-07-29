@@ -4,6 +4,10 @@ import connectDB from "@/lib/connectDB";
 import ArchiveNote from "@/models/ArchiveNote";
 import Link from "next/link";
 
+export const metadata = {
+    title: "Archive | Dipanshu Choksi",
+    description: "A comprehensive list of what I'm learning.",
+};
 export default async function ArchievePage() {
     await connectDB();
 

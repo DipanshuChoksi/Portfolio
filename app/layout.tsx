@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     "Tailwind CSS",
     "Tailwind",
     "Server Components",
-    "ShadCN",
     "JavaScript",
     "TypeScript",
     "JSX",

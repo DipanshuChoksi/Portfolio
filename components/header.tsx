@@ -56,14 +56,18 @@ export default function Header() {
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden md:flex">
             {navLinks.map((link, idx) => {
-              let isActive = link.label.toLowerCase() === activeSection;
+              let isActive = false;
 
-              if (
-                pathname !== "/" &&
-                pathname.startsWith("/archieve") &&
-                link.label.toLowerCase() === "archive"
-              ) {
-                isActive = true;
+              if (link.href.startsWith("/#") || link.href === "/") {
+                // Section links on the home page rely on IntersectionObserver
+                if (pathname === "/") {
+                  isActive = link.label.toLowerCase() === activeSection;
+                }
+              } else {
+                // Dedicated page links are active if the current pathname starts with their href
+                if (pathname !== "/" && pathname.startsWith(link.href)) {
+                  isActive = true;
+                }
               }
 
               return (
