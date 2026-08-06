@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { saveProject } from "@/app/actions/project";
+import { saveProject, deleteProject } from "@/app/actions/project";
 import { Button } from "@/components/ui/button";
 import { pushImageToGitHub } from "@/app/actions/upload";
 import { useAuthStatus } from "@/hooks/useAuthStatus";
@@ -111,6 +111,19 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
         setLoading(false);
     };
 
+    const handleDelete = async () => {
+        if (!confirm("Are you sure you want to delete this project?")) return;
+        setLoading(true);
+        try {
+            await deleteProject(slug);
+            router.push('/projects');
+        } catch (error) {
+            console.error("Failed to delete project", error);
+            alert("Failed to delete project");
+            setLoading(false);
+        }
+    };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 max-w-2xl mx-auto p-6 bg-card rounded-2xl border border-border">
             <div>
@@ -186,9 +199,16 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
                 </select>
             </div>
 
-            <Button type="submit" disabled={loading} className="w-full mt-4">
-                {loading ? "Saving..." : "Save Project"}
-            </Button>
+            <div className="flex flex-col gap-4 mt-4">
+                {slug !== 'new-project' && (
+                    <Button type="button" variant="destructive" onClick={handleDelete} disabled={loading} className="w-full">
+                        Delete Project
+                    </Button>
+                )}
+                <Button type="submit" disabled={loading} className="w-full">
+                    {loading ? "Saving..." : "Save Project"}
+                </Button>
+            </div>
         </form>
     );
 }

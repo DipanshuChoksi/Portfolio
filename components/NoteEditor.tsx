@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { saveMarkdownNote } from '@/app/actions/archive';
-import { Save, X } from 'lucide-react';
+import { saveMarkdownNote, deleteMarkdownNote } from '@/app/actions/archive';
+import { Save, X, Trash } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
@@ -61,6 +61,20 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
         return <NotAuthorized isLoggedIn={isLoggedIn} actionText='to edit notes' basePage='archive' />;
     }
 
+    const handleDelete = async () => {
+        if (!confirm("Are you sure you want to delete this note?")) return;
+        setIsSaving(true);
+        try {
+            await deleteMarkdownNote(slug);
+            toast.success("Note deleted successfully!");
+            router.push('/archieve');
+        } catch (error) {
+            console.error("Failed to delete", error);
+            toast.error("Failed to delete note");
+            setIsSaving(false);
+        }
+    };
+
     const onSubmit = async (data: NoteFormValues) => {
         setIsSaving(true);
         try {
@@ -83,6 +97,17 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
         <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4 -mt-16">
             <div className="flex justify-end mb-2 gap-4">
                 <div className="flex gap-2">
+                    {slug !== 'new-note' && (
+                        <button
+                            type="button"
+                            onClick={handleDelete}
+                            disabled={isSaving}
+                            className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-destructive/10 text-destructive transition-all hover:bg-destructive hover:text-destructive-foreground hover:shadow-md"
+                        >
+                            <Trash size={16} />
+                            <span>Delete</span>
+                        </button>
+                    )}
                     <Link
                         href={slug === 'new-note' ? '/archieve' : `/archieve/${slug}`}
                         className="flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full bg-secondary text-secondary-foreground transition-all hover:bg-secondary/80 hover:shadow-md border border-border"

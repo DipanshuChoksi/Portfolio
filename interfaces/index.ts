@@ -22,6 +22,7 @@ export interface project {
   description: string;
   image: string;
   tags: string[];
+  slug?: string;
   links: {
     github: string;
     live: string;

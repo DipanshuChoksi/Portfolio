@@ -43,3 +43,13 @@ export async function saveProject(
 
     return { success: true, slug: finalSlug };
 }
+
+export async function deleteProject(slug: string) {
+    await connectDB();
+    await Project.findOneAndDelete({ slug });
+    
+    revalidatePath('/');
+    revalidatePath('/projects');
+    
+    return { success: true };
+}

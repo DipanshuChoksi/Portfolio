@@ -13,7 +13,7 @@ function ReadThisWeekComponent({ items }: { items: ArchiveItem[] }) {
                 <div
                     key={index}
                     onClick={() => router.push(`/archieve/${item.slug}`)}
-                    className="border p-4 rounded-lg shadow-sm block hover:shadow-md transition-shadow cursor-pointer"
+                    className="border border-border/50 bg-card/30 p-4 rounded-xl shadow-sm block hover:shadow-lg hover:shadow-primary/5 hover:border-primary/40 hover:-translate-y-1 hover:bg-secondary/20 transition-all duration-300 cursor-pointer group"
                 >
                     <div className="flex justify-between items-start mb-1">
                         <p className="text-sm text-gray-500">{item.date.toLocaleDateString()}</p>

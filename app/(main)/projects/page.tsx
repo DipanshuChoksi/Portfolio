@@ -14,6 +14,7 @@ export const metadata = {
 export default async function ProjectsPage() {
   await connectDB();
   const dbProjects = await Project.find({}).sort({ createdAt: -1 }).lean();
+  const { canEdit } = await getAuthStatus();
 
   const activeProjects = dbProjects.length > 0
     ? dbProjects.map((p: any) => ({
@@ -21,6 +22,7 @@ export default async function ProjectsPage() {
       description: p.description,
       image: p.image,
       tags: p.tags,
+      slug: p.slug,
       links: p.links,
       status: p.status,
     }))
@@ -61,7 +63,7 @@ export default async function ProjectsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
             {activeProjects.map((project, index) => (
-              <ProjectCard project={project} index={index} key={index} />
+              <ProjectCard project={project} index={index} key={index} canEdit={canEdit} />
             ))}
           </div>
         )}
