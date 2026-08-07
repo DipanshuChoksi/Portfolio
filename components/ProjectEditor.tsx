@@ -102,7 +102,7 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
 
             const result = await saveProject(slug, payload);
             if (result.success) {
-                router.push('/projects');
+                router.push('/admin/projects');
             }
         } catch (error) {
             console.error("Failed to save project", error);
@@ -116,7 +116,7 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
         setLoading(true);
         try {
             await deleteProject(slug);
-            router.push('/projects');
+            router.push('/admin/projects');
         } catch (error) {
             console.error("Failed to delete project", error);
             alert("Failed to delete project");

@@ -2,7 +2,6 @@ import ReadThisWeekComponent from "@/components/ReadThisWeekComponent";
 import { ArchiveItem } from "@/interfaces/archieve";
 import connectDB from "@/lib/connectDB";
 import ArchiveNote from "@/models/ArchiveNote";
-import Link from "next/link";
 
 export const metadata = {
     title: "Archive | Dipanshu Choksi",
@@ -45,38 +44,12 @@ export default async function ArchievePage(props: Props) {
                         </h1>
                         <div className="h-1.5 w-20 bg-primary rounded-full"></div>
                     </div>
-                    <Link
-                        href="/archieve/new"
-                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors shadow-md"
-                    >
-                        + New Note
-                    </Link>
                 </div>
 
-                <div className="flex gap-3 mb-8 animate-in slide-in-from-bottom-8 fade-in duration-1000 delay-150">
-                    <Link
-                        href="/archieve?filter=all"
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-colors border ${filter === 'all' ? 'bg-primary text-primary-foreground border-primary shadow-sm' : 'bg-card text-muted-foreground border-border hover:bg-secondary hover:text-foreground'}`}
-                    >
-                        All Notes
-                    </Link>
-                    <Link
-                        href="/archieve?filter=public"
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-colors border ${filter === 'public' ? 'bg-primary text-primary-foreground border-primary shadow-sm' : 'bg-card text-muted-foreground border-border hover:bg-secondary hover:text-foreground'}`}
-                    >
-                        Public
-                    </Link>
-                    <Link
-                        href="/archieve?filter=private"
-                        className={`px-5 py-2 rounded-full text-sm font-medium transition-colors border ${filter === 'private' ? 'bg-primary text-primary-foreground border-primary shadow-sm' : 'bg-card text-muted-foreground border-border hover:bg-secondary hover:text-foreground'}`}
-                    >
-                        Private
-                    </Link>
-                </div>
                 {notes.length === 0 ? (
                     <div className="flex flex-col items-center justify-center p-12 mt-8 border border-dashed border-border rounded-xl bg-card/50 text-center">
                         <h2 className="text-xl font-bold text-muted-foreground mb-2">No notes found</h2>
-                        <p className="text-sm text-muted-foreground">Have not created any notes yet. Will do it soon!</p>
+                        <p className="text-sm text-muted-foreground">Check back later for new notes!</p>
                     </div>
                 ) : (
                     <ReadThisWeekComponent items={notes} />

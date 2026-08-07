@@ -1,18 +1,17 @@
 'use client';
 
 import { ArchiveItem } from "@/interfaces/archieve"
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-function ReadThisWeekComponent({ items }: { items: ArchiveItem[] }) {
-    const router = useRouter();
+function ReadThisWeekComponent({ items, hrefPrefix = '/archieve' }: { items: ArchiveItem[], hrefPrefix?: string }) {
 
     return (
         <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-bold">Read This Week</h2>
             {items.map((item, index) => (
-                <div
+                <Link
+                    href={`${hrefPrefix}/${item.slug}`}
                     key={index}
-                    onClick={() => router.push(`/archieve/${item.slug}`)}
                     className="border border-border/50 bg-card/30 p-4 rounded-xl shadow-sm block hover:shadow-lg hover:shadow-primary/5 hover:border-primary/40 hover:-translate-y-1 hover:bg-secondary/20 transition-all duration-300 cursor-pointer group"
                 >
                     <div className="flex justify-between items-start mb-1">
@@ -25,17 +24,11 @@ function ReadThisWeekComponent({ items }: { items: ArchiveItem[] }) {
                     {item.info && (
                         <p className="text-sm text-gray-600 mt-1">{item.info}</p>
                     )}
-                    <p className="text-sm mt-2 text-blue-600 hover:underline">
+                    <p className="text-sm mt-2">
                         <strong>Source:</strong>
-                        <a
-                            href={item.Source.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="hover:underline"
-                        >
+                        <span className="hover:underline">
                             {item.Source.title}
-                        </a>
+                        </span>
                     </p>
                     <div className="flex gap-2 mt-3 flex-wrap">
                         {item.Topics.map((topic, tIndex) => (
@@ -47,7 +40,7 @@ function ReadThisWeekComponent({ items }: { items: ArchiveItem[] }) {
                             </span>
                         ))}
                     </div>
-                </div>
+                </Link>
             ))}
         </div>)
 }

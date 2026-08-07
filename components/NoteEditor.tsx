@@ -67,7 +67,7 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
         try {
             await deleteMarkdownNote(slug);
             toast.success("Note deleted successfully!");
-            router.push('/archieve');
+            router.push('/admin/archieve');
         } catch (error) {
             console.error("Failed to delete", error);
             toast.error("Failed to delete note");
@@ -85,7 +85,7 @@ export default function NoteEditor({ initialContent, slug, initialVisibility = '
                 Source: { title: data.sourceTitle || '', url: data.sourceUrl || '' }
             });
             toast.success("Note saved successfully!");
-            router.push(`/archieve/${response.slug}`);
+            router.push(`/admin/archieve`);
         } catch (error) {
             console.error("Failed to save", error);
             toast.error("Failed to save note");

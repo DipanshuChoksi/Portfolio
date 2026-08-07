@@ -16,10 +16,10 @@ export default async function NewProjectPage() {
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 w-full">
                 <div className="mb-12">
                     <Link
-                        href="/projects"
+                        href="/admin/projects"
                         className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-6 group"
                     >
-                        <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
+                        <ArrowLeft size={16} className="transition-transform grousp-hover:-translate-x-1" />
                         Back to Projects
                     </Link>
                     <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-4xl mb-6 text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
