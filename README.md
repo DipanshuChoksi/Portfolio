@@ -24,7 +24,6 @@ I wanted a portfolio that feels **modern**, loads **instantly**, and is **fun to
 
 - **Lightning-fast portfolio** with clean architecture
 - **Search & filter** posts by tags or free-text query
-- **Shimmer skeletons** on Blog & Article pages for perceived-speed wins
 - **Theme toggle** with persistent **Dark / Light** mode
 
 ---
@@ -46,7 +45,6 @@ I wanted a portfolio that feels **modern**, loads **instantly**, and is **fun to
 
 - **Next.js 14 App Router** with file-based routing
 - **Accessible UI** powered by **shadcn/ui** + **Radix** primitives
-- **Taggable blog** with instant search (client-side)
 - **Responsive design** from mobile → ultrawide
 - **SEO-friendly** meta + Open Graph defaults
 - **Zero-layout shift** with skeleton shimmer loading
@@ -58,9 +56,9 @@ I wanted a portfolio that feels **modern**, loads **instantly**, and is **fun to
 
 ```text
 ├── app                       # Routes & pages (App Router)
-│ └── blogs                   # Blog listing
+│ └── archieve                # Archive listing
 │   └── [host]
-│      └── [slug]             # Dynamically render blog page here
+│      └── [slug]             # Dynamically render archive page here
 │
 ├── components                # UI & layout components
 │ └── ui                      # Reusable shadcn/ui wrappers

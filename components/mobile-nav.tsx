@@ -27,7 +27,7 @@ export function MobileNav({ isOpen, onOpenChange, navLinks }: MobileNavProps) {
 
       {/* Mobile Navigation Sheet */}
       <Sheet open={isOpen} onOpenChange={onOpenChange}>
-        <SheetContent side="right" className="w-[300px] sm:w-[350px]">
+        <SheetContent side="right" className="w-75 sm:w-87.5">
           <SheetHeader>
             <SheetTitle className="text-2xl">Menu</SheetTitle>
           </SheetHeader>
