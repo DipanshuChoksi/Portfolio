@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     if (imageUrl.includes(".amazonaws.com/")) {
         key = imageUrl.split(".amazonaws.com/")[1];
     }
+    key = key.replace(/^\/+/, "");
 
     try {
         const command = new GetObjectCommand({
