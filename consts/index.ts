@@ -1,19 +1,39 @@
-import { Mail, ExternalLink } from "lucide-react";
-import type { projectSection } from "../interfaces";
-
+import { ExternalLink, Mail } from "lucide-react";
+import type { projectSection, NavItem } from "../interfaces";
 
 export const aboutContent = [
   `I’m a passionate full-stack developer with a strong focus on building scalable, user-centric web applications and solving complex backend challenges. I enjoy turning ideas into real products that are not only functional but also efficient, maintainable, and impactful. My journey in software development has been driven by curiosity, consistency, and a deep interest in understanding how systems work beneath the surface.
 My expertise primarily lies in backend development with hands-on experience in technologies like JavaScript, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like React, Next.js, Tailwind CSS, and shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.`,
 ];
 
-export const navLinks = [
+export const navLinks: NavItem[] = [
   { href: "/#hero", label: "Hero" },
   { href: "/#about", label: "About" },
-  { href: "/#achievements", label: "Achievements" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#education", label: "Education" },
+  {
+    label: "Highlights",
+    children: [
+      {
+        href: "/#achievements",
+        label: "Achievements",
+        description: "Hackathons, Certifications, and more",
+      },
+      {
+        href: "/#projects",
+        label: "Projects",
+        description: "Featured builds & open-source work",
+      },
+      {
+        href: "/#skills",
+        label: "Skills",
+        description: "Tech stack, languages & tools",
+      },
+      {
+        href: "/#education",
+        label: "Education",
+        description: "Academic degree & coursework",
+      },
+    ],
+  },
   { href: "/archieve", label: "Archive" },
 ];
 

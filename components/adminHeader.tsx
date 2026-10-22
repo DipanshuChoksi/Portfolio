@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { NavigationMenu, NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { NavigationMenuItem } from "@radix-ui/react-navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { MobileNav } from "@/components/mobile-nav";
@@ -67,32 +71,27 @@ export function AdminHeader() {
 
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden md:flex">
-            {adminNavLinks.map((link, idx) => {
-              const isActive = pathname.startsWith(link.href) && link.href !== "/";
+            <NavigationMenuList className="gap-1">
+              {adminNavLinks.map((link, idx) => {
+                const isActive = pathname.startsWith(link.href) && link.href !== "/";
 
-              return (
-                <NavigationMenuItem
-                  key={idx}
-                  className="bg-transparent"
-                  asChild
-                >
-                  <NavigationMenuLink
-                    asChild
-                    active={isActive}
-                    className={cn(
-                      "group inline-flex items-center justify-center px-4 py-2 text-sm font-semibold transition-colors bg-transparent",
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    <Link href={link.href}>
+                return (
+                  <NavigationMenuItem key={idx} className="bg-transparent">
+                    <NavigationMenuLink
+                      render={<Link href={link.href} />}
+                      className={cn(
+                        "group inline-flex items-center justify-center px-4 py-2 text-sm font-semibold transition-colors bg-transparent",
+                        isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
                       <span className={cn("nav-link-underline", isActive && "active")}>
                         {link.label}
                       </span>
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              );
-            })}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                );
+              })}
+            </NavigationMenuList>
           </NavigationMenu>
 
           {/* Right Section */}

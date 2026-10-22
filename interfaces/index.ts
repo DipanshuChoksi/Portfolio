@@ -65,3 +65,14 @@ export interface achievementsSection {
     certificateUrl?: string;
   }[];
 }
+
+export interface NavItem {
+  label: string;
+  href?: string;
+  description?: string;
+  children?: {
+    label: string;
+    href: string;
+    description?: string;
+  }[];
+}

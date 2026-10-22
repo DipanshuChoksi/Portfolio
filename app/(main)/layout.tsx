@@ -1,4 +1,4 @@
-import Header from "@/components/header";
+import Header from "@/components/public/header";
 import Footer from "@/components/footer";
 import { getAuthStatus } from "@/app/actions/auth";
 async function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {

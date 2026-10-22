@@ -9,10 +9,12 @@ import useIntersectionObserver from "@/hooks/useIntersectionOberver";
 import { login, logout } from "@/app/actions/auth";
 import { toast } from "sonner";
 
+import { NavItem } from "@/interfaces";
+
 interface MobileNavProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  navLinks: Array<{ href: string; label: string }>;
+  navLinks: NavItem[];
   isLoggedIn?: boolean;
 }
 
@@ -40,30 +42,72 @@ export function MobileNav({ isOpen, onOpenChange, navLinks, isLoggedIn = false }
           </SheetHeader>
           <div className="flex flex-col justify-between py-6">
             <nav className="flex flex-col space-y-1">
-              {navLinks.map((link, idx) => {
-                let isActive = false;
+              {navLinks.map((item, idx) => {
+                if (item.children && item.children.length > 0) {
+                  return (
+                    <div key={item.label || idx} className="py-2">
+                      <div className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        {item.label}
+                      </div>
+                      <div className="flex flex-col pl-2 mt-1 space-y-1">
+                        {item.children.map((child) => {
+                          let isActive = false;
+                          if (child.href.startsWith("/#") || child.href === "/") {
+                            if (pathname === "/") {
+                              isActive = child.label.toLowerCase() === activeSection;
+                            }
+                          } else {
+                            if (pathname !== "/" && pathname.startsWith(child.href)) {
+                              isActive = true;
+                            }
+                          }
 
-                if (link.href.startsWith("/#") || link.href === "/") {
+                          return (
+                            <SheetClose asChild key={child.href}>
+                              <Link
+                                href={child.href}
+                                className={`flex items-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
+                                  isActive
+                                    ? "bg-primary/10 text-primary"
+                                    : "text-foreground hover:bg-secondary/80"
+                                }`}
+                                onClick={() => setActiveSection(child.label.toLowerCase())}
+                              >
+                                {child.label}
+                              </Link>
+                            </SheetClose>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (!item.href) return null;
+
+                let isActive = false;
+                if (item.href.startsWith("/#") || item.href === "/") {
                   if (pathname === "/") {
-                    isActive = link.label.toLowerCase() === activeSection;
+                    isActive = item.label.toLowerCase() === activeSection;
                   }
                 } else {
-                  if (pathname !== "/" && pathname.startsWith(link.href)) {
+                  if (pathname !== "/" && pathname.startsWith(item.href)) {
                     isActive = true;
                   }
                 }
 
                 return (
-                  <SheetClose asChild key={link.href}>
+                  <SheetClose asChild key={item.href}>
                     <Link
-                      href={link.href}
-                      className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${isActive
-                        ? "bg-primary/10 text-primary"
-                        : "text-foreground hover:bg-secondary/80"
-                        }`}
-                      onClick={() => setActiveSection(link.label.toLowerCase())}
+                      href={item.href}
+                      className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${
+                        isActive
+                          ? "bg-primary/10 text-primary"
+                          : "text-foreground hover:bg-secondary/80"
+                      }`}
+                      onClick={() => setActiveSection(item.label.toLowerCase())}
                     >
-                      {link.label}
+                      {item.label}
                     </Link>
                   </SheetClose>
                 );

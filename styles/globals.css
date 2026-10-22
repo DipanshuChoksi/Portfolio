@@ -1,117 +1,118 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 :root {
   /* Core Colors */
   --text: #0a0a0a;
-  --background: #ffffff;
-  --primary: #f97316;
-  --secondary: #fff7ed; /* Soft Orange background */
-  --accent: #f97316; /* Vibrant Orange accent */
+  --primary: oklch(0.205 0 0);
+  --secondary: oklch(0.97 0 0); /* Soft Orange background */
+  --accent: oklch(0.97 0 0); /* Vibrant Orange accent */
 
   /* Semantic Tokens */
-  --foreground: var(--text);
-  --card: #ffffff;
-  --card-foreground: var(--text);
-  --popover: #ffffff;
-  --popover-foreground: var(--text);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
 
   /* Interactive */
-  --primary-foreground: #ffffff;
-  --secondary-foreground: #9a3412;
-  --accent-foreground: #ffffff;
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --accent-foreground: oklch(0.205 0 0);
 
   /* Muted / Neutral */
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
 
   /* Destructive */
-  --destructive: #ef4444;
+  --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #ffffff;
   --blue-button: #0d9488;
 
   /* Borders & Rings */
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #0d9488;
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
 
   /* Charts */
-  --chart-1: #0d9488;
-  --chart-2: #14b8a6;
-  --chart-3: #2dd4bf;
-  --chart-4: #5eead4;
-  --chart-5: #99f6e4;
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
 
   /* Radius */
-  --radius: 0.75rem;
+  --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: #fafafa;
-  --sidebar-foreground: #0a0a0a;
-  --sidebar-primary: #0d9488;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f4f4f5;
-  --sidebar-accent-foreground: #18181b;
-  --sidebar-border: #e4e4e7;
-  --sidebar-ring: #0d9488;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
 }
 
 .dark {
   /* Core Colors */
   --text: #fafafa;
-  --background: #09090b;
-  --primary: #d46b15;
-  --secondary: #2a1a10; /* Deep muted orange for dark mode */
-  --accent: #d46b15; /* Brighter orange for dark mode visibility */
+  --background: oklch(0.145 0 0);
+  --primary: oklch(0.922 0 0);
+  --secondary: oklch(0.269 0 0); /* Deep muted orange for dark mode */
+  --accent: oklch(0.269 0 0); /* Brighter orange for dark mode visibility */
 
   /* Semantic Tokens */
-  --foreground: var(--text);
-  --card: #18181b;
-  --card-foreground: var(--text);
-  --popover: #18181b;
-  --popover-foreground: var(--text);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
   --blue-button: #2dd4bf;
 
   /* Interactive */
-  --primary-foreground: #09090b;
-  --secondary-foreground: #ffedd5;
-  --accent-foreground: #09090b;
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --accent-foreground: oklch(0.985 0 0);
 
   /* Muted / Neutral */
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
 
   /* Destructive */
-  --destructive: #7f1d1d;
+  --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: #fef2f2;
 
   /* Borders & Rings */
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #2dd4bf;
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
 
   /* Charts */
-  --chart-1: #2dd4bf;
-  --chart-2: #14b8a6;
-  --chart-3: #0d9488;
-  --chart-4: #0f766e;
-  --chart-5: #134e4a;
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
 
   /* Sidebar */
-  --sidebar: #09090b;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #2dd4bf;
-  --sidebar-primary-foreground: #09090b;
-  --sidebar-accent: #27272a;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #27272a;
-  --sidebar-ring: #2dd4bf;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 @theme inline {
   /* Fonts */
-  --font-sans: "Geist", "Geist Fallback";
+  --font-sans: var(--font-sans);
   --font-mono: "Geist Mono", "Geist Mono Fallback";
 
   /* Core */
@@ -164,6 +165,10 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-heading: var(--font-sans);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @layer base {
@@ -173,6 +178,9 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
@@ -191,7 +199,7 @@
     content: "";
     @apply absolute -bottom-1 left-0 h-[2px] w-full origin-bottom-right scale-x-0 bg-primary transition-transform duration-300;
   }
-  .group:hover .nav-link-underline::after,
+  .group\/nav-link:hover .nav-link-underline::after,
   .nav-link-underline:hover::after,
   .nav-link-underline.active::after {
     @apply origin-bottom-left scale-x-100;
