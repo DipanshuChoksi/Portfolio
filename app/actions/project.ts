@@ -38,7 +38,7 @@ async function uploadImageIfPresent(file: File | null): Promise<{ success: boole
     }
 }
 
-export async function createProject(formData: FormData) {
+export async function handleProject(formData: FormData, slug?: string) {
     const { canEdit } = await getAuthStatus();
     if (!canEdit) return { success: false, error: 'Unauthorized' };
 
@@ -55,67 +55,41 @@ export async function createProject(formData: FormData) {
     if (!uploadResult.success) return uploadResult;
     if (uploadResult.url) image = uploadResult.url;
 
-    let finalSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-    if (!finalSlug) finalSlug = `project-${Date.now()}`;
-
     const tags = tagsString ? tagsString.split(",").map(t => t.trim()).filter(Boolean) : [];
     const links = { github: github || "", live: live || "" };
 
-    await connectDB();
-    await Project.create({
-        slug: finalSlug,
+    const projectData = {
         title,
         description,
         image,
         tags,
         links,
         status,
-    });
-
-    revalidatePath('/');
-    revalidatePath('/projects');
-    return { success: true, slug: finalSlug };
-}
-
-export async function updateProject(slug: string, formData: FormData) {
-    const { canEdit } = await getAuthStatus();
-    if (!canEdit) return { success: false, error: 'Unauthorized' };
-
-    const title = formData.get('title') as string;
-    const description = formData.get('description') as string;
-    const tagsString = formData.get('tags') as string;
-    const github = formData.get('github') as string;
-    const live = formData.get('live') as string;
-    const status = formData.get('status') as string;
-    let image = formData.get('image') as string;
-    const file = formData.get('imageFile') as File | null;
-
-    const uploadResult = await uploadImageIfPresent(file);
-    if (!uploadResult.success) return uploadResult;
-    if (uploadResult.url) image = uploadResult.url;
-
-    const tags = tagsString ? tagsString.split(",").map(t => t.trim()).filter(Boolean) : [];
-    const links = { github: github || "", live: live || "" };
+    };
 
     await connectDB();
-    await Project.findOneAndUpdate(
-        { slug },
-        {
-            $set: {
-                title,
-                description,
-                image,
-                tags,
-                links,
-                status,
-            }
-        },
-        { new: true }
-    );
+
+    let targetSlug = slug;
+    if (targetSlug && targetSlug !== 'new-project') {
+        await Project.findOneAndUpdate(
+            { slug: targetSlug },
+            { $set: projectData },
+            { new: true }
+        );
+    } else {
+        let finalSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        if (!finalSlug) finalSlug = `project-${Date.now()}`;
+        targetSlug = finalSlug;
+
+        await Project.create({
+            slug: finalSlug,
+            ...projectData,
+        });
+    }
 
     revalidatePath('/');
     revalidatePath('/projects');
-    return { success: true, slug };
+    return { success: true, slug: targetSlug };
 }
 
 export async function deleteProject(slug: string) {

@@ -8,7 +8,7 @@ import NotAuthorized from "./NotAuthorized";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { deleteProject, createProject, updateProject } from "@/app/actions/project";
+import { deleteProject, handleProject } from "@/app/actions/project";
 
 const projectSchema = z.object({
     title: z.string().min(1, "Title is required"),
@@ -27,7 +27,7 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
     const [image, setImage] = useState(initialData?.image || "/placeholder.svg");
     const [imageFile, setImageFile] = useState<File | null>(null);
 
-    const { canEdit, isLoggedIn } = useAuthStatus()
+    const { canEdit, isLoggedIn } = useAuthStatus();
 
     const {
         register,
@@ -72,12 +72,7 @@ export default function ProjectEditor({ initialData, slug = "new-project" }: { i
                 formData.append("imageFile", imageFile);
             }
 
-            let result;
-            if (slug === 'new-project') {
-                result = await createProject(formData);
-            } else {
-                result = await updateProject(slug, formData);
-            }
+            const result = await handleProject(formData, slug);
 
             if (result.success) {
                 router.push('/admin/projects');

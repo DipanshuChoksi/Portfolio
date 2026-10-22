@@ -45,7 +45,7 @@ Without these, the app will fail to start (DB connect, auth, S3).
 ## High-Signal Conventions
 
 - **Middleware** (`middleware.ts`): protects `/admin/*` (redirect unauthenticated to `/admin/login`, unauthorized to `/`). Allows `/api/auth/*`. Redirects authorized admin from login to `/admin/dashboard`. Pattern: `req.nextUrl.pathname.startsWith('/admin') && !isLoginRoute`.
-- **Server Actions** (`app/actions/*`): marked `'use server'`. Import `getAuthStatus` to check admin privileges. All CRUD actions (`createProject`, `updateProject`, `deleteProject`, `saveMarkdownNote`, `deleteMarkdownNote`, `uploadResume`) gate on `canEdit` from `getAuthStatus()`.
+- **Server Actions** (`app/actions/*`): marked `'use server'`. Import `getAuthStatus` to check admin privileges. All CRUD actions (`handleProject`, `deleteProject`, `saveMarkdownNote`, `deleteMarkdownNote`, `uploadResume`) gate on `canEdit` from `getAuthStatus()`.
 - **S3 key patterns**: 
   - Projects: `public/projects/<unique-filename>`
   - Resume: `public/Resume_Dipanshu_Choksi.pdf` (constant `RESUME_KEY`)
