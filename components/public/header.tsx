@@ -35,10 +35,10 @@ export default function Header({ isLoggedIn = false }: { isLoggedIn?: boolean })
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300 w-full",
+        "sticky top-0 z-50 transition-all duration-300 w-full border-b py-2",
         scrolled
-          ? "bg-background/70 backdrop-blur-xl border-b border-border/50 shadow-sm py-2"
-          : "bg-transparent py-4 border-b border-transparent"
+          ? "bg-background/70 backdrop-blur-xl border-border shadow-sm"
+          : "bg-transparent border-border"
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

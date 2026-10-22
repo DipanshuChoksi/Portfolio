@@ -1,4 +1,4 @@
-import { ExternalLink, Mail } from "lucide-react";
+import { Briefcase, Mail } from "lucide-react";
 import type { projectSection, NavItem } from "../interfaces";
 
 export const aboutContent = [
@@ -186,11 +186,11 @@ export const heroContent = {
   role: "Software Engineer",
   image_path: "/me.jpeg",
   description:
-    "I build beautiful, performant web applications with a focus on user experience and clean code. Passionate about open source and learning new frameworks and technologies.",
+    "I engineer robust backend architectures and scalable, user-centric web applications.",
   call_to_action: [
-    { name: "View My Work", url: "#projects", icon: ExternalLink },
+    { name: "View My Work", url: "#projects", icon: Briefcase },
     {
-      name: " Get in Touch",
+      name: "Get in Touch",
       url: "mailto:dipanshuchoksi@gmail.com",
       icon: Mail,
     },

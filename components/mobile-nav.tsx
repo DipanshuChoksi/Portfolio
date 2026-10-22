@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Moon, Sun, LogIn, LogOut } from "lucide-react";
+import { Menu, Moon, Sun, LogIn, LogOut, FileText } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -126,18 +126,31 @@ export function MobileNav({ isOpen, onOpenChange, navLinks, isLoggedIn = false }
                   </Link>
                 </SheetClose>
               )}
-              {!pathname.startsWith("/admin") && <SheetClose asChild>
-                <Link
-                  href="/connect"
-                  className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${pathname.startsWith("/connect")
-                    ? "bg-primary/10 text-primary"
-                    : "text-foreground hover:bg-secondary/80"
+              {!pathname.startsWith("/admin") && (
+                <SheetClose asChild>
+                  <Link
+                    href="/connect"
+                    className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${
+                      pathname.startsWith("/connect")
+                        ? "bg-primary/10 text-primary"
+                        : "text-foreground hover:bg-secondary/80"
                     }`}
+                  >
+                    Contact Me
+                  </Link>
+                </SheetClose>
+              )}
+
+              <SheetClose asChild>
+                <a
+                  href="/api/resume"
+                  download
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold text-foreground hover:bg-secondary/80 transition-colors"
                 >
-                  Contact Me
-                </Link>
+                  <FileText className="h-5 w-5 text-primary" />
+                  <span>Find My Resume</span>
+                </a>
               </SheetClose>
-              }
             </nav>
 
             <div className="flex flex-col space-y-1 pt-6 mt-6 border-t border-border/50">

@@ -4,12 +4,15 @@
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Core Colors */
   --text: #0a0a0a;
   --primary: oklch(0.205 0 0);
-  --secondary: oklch(0.97 0 0); /* Soft Orange background */
-  --accent: oklch(0.97 0 0); /* Vibrant Orange accent */
+  --secondary: oklch(0.97 0 0);
+  /* Soft Orange background */
+  --accent: oklch(0.97 0 0);
+  /* Vibrant Orange accent */
 
   /* Semantic Tokens */
   --card: oklch(1 0 0);
@@ -64,8 +67,10 @@
   --text: #fafafa;
   --background: oklch(0.145 0 0);
   --primary: oklch(0.922 0 0);
-  --secondary: oklch(0.269 0 0); /* Deep muted orange for dark mode */
-  --accent: oklch(0.269 0 0); /* Brighter orange for dark mode visibility */
+  --secondary: oklch(0.269 0 0);
+  /* Deep muted orange for dark mode */
+  --accent: oklch(0.269 0 0);
+  /* Brighter orange for dark mode visibility */
 
   /* Semantic Tokens */
   --foreground: oklch(0.985 0 0);
@@ -110,6 +115,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
 @theme inline {
   /* Fonts */
   --font-sans: var(--font-sans);
@@ -179,8 +185,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
   }
 }
 
@@ -195,10 +202,12 @@
   .nav-link-underline {
     @apply relative;
   }
+
   .nav-link-underline::after {
     content: "";
     @apply absolute -bottom-1 left-0 h-[2px] w-full origin-bottom-right scale-x-0 bg-primary transition-transform duration-300;
   }
+
   .group\/nav-link:hover .nav-link-underline::after,
   .nav-link-underline:hover::after,
   .nav-link-underline.active::after {

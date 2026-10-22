@@ -37,7 +37,7 @@ export default async function Home() {
   }
     ;
   return (
-    <main className="flex-1 Home pt-20 sm:pt-0">
+    <main className="flex-1 Home">
       <SnapEnforcer />
       <Hero heroContent={heroContent} />
       <About aboutContent={aboutContent} />
@@ -45,7 +45,7 @@ export default async function Home() {
       <Projects projectsContent={projectSection} />
       <Skills skillsContent={skillContent} />
       <Education educationContent={educationContent} />
-      <div className="fixed z-50 bottom-6 right-6">
+      <div className="hidden md:block fixed z-50 bottom-6 right-6">
         <a
           href="/api/resume"
           download

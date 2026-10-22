@@ -32,7 +32,7 @@ export default function About({ aboutContent }: { aboutContent: aboutSection }) 
   return (
     <section
       id="about"
-      className="border-b border-border py-20 flex items-center bg-background/50 snap-start"
+      className="border-b border-border py-20 flex items-center bg-background/50 snap-start mt-10"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="mb-12 animate-in slide-in-from-bottom-8 fade-in duration-1000">
