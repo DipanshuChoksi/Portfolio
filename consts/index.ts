@@ -2,8 +2,9 @@ import { Briefcase, Mail } from "lucide-react";
 import type { projectSection, NavItem } from "../interfaces";
 
 export const aboutContent = [
-  `I’m a passionate full-stack developer with a strong focus on building scalable, user-centric web applications and solving complex backend challenges. I enjoy turning ideas into real products that are not only functional but also efficient, maintainable, and impactful. My journey in software development has been driven by curiosity, consistency, and a deep interest in understanding how systems work beneath the surface.
-My expertise primarily lies in backend development with hands-on experience in technologies like JavaScript, Node.js, Express.js, MongoDB, SQL, and modern frontend tools like React, Next.js, Tailwind CSS, and shadcn/ui. I love designing clean architectures, optimizing performance, and building systems that can scale reliably. Alongside development, I continuously strengthen my problem-solving skills through Data Structures and Algorithms and core computer science subjects like OS, DBMS, CN, and system design.`,
+  `I'm a full-stack developer with a strong focus on backend engineering and scalable systems. I enjoy turning complex problems into reliable software that's efficient, maintainable, and intuitive to use.`,
+  `I care about understanding how systems work beneath the surface, designing clean abstractions, and making thoughtful engineering decisions. For me, good software isn't just about getting things working; it's about building them well.`,
+  `I'm interested in the deeper principles behind reliable software, from computer science fundamentals to system design. I apply what I learn by building applications that are robust, maintainable, and useful.`
 ];
 
 export const navLinks: NavItem[] = [
