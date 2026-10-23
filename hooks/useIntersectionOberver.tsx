@@ -9,11 +9,11 @@ export default function useIntersectionObserver() {
 
   useEffect(() => {
     if (pathname !== "/") {
-      setActiveSection("");
       return;
     }
 
-    const sections = document.querySelectorAll("section");
+    const sections = document.querySelectorAll("section[id]");
+    if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -24,7 +24,8 @@ export default function useIntersectionObserver() {
         });
       },
       {
-        threshold: 0.5,
+        threshold: 0.3,
+        rootMargin: "-80px 0px -20% 0px",
       }
     );
 
@@ -33,5 +34,5 @@ export default function useIntersectionObserver() {
     return () => observer.disconnect();
   }, [pathname]);
 
-  return { activeSection, setActiveSection };
+  return { activeSection: pathname === "/" ? activeSection : "", setActiveSection };
 }

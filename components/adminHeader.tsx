@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { MobileNav } from "@/components/mobile-nav";
+import { MobileNav } from "@/components/public/mobile-nav";
 import { SettingsMenu } from "./settings-menu";
 import { useAuthStatus } from "@/hooks/useAuthStatus";
 

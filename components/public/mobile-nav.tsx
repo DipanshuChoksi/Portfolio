@@ -66,11 +66,10 @@ export function MobileNav({ isOpen, onOpenChange, navLinks, isLoggedIn = false }
                             <SheetClose asChild key={child.href}>
                               <Link
                                 href={child.href}
-                                className={`flex items-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
-                                  isActive
+                                className={`flex items-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${isActive
                                     ? "bg-primary/10 text-primary"
                                     : "text-foreground hover:bg-secondary/80"
-                                }`}
+                                  }`}
                                 onClick={() => setActiveSection(child.label.toLowerCase())}
                               >
                                 {child.label}
@@ -100,11 +99,10 @@ export function MobileNav({ isOpen, onOpenChange, navLinks, isLoggedIn = false }
                   <SheetClose asChild key={item.href}>
                     <Link
                       href={item.href}
-                      className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${
-                        isActive
+                      className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${isActive
                           ? "bg-primary/10 text-primary"
                           : "text-foreground hover:bg-secondary/80"
-                      }`}
+                        }`}
                       onClick={() => setActiveSection(item.label.toLowerCase())}
                     >
                       {item.label}
@@ -130,11 +128,10 @@ export function MobileNav({ isOpen, onOpenChange, navLinks, isLoggedIn = false }
                 <SheetClose asChild>
                   <Link
                     href="/connect"
-                    className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${
-                      pathname.startsWith("/connect")
+                    className={`flex items-center rounded-lg px-4 py-3 text-base font-semibold transition-colors ${pathname.startsWith("/connect")
                         ? "bg-primary/10 text-primary"
                         : "text-foreground hover:bg-secondary/80"
-                    }`}
+                      }`}
                   >
                     Contact Me
                   </Link>
@@ -147,7 +144,6 @@ export function MobileNav({ isOpen, onOpenChange, navLinks, isLoggedIn = false }
                   download
                   className="flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold text-foreground hover:bg-secondary/80 transition-colors"
                 >
-                  <FileText className="h-5 w-5 text-primary" />
                   <span>Find My Resume</span>
                 </a>
               </SheetClose>

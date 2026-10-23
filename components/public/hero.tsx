@@ -14,7 +14,7 @@ export default function Hero({ heroContent }: { heroContent: heroSection }) {
         <div className="flex flex-col md:grid md:grid-cols-2 gap-3 sm:gap-8 md:gap-16 items-center justify-center">
           {/* Avatar */}
           <div className="flex items-center justify-center order-first md:order-last animate-in slide-in-from-top-6 md:slide-in-from-right-8 fade-in duration-1000 delay-150 fill-mode-both">
-            <div className="relative flex items-center justify-center h-37 w-37 sm:h-52 sm:w-52 md:h-80 md:w-80 lg:h-96 lg:w-96 rounded-full bg-linear-to-br from-primary/5 to-accent/5 p-1.5 sm:p-2.5 md:p-3.5 shadow-sm md:shadow-md shadow-primary/[0.03]">
+            <div className="relative flex items-center justify-center h-37 w-37 sm:h-52 sm:w-52 md:h-80 md:w-80 lg:h-96 lg:w-96 rounded-full bg-linear-to-br from-primary/5 to-accent/5 p-1.5 sm:p-2.5 md:p-3.5 shadow-sm md:shadow-md shadow-primary/3">
               <Image
                 src={heroContent.image_path}
                 alt="It's me (Dipanshu Choksi)"

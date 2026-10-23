@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
-import { useState, useEffect } from "react";
+import { MobileNav } from "@/components/public/mobile-nav";
+import { useState } from "react";
 import { navLinks } from "@/consts";
 import {
   NavigationMenu,
@@ -19,24 +19,17 @@ import { SettingsMenu } from "../settings-menu";
 
 export default function Header({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { activeSection, setActiveSection } = useIntersectionObserver();
   const pathname = usePathname();
 
-  // Add scroll event listener for changing header background
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Scrolled state is true if user has moved past the hero section (or scrolled down on subpages)
+  const isPastHero = pathname === "/" ? activeSection !== "hero" && activeSection !== "" : true;
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 transition-all duration-300 w-full border-b py-2",
-        scrolled
+        isPastHero
           ? "bg-background/70 backdrop-blur-xl border-border shadow-sm"
           : "bg-transparent border-border"
       )}
