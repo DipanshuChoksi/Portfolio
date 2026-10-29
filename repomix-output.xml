@@ -1,0 +1,1637 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+The content has been processed where content has been compressed (code blocks are separated by ⋮---- delimiter).
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Content has been compressed - code blocks are separated by ⋮---- delimiter
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+app/
+  (main)/
+    archieve/
+      [slug]/
+        page.tsx
+      page.tsx
+    connect/
+      page.tsx
+    projects/
+      page.tsx
+    layout.tsx
+    page.tsx
+  actions/
+    archive.ts
+    auth.ts
+    project.ts
+  admin/
+    archieve/
+      [slug]/
+        page.tsx
+      new/
+        page.tsx
+      page.tsx
+    dashboard/
+      page.tsx
+    login/
+      page.tsx
+    projects/
+      new/
+        page.tsx
+      page.tsx
+    resume/
+      page.tsx
+    layout.tsx
+    page.tsx
+  api/
+    auth/
+      [...nextauth]/
+        route.ts
+    image/
+      route.ts
+    resume/
+      route.ts
+  layout.tsx
+components/
+  admin/
+    adminHeader.tsx
+  public/
+    about.tsx
+    AchievementCard.tsx
+    achievements.tsx
+    certifications.tsx
+    education.tsx
+    footer.tsx
+    header.tsx
+    hero.tsx
+    mobile-nav.tsx
+  ui/
+    button.tsx
+    navigation-menu.tsx
+    sheet.tsx
+  NotAuthorized.tsx
+  NoteActions.tsx
+  NoteEditor.tsx
+  ProjectCard.tsx
+  ProjectEditor.tsx
+  projects.tsx
+  projectTable.tsx
+  ReadThisWeekComponent.tsx
+  RenderMarkdown.tsx
+  settings-menu.tsx
+  skills.tsx
+  snap-enforcer.tsx
+  theme-provider.tsx
+  typewriter-role.tsx
+config/
+  index.ts
+consts/
+  index.ts
+content/
+  archieve/
+    dsa-question-patterns.md
+    hello-world.md
+    title.md
+hooks/
+  useAuthStatus.ts
+  useIntersectionOberver.tsx
+interfaces/
+  archieve.ts
+  db.ts
+  index.ts
+lib/
+  connectDB.ts
+  s3.ts
+  utils.ts
+models/
+  ArchiveNote.ts
+  Project.ts
+public/
+  documents/
+    Resume_Dipanshu_Choksi.pdf
+  projects/
+    portfolio.png
+    project1.png
+    project2.png
+  CodeClash.jpeg
+  Cryptors.jpeg
+  Hackathon.jpeg
+  icon.github.light.svg
+  icon.github.svg
+  icon.linkedin.light.svg
+  icon.linkedin.svg
+  icon.twitter.light.svg
+  icon.twitter.svg
+  me.jpeg
+  NamasteNodeJS.png
+  placeholder.svg
+styles/
+  globals.css
+.gitignore
+.prettierignore
+.prettierrc
+AGENTS.md
+auth.ts
+components.json
+eslint.config.js
+middleware.ts
+next.config.mjs
+package.json
+postcss.config.mjs
+README.md
+tailwind.config.js
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="app/admin/archieve/new/page.tsx">
+import Link from 'next/link';
+import NoteEditor from '@/components/NoteEditor';
+</file>
+
+<file path="app/admin/archieve/page.tsx">
+import ReadThisWeekComponent from "@/components/ReadThisWeekComponent";
+import { ArchiveItem } from "@/interfaces/archieve";
+import connectDB from "@/lib/connectDB";
+import ArchiveNote from "@/models/ArchiveNote";
+import Link from "next/link";
+⋮----
+type Props = {
+    searchParams: { filter?: string };
+};
+⋮----
+export default async function AdminArchievePage(props: Props)
+</file>
+
+<file path="app/admin/dashboard/page.tsx">
+import { getAuthStatus } from "@/app/actions/auth";
+import { auth } from "@/auth";
+import Link from "next/link";
+import { FolderGit2, FileText, FileArchive } from "lucide-react";
+</file>
+
+<file path="app/admin/login/page.tsx">
+import { getAuthStatus, login, logout } from "../../actions/auth";
+import { Button } from "@/components/ui/button";
+</file>
+
+<file path="app/admin/projects/new/page.tsx">
+import ProjectEditor from "@/components/ProjectEditor";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+⋮----
+export default async function NewProjectPage()
+</file>
+
+<file path="app/admin/resume/page.tsx">
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Upload, Trash2, FileText, ArrowLeft } from "lucide-react";
+⋮----
+const handleUpload = async (e: React.FormEvent) =>
+⋮----
+const handleDelete = async () =>
+</file>
+
+<file path="app/api/auth/[...nextauth]/route.ts">
+import { handlers } from "@/auth";
+</file>
+
+<file path="components/admin/adminHeader.tsx">
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { MobileNav } from "@/components/public/mobile-nav";
+import { SettingsMenu } from "../settings-menu";
+import { useAuthStatus } from "@/hooks/useAuthStatus";
+⋮----
+// Add scroll event listener for changing header background
+⋮----
+const handleScroll = () =>
+⋮----
+{/* Logo */}
+⋮----
+{/* Desktop Navigation */}
+⋮----
+className=
+⋮----
+{/* Right Section */}
+⋮----
+{/* Mobile Menu Button */}
+</file>
+
+<file path="components/public/about.tsx">
+import { aboutSection } from "@/interfaces";
+⋮----
+// "performance optimization",
+⋮----
+function formatText(text: string)
+⋮----
+export default function About(
+</file>
+
+<file path="components/public/AchievementCard.tsx">
+import { ExternalLink } from "lucide-react";
+</file>
+
+<file path="components/public/certifications.tsx">
+import { achievementsSection } from "@/interfaces";
+import { ExternalLink } from "lucide-react";
+⋮----
+{/* Section Header */}
+⋮----
+{/* Certifications Grid */}
+</file>
+
+<file path="components/public/education.tsx">
+import { educationSection } from "@/interfaces";
+⋮----
+{/* Section Header */}
+⋮----
+{/* Animated decorative accent line that appears on hover */}
+</file>
+
+<file path="components/public/footer.tsx">
+import Link from "next/link";
+import { socialsArr, navLinks } from "@/consts";
+import { ArrowUpRight } from "lucide-react";
+⋮----
+// Flatten navigation links for quick access
+⋮----
+{/* Brand & Bio column */}
+⋮----
+{/* Navigation Links */}
+⋮----
+{/* Connect & Socials */}
+⋮----
+{/* Bottom bar */}
+</file>
+
+<file path="components/public/hero.tsx">
+import Link from "next/link";
+import Image from "next/image";
+import { heroSection } from "@/interfaces";
+import { cn } from "@/lib/utils";
+import { TypewriterRole } from "@/components/typewriter-role";
+⋮----
+{/* Avatar */}
+⋮----
+{/* Hero Text & Actions */}
+⋮----
+className=
+</file>
+
+<file path="components/public/mobile-nav.tsx">
+import { Menu, Moon, Sun, LogIn, LogOut, FileText } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
+import useIntersectionObserver from "@/hooks/useIntersectionOberver";
+import { login, logout } from "@/app/actions/auth";
+import { toast } from "sonner";
+⋮----
+import { NavItem } from "@/interfaces";
+⋮----
+interface MobileNavProps {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  navLinks: NavItem[];
+  isLoggedIn?: boolean;
+}
+⋮----
+{/* Mobile Menu Button - Only visible on small screens */}
+⋮----
+{/* Mobile Navigation Sheet */}
+⋮----
+onClick=
+⋮----
+if (pathname !== "/" && pathname.startsWith(item.href))
+⋮----
+setTheme(theme === "dark" ? "light" : "dark");
+⋮----
+action=
+await logout();
+toast.success("You have successfully logged out.");
+</file>
+
+<file path="components/NoteActions.tsx">
+import { useState } from 'react';
+import { Download, Copy, Check } from 'lucide-react';
+⋮----
+export default function NoteActions(
+⋮----
+const handleCopy = () =>
+⋮----
+const handleDownload = () =>
+</file>
+
+<file path="components/RenderMarkdown.tsx">
+import ReactMarkdown from 'react-markdown';
+⋮----
+export default function RenderMarkdown(
+</file>
+
+<file path="components/snap-enforcer.tsx">
+import { useLayoutEffect } from "react";
+⋮----
+export function SnapEnforcer()
+⋮----
+// Add snap classes to HTML element when on homepage
+⋮----
+// Remove them when navigating away
+</file>
+
+<file path="components/typewriter-role.tsx">
+import { useState, useEffect } from "react";
+⋮----
+export function TypewriterRole(
+</file>
+
+<file path="hooks/useAuthStatus.ts">
+import { useState, useEffect } from 'react';
+import { getAuthStatus } from '@/app/actions/auth';
+import { toast } from 'sonner';
+⋮----
+export function useAuthStatus()
+</file>
+
+<file path="interfaces/db.ts">
+export type ConnectionObj = {
+  isConnected?: number;
+};
+</file>
+
+<file path="lib/s3.ts">
+import { S3Client } from "@aws-sdk/client-s3";
+</file>
+
+<file path="models/ArchiveNote.ts">
+import mongoose, { Schema, Document } from 'mongoose';
+⋮----
+import { ArchiveItem } from '@/interfaces/archieve';
+⋮----
+interface IArchiveNote extends Document, ArchiveItem {}
+</file>
+
+<file path="models/Project.ts">
+import mongoose, { Schema, Document } from 'mongoose';
+import { project } from '@/interfaces';
+⋮----
+interface IProject extends Document, project {
+    slug: string;
+}
+</file>
+
+<file path="public/icon.github.light.svg">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <path d="M4.0744 2.9938C4.13263 1.96371 4.37869 1.51577 5.08432 1.15606C5.84357 0.768899 7.04106 0.949072 8.45014 1.66261C9.05706 1.97009 9.11886 1.97635 10.1825 1.83998C11.5963 1.65865 13.4164 1.65929 14.7213 1.84164C15.7081 1.97954 15.7729 1.97265 16.3813 1.66453C18.3814 0.651679 19.9605 0.71795 20.5323 1.8387C20.8177 2.39812 20.8707 3.84971 20.6494 5.04695C20.5267 5.71069 20.5397 5.79356 20.8353 6.22912C22.915 9.29385 21.4165 14.2616 17.8528 16.1155C17.5801 16.2574 17.3503 16.3452 17.163 16.4167C16.5879 16.6363 16.4133 16.703 16.6247 17.7138C16.7265 18.2 16.8491 19.4088 16.8973 20.4002C16.9844 22.1922 16.9831 22.2047 16.6688 22.5703C16.241 23.0676 15.6244 23.076 15.2066 22.5902C14.9341 22.2734 14.9075 22.1238 14.9075 20.9015C14.9075 19.0952 14.7095 17.8946 14.2417 16.8658C13.6854 15.6415 14.0978 15.185 15.37 14.9114C17.1383 14.531 18.5194 13.4397 19.2892 11.8146C20.0211 10.2698 20.1314 8.13501 18.8082 6.83668C18.4319 6.3895 18.4057 5.98446 18.6744 4.76309C18.7748 4.3066 18.859 3.71768 18.8615 3.45425C18.8653 3.03823 18.8274 2.97541 18.5719 2.97541C18.4102 2.97541 17.7924 3.21062 17.1992 3.49805L16.2524 3.95695C16.1663 3.99866 16.07 4.0147 15.975 4.0038C13.5675 3.72746 11.2799 3.72319 8.86062 4.00488C8.76526 4.01598 8.66853 3.99994 8.58215 3.95802L7.63585 3.49882C7.04259 3.21087 6.42482 2.97541 6.26317 2.97541C5.88941 2.97541 5.88379 3.25135 6.22447 4.89078C6.43258 5.89203 6.57262 6.11513 5.97101 6.91572C5.06925 8.11576 4.844 9.60592 5.32757 11.1716C5.93704 13.1446 7.4295 14.4775 9.52773 14.9222C10.7926 15.1903 11.1232 15.5401 10.6402 16.9905C10.26 18.1319 10.0196 18.4261 9.46707 18.4261C8.72365 18.4261 8.25796 17.7821 8.51424 17.1082C8.62712 16.8112 8.59354 16.7795 7.89711 16.5255C5.77117 15.7504 4.14514 14.0131 3.40172 11.7223C2.82711 9.95184 3.07994 7.64739 4.00175 6.25453C4.31561 5.78028 4.32047 5.74006 4.174 4.83217C4.09113 4.31822 4.04631 3.49103 4.0744 2.9938Z" fill="#fff"/> <path d="M3.33203 15.9454C3.02568 15.4859 2.40481 15.3617 1.94528 15.6681C1.48576 15.9744 1.36158 16.5953 1.66793 17.0548C1.8941 17.3941 2.16467 17.6728 2.39444 17.9025C2.4368 17.9449 2.47796 17.9858 2.51815 18.0257C2.71062 18.2169 2.88056 18.3857 3.05124 18.5861C3.42875 19.0292 3.80536 19.626 4.0194 20.6962C4.11474 21.1729 4.45739 21.4297 4.64725 21.5419C4.85315 21.6635 5.07812 21.7352 5.26325 21.7819C5.64196 21.8774 6.10169 21.927 6.53799 21.9559C7.01695 21.9877 7.53592 21.998 7.99999 22.0008C8.00033 22.5527 8.44791 23.0001 8.99998 23.0001C9.55227 23.0001 9.99998 22.5524 9.99998 22.0001V21.0001C9.99998 20.4478 9.55227 20.0001 8.99998 20.0001C8.90571 20.0001 8.80372 20.0004 8.69569 20.0008C8.10883 20.0026 7.34388 20.0049 6.67018 19.9603C6.34531 19.9388 6.07825 19.9083 5.88241 19.871C5.58083 18.6871 5.09362 17.8994 4.57373 17.2891C4.34391 17.0194 4.10593 16.7834 3.91236 16.5914C3.87612 16.5555 3.84144 16.5211 3.80865 16.4883C3.5853 16.265 3.4392 16.1062 3.33203 15.9454Z" fill="#fff"/> </g>
+</svg>
+</file>
+
+<file path="public/icon.linkedin.light.svg">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg fill="#fff" width="800px" height="800px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <path d="M1168 601.321v74.955c72.312-44.925 155.796-71.11 282.643-71.11 412.852 0 465.705 308.588 465.705 577.417v733.213L1438.991 1920v-701.261c0-117.718-42.162-140.06-120.12-140.06-74.114 0-120.12 23.423-120.12 140.06V1920l-483.604-4.204V601.32H1168Zm-687.52-.792v1318.918H0V600.53h480.48Zm-120.12 120.12H120.12v1078.678h240.24V720.65Zm687.52.792H835.267v1075.316l243.364 2.162v-580.18c0-226.427 150.51-260.18 240.24-260.18 109.55 0 240.24 45.165 240.24 260.18v580.18l237.117-2.162v-614.174c0-333.334-93.573-457.298-345.585-457.298-151.472 0-217.057 44.925-281.322 98.98l-16.696 14.173H1047.88V721.441ZM240.24 0c132.493 0 240.24 107.748 240.24 240.24 0 132.493-107.747 240.24-240.24 240.24C107.748 480.48 0 372.733 0 240.24 0 107.748 107.748 0 240.24 0Zm0 120.12c-66.186 0-120.12 53.934-120.12 120.12s53.934 120.12 120.12 120.12 120.12-53.934 120.12-120.12-53.934-120.12-120.12-120.12Z" fill-rule="evenodd"/> </g>
+</svg>
+</file>
+
+<file path="public/icon.twitter.light.svg">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7828 3.91825C20.1313 3.83565 20.3743 3.75444 20.5734 3.66915C20.8524 3.54961 21.0837 3.40641 21.4492 3.16524C21.7563 2.96255 22.1499 2.9449 22.4739 3.11928C22.7979 3.29366 23 3.6319 23 3.99986C23 5.08079 22.8653 5.96673 22.5535 6.7464C22.2911 7.40221 21.9225 7.93487 21.4816 8.41968C21.2954 11.7828 20.3219 14.4239 18.8336 16.4248C17.291 18.4987 15.2386 19.8268 13.0751 20.5706C10.9179 21.3121 8.63863 21.4778 6.5967 21.2267C4.56816 20.9773 2.69304 20.3057 1.38605 19.2892C1.02813 19.0108 0.902313 18.5264 1.07951 18.109C1.25671 17.6916 1.69256 17.4457 2.14144 17.5099C3.42741 17.6936 4.6653 17.4012 5.6832 16.9832C5.48282 16.8742 5.29389 16.7562 5.11828 16.6346C4.19075 15.9925 3.4424 15.1208 3.10557 14.4471C2.96618 14.1684 2.96474 13.8405 3.10168 13.5606C3.17232 13.4161 3.27562 13.293 3.40104 13.1991C2.04677 12.0814 1.49999 10.5355 1.49999 9.49986C1.49999 9.19192 1.64187 8.90115 1.88459 8.71165C1.98665 8.63197 2.10175 8.57392 2.22308 8.53896C2.12174 8.24222 2.0431 7.94241 1.98316 7.65216C1.71739 6.3653 1.74098 4.91284 2.02985 3.75733C2.1287 3.36191 2.45764 3.06606 2.86129 3.00952C3.26493 2.95299 3.6625 3.14709 3.86618 3.50014C4.94369 5.36782 6.93116 6.50943 8.78086 7.18568C9.6505 7.50362 10.4559 7.70622 11.0596 7.83078C11.1899 6.61019 11.5307 5.6036 12.0538 4.80411C12.7439 3.74932 13.7064 3.12525 14.74 2.84698C16.5227 2.36708 18.5008 2.91382 19.7828 3.91825ZM10.7484 9.80845C10.0633 9.67087 9.12171 9.43976 8.09412 9.06408C6.7369 8.56789 5.16088 7.79418 3.84072 6.59571C3.86435 6.81625 3.89789 7.03492 3.94183 7.24766C4.16308 8.31899 4.5742 8.91899 4.94721 9.10549C5.40342 9.3336 5.61484 9.8685 5.43787 10.3469C5.19827 10.9946 4.56809 11.0477 3.99551 10.9046C4.45603 11.595 5.28377 12.2834 6.66439 12.5135C7.14057 12.5929 7.49208 13.0011 7.49986 13.4838C7.50765 13.9665 7.16949 14.3858 6.69611 14.4805L5.82565 14.6546C5.95881 14.7703 6.103 14.8838 6.2567 14.9902C6.95362 15.4727 7.65336 15.6808 8.25746 15.5298C8.70991 15.4167 9.18047 15.6313 9.39163 16.0472C9.60278 16.463 9.49846 16.9696 9.14018 17.2681C8.49626 17.8041 7.74425 18.2342 6.99057 18.5911C6.63675 18.7587 6.24134 18.9241 5.8119 19.0697C6.14218 19.1402 6.48586 19.198 6.84078 19.2417C8.61136 19.4594 10.5821 19.3126 12.4249 18.6792C14.2614 18.0479 15.9589 16.9385 17.2289 15.2312C18.497 13.5262 19.382 11.1667 19.5007 7.96291C19.51 7.71067 19.6144 7.47129 19.7929 7.29281C20.2425 6.84316 20.6141 6.32777 20.7969 5.7143C20.477 5.81403 20.1168 5.90035 19.6878 5.98237C19.3623 6.04459 19.0272 5.94156 18.7929 5.70727C18.0284 4.94274 16.5164 4.43998 15.2599 4.77822C14.6686 4.93741 14.1311 5.28203 13.7274 5.89906C13.3153 6.52904 13 7.51045 13 8.9999C13 9.28288 12.8801 9.5526 12.6701 9.74221C12.1721 10.1917 11.334 9.92603 10.7484 9.80845Z" fill="#fff"/> </g>
+</svg>
+</file>
+
+<file path="public/placeholder.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" fill="none"><rect width="1200" height="1200" fill="#EAEAEA" rx="3"/><g opacity=".5"><g opacity=".5"><path fill="#FAFAFA" d="M600.709 736.5c-75.454 0-136.621-61.167-136.621-136.62 0-75.454 61.167-136.621 136.621-136.621 75.453 0 136.62 61.167 136.62 136.621 0 75.453-61.167 136.62-136.62 136.62Z"/><path stroke="#C9C9C9" stroke-width="2.418" d="M600.709 736.5c-75.454 0-136.621-61.167-136.621-136.62 0-75.454 61.167-136.621 136.621-136.621 75.453 0 136.62 61.167 136.62 136.621 0 75.453-61.167 136.62-136.62 136.62Z"/></g><path stroke="url(#a)" stroke-width="2.418" d="M0-1.209h553.581" transform="scale(1 -1) rotate(45 1163.11 91.165)"/><path stroke="url(#b)" stroke-width="2.418" d="M404.846 598.671h391.726"/><path stroke="url(#c)" stroke-width="2.418" d="M599.5 795.742V404.017"/><path stroke="url(#d)" stroke-width="2.418" d="m795.717 796.597-391.441-391.44"/><path fill="#fff" d="M600.709 656.704c-31.384 0-56.825-25.441-56.825-56.824 0-31.384 25.441-56.825 56.825-56.825 31.383 0 56.824 25.441 56.824 56.825 0 31.383-25.441 56.824-56.824 56.824Z"/><g clip-path="url(#e)"><path fill="#666" fill-rule="evenodd" d="M616.426 586.58h-31.434v16.176l3.553-3.554.531-.531h9.068l.074-.074 8.463-8.463h2.565l7.18 7.181V586.58Zm-15.715 14.654 3.698 3.699 1.283 1.282-2.565 2.565-1.282-1.283-5.2-5.199h-6.066l-5.514 5.514-.073.073v2.876a2.418 2.418 0 0 0 2.418 2.418h26.598a2.418 2.418 0 0 0 2.418-2.418v-8.317l-8.463-8.463-7.181 7.181-.071.072Zm-19.347 5.442v4.085a6.045 6.045 0 0 0 6.046 6.045h26.598a6.044 6.044 0 0 0 6.045-6.045v-7.108l1.356-1.355-1.282-1.283-.074-.073v-17.989h-38.689v23.43l-.146.146.146.147Z" clip-rule="evenodd"/></g><path stroke="#C9C9C9" stroke-width="2.418" d="M600.709 656.704c-31.384 0-56.825-25.441-56.825-56.824 0-31.384 25.441-56.825 56.825-56.825 31.383 0 56.824 25.441 56.824 56.825 0 31.383-25.441 56.824-56.824 56.824Z"/></g><defs><linearGradient id="a" x1="554.061" x2="-.48" y1=".083" y2=".087" gradientUnits="userSpaceOnUse"><stop stop-color="#C9C9C9" stop-opacity="0"/><stop offset=".208" stop-color="#C9C9C9"/><stop offset=".792" stop-color="#C9C9C9"/><stop offset="1" stop-color="#C9C9C9" stop-opacity="0"/></linearGradient><linearGradient id="b" x1="796.912" x2="404.507" y1="599.963" y2="599.965" gradientUnits="userSpaceOnUse"><stop stop-color="#C9C9C9" stop-opacity="0"/><stop offset=".208" stop-color="#C9C9C9"/><stop offset=".792" stop-color="#C9C9C9"/><stop offset="1" stop-color="#C9C9C9" stop-opacity="0"/></linearGradient><linearGradient id="c" x1="600.792" x2="600.794" y1="403.677" y2="796.082" gradientUnits="userSpaceOnUse"><stop stop-color="#C9C9C9" stop-opacity="0"/><stop offset=".208" stop-color="#C9C9C9"/><stop offset=".792" stop-color="#C9C9C9"/><stop offset="1" stop-color="#C9C9C9" stop-opacity="0"/></linearGradient><linearGradient id="d" x1="404.85" x2="796.972" y1="403.903" y2="796.02" gradientUnits="userSpaceOnUse"><stop stop-color="#C9C9C9" stop-opacity="0"/><stop offset=".208" stop-color="#C9C9C9"/><stop offset=".792" stop-color="#C9C9C9"/><stop offset="1" stop-color="#C9C9C9" stop-opacity="0"/></linearGradient><clipPath id="e"><path fill="#fff" d="M581.364 580.535h38.689v38.689h-38.689z"/></clipPath></defs></svg>
+</file>
+
+<file path=".prettierignore">
+.next
+node_modules
+out
+build
+</file>
+
+<file path="middleware.ts">
+import { auth } from "@/auth";
+import { NextResponse } from "next/server";
+</file>
+
+<file path="postcss.config.mjs">
+/** @type {import('postcss-load-config').Config} */
+</file>
+
+<file path="app/(main)/connect/page.tsx">
+import { socialsArr } from "@/consts";
+import { Mail } from "lucide-react";
+import Image from "next/image";
+⋮----
+export default function ConnectPage()
+</file>
+
+<file path="app/admin/archieve/[slug]/page.tsx">
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import connectDB from '@/lib/connectDB';
+import ArchiveNote from '@/models/ArchiveNote';
+import NoteEditor from '@/components/NoteEditor';
+import { ArchiveItem } from '@/interfaces/archieve';
+import { s3Client, S3_BUCKET } from "@/lib/s3";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+⋮----
+export default async function AdminNoteEditPage(
+</file>
+
+<file path="app/api/resume/route.ts">
+import { NextRequest, NextResponse } from "next/server";
+import { s3Client, S3_BUCKET } from "@/lib/s3";
+import { GetObjectCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { getAuthStatus } from "@/app/actions/auth";
+⋮----
+export async function GET()
+⋮----
+export async function PUT(req: NextRequest)
+⋮----
+export async function DELETE()
+</file>
+
+<file path="components/public/achievements.tsx">
+import { achievementsSection } from "@/interfaces";
+import { ExternalLink } from "lucide-react";
+⋮----
+{/* Section Header */}
+⋮----
+{/* Bento Grid */}
+⋮----
+{/* Featured Card */}
+⋮----
+{/* Secondary Cards Grid (3 Columns on Desktop to fit on one screen) */}
+</file>
+
+<file path="components/projectTable.tsx">
+import { ExternalLink, Github } from "lucide-react";
+import { projectSection } from "@/interfaces";
+</file>
+
+<file path="components/settings-menu.tsx">
+import { useState, useRef, useEffect } from "react";
+import { Settings, Moon, Sun, LogIn, LogOut } from "lucide-react";
+import { useTheme } from "next-themes";
+import { login, logout } from "@/app/actions/auth";
+import { toast } from "sonner";
+⋮----
+function handleClickOutside(event: MouseEvent)
+⋮----
+onClick=
+⋮----
+setTheme(theme === "dark" ? "light" : "dark");
+setOpen(false);
+⋮----
+action=
+await logout();
+toast.success("You have successfully logged out.");
+</file>
+
+<file path="components/theme-provider.tsx">
+import { ThemeProvider as NextThemesProvider, type ThemeProviderProps } from "next-themes";
+⋮----
+export function ThemeProvider(
+</file>
+
+<file path="config/index.ts">
+
+</file>
+
+<file path="content/archieve/hello-world.md">
+Does updating the note work as well?
+</file>
+
+<file path="interfaces/archieve.ts">
+export type ArchiveItem = {
+    slug: string;
+    title: string;
+    Topics: string[];
+    info: string;
+    Source: {
+        title: string;
+        url: string;
+    };
+    date: Date;
+    visibility: 'public' | 'private';
+};
+</file>
+
+<file path="lib/utils.ts">
+
+</file>
+
+<file path="public/icon.github.svg">
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.0744 2.9938C4.13263 1.96371 4.37869 1.51577 5.08432 1.15606C5.84357 0.768899 7.04106 0.949072 8.45014 1.66261C9.05706 1.97009 9.11886 1.97635 10.1825 1.83998C11.5963 1.65865 13.4164 1.65929 14.7213 1.84164C15.7081 1.97954 15.7729 1.97265 16.3813 1.66453C18.3814 0.651679 19.9605 0.71795 20.5323 1.8387C20.8177 2.39812 20.8707 3.84971 20.6494 5.04695C20.5267 5.71069 20.5397 5.79356 20.8353 6.22912C22.915 9.29385 21.4165 14.2616 17.8528 16.1155C17.5801 16.2574 17.3503 16.3452 17.163 16.4167C16.5879 16.6363 16.4133 16.703 16.6247 17.7138C16.7265 18.2 16.8491 19.4088 16.8973 20.4002C16.9844 22.1922 16.9831 22.2047 16.6688 22.5703C16.241 23.0676 15.6244 23.076 15.2066 22.5902C14.9341 22.2734 14.9075 22.1238 14.9075 20.9015C14.9075 19.0952 14.7095 17.8946 14.2417 16.8658C13.6854 15.6415 14.0978 15.185 15.37 14.9114C17.1383 14.531 18.5194 13.4397 19.2892 11.8146C20.0211 10.2698 20.1314 8.13501 18.8082 6.83668C18.4319 6.3895 18.4057 5.98446 18.6744 4.76309C18.7748 4.3066 18.859 3.71768 18.8615 3.45425C18.8653 3.03823 18.8274 2.97541 18.5719 2.97541C18.4102 2.97541 17.7924 3.21062 17.1992 3.49805L16.2524 3.95695C16.1663 3.99866 16.07 4.0147 15.975 4.0038C13.5675 3.72746 11.2799 3.72319 8.86062 4.00488C8.76526 4.01598 8.66853 3.99994 8.58215 3.95802L7.63585 3.49882C7.04259 3.21087 6.42482 2.97541 6.26317 2.97541C5.88941 2.97541 5.88379 3.25135 6.22447 4.89078C6.43258 5.89203 6.57262 6.11513 5.97101 6.91572C5.06925 8.11576 4.844 9.60592 5.32757 11.1716C5.93704 13.1446 7.4295 14.4775 9.52773 14.9222C10.7926 15.1903 11.1232 15.5401 10.6402 16.9905C10.26 18.1319 10.0196 18.4261 9.46707 18.4261C8.72365 18.4261 8.25796 17.7821 8.51424 17.1082C8.62712 16.8112 8.59354 16.7795 7.89711 16.5255C5.77117 15.7504 4.14514 14.0131 3.40172 11.7223C2.82711 9.95184 3.07994 7.64739 4.00175 6.25453C4.31561 5.78028 4.32047 5.74006 4.174 4.83217C4.09113 4.31822 4.04631 3.49103 4.0744 2.9938Z" fill="#0F0F0F"/>
+<path d="M3.33203 15.9454C3.02568 15.4859 2.40481 15.3617 1.94528 15.6681C1.48576 15.9744 1.36158 16.5953 1.66793 17.0548C1.8941 17.3941 2.16467 17.6728 2.39444 17.9025C2.4368 17.9449 2.47796 17.9858 2.51815 18.0257C2.71062 18.2169 2.88056 18.3857 3.05124 18.5861C3.42875 19.0292 3.80536 19.626 4.0194 20.6962C4.11474 21.1729 4.45739 21.4297 4.64725 21.5419C4.85315 21.6635 5.07812 21.7352 5.26325 21.7819C5.64196 21.8774 6.10169 21.927 6.53799 21.9559C7.01695 21.9877 7.53592 21.998 7.99999 22.0008C8.00033 22.5527 8.44791 23.0001 8.99998 23.0001C9.55227 23.0001 9.99998 22.5524 9.99998 22.0001V21.0001C9.99998 20.4478 9.55227 20.0001 8.99998 20.0001C8.90571 20.0001 8.80372 20.0004 8.69569 20.0008C8.10883 20.0026 7.34388 20.0049 6.67018 19.9603C6.34531 19.9388 6.07825 19.9083 5.88241 19.871C5.58083 18.6871 5.09362 17.8994 4.57373 17.2891C4.34391 17.0194 4.10593 16.7834 3.91236 16.5914C3.87612 16.5555 3.84144 16.5211 3.80865 16.4883C3.5853 16.265 3.4392 16.1062 3.33203 15.9454Z" fill="#0F0F0F"/>
+</svg>
+</file>
+
+<file path="public/icon.linkedin.svg">
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1168 601.321v74.955c72.312-44.925 155.796-71.11 282.643-71.11 412.852 0 465.705 308.588 465.705 577.417v733.213L1438.991 1920v-701.261c0-117.718-42.162-140.06-120.12-140.06-74.114 0-120.12 23.423-120.12 140.06V1920l-483.604-4.204V601.32H1168Zm-687.52-.792v1318.918H0V600.53h480.48Zm-120.12 120.12H120.12v1078.678h240.24V720.65Zm687.52.792H835.267v1075.316l243.364 2.162v-580.18c0-226.427 150.51-260.18 240.24-260.18 109.55 0 240.24 45.165 240.24 260.18v580.18l237.117-2.162v-614.174c0-333.334-93.573-457.298-345.585-457.298-151.472 0-217.057 44.925-281.322 98.98l-16.696 14.173H1047.88V721.441ZM240.24 0c132.493 0 240.24 107.748 240.24 240.24 0 132.493-107.747 240.24-240.24 240.24C107.748 480.48 0 372.733 0 240.24 0 107.748 107.748 0 240.24 0Zm0 120.12c-66.186 0-120.12 53.934-120.12 120.12s53.934 120.12 120.12 120.12 120.12-53.934 120.12-120.12-53.934-120.12-120.12-120.12Z" fill-rule="evenodd"/>
+</svg>
+</file>
+
+<file path="public/icon.twitter.svg">
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19.7828 3.91825C20.1313 3.83565 20.3743 3.75444 20.5734 3.66915C20.8524 3.54961 21.0837 3.40641 21.4492 3.16524C21.7563 2.96255 22.1499 2.9449 22.4739 3.11928C22.7979 3.29366 23 3.6319 23 3.99986C23 5.08079 22.8653 5.96673 22.5535 6.7464C22.2911 7.40221 21.9225 7.93487 21.4816 8.41968C21.2954 11.7828 20.3219 14.4239 18.8336 16.4248C17.291 18.4987 15.2386 19.8268 13.0751 20.5706C10.9179 21.3121 8.63863 21.4778 6.5967 21.2267C4.56816 20.9773 2.69304 20.3057 1.38605 19.2892C1.02813 19.0108 0.902313 18.5264 1.07951 18.109C1.25671 17.6916 1.69256 17.4457 2.14144 17.5099C3.42741 17.6936 4.6653 17.4012 5.6832 16.9832C5.48282 16.8742 5.29389 16.7562 5.11828 16.6346C4.19075 15.9925 3.4424 15.1208 3.10557 14.4471C2.96618 14.1684 2.96474 13.8405 3.10168 13.5606C3.17232 13.4161 3.27562 13.293 3.40104 13.1991C2.04677 12.0814 1.49999 10.5355 1.49999 9.49986C1.49999 9.19192 1.64187 8.90115 1.88459 8.71165C1.98665 8.63197 2.10175 8.57392 2.22308 8.53896C2.12174 8.24222 2.0431 7.94241 1.98316 7.65216C1.71739 6.3653 1.74098 4.91284 2.02985 3.75733C2.1287 3.36191 2.45764 3.06606 2.86129 3.00952C3.26493 2.95299 3.6625 3.14709 3.86618 3.50014C4.94369 5.36782 6.93116 6.50943 8.78086 7.18568C9.6505 7.50362 10.4559 7.70622 11.0596 7.83078C11.1899 6.61019 11.5307 5.6036 12.0538 4.80411C12.7439 3.74932 13.7064 3.12525 14.74 2.84698C16.5227 2.36708 18.5008 2.91382 19.7828 3.91825ZM10.7484 9.80845C10.0633 9.67087 9.12171 9.43976 8.09412 9.06408C6.7369 8.56789 5.16088 7.79418 3.84072 6.59571C3.86435 6.81625 3.89789 7.03492 3.94183 7.24766C4.16308 8.31899 4.5742 8.91899 4.94721 9.10549C5.40342 9.3336 5.61484 9.8685 5.43787 10.3469C5.19827 10.9946 4.56809 11.0477 3.99551 10.9046C4.45603 11.595 5.28377 12.2834 6.66439 12.5135C7.14057 12.5929 7.49208 13.0011 7.49986 13.4838C7.50765 13.9665 7.16949 14.3858 6.69611 14.4805L5.82565 14.6546C5.95881 14.7703 6.103 14.8838 6.2567 14.9902C6.95362 15.4727 7.65336 15.6808 8.25746 15.5298C8.70991 15.4167 9.18047 15.6313 9.39163 16.0472C9.60278 16.463 9.49846 16.9696 9.14018 17.2681C8.49626 17.8041 7.74425 18.2342 6.99057 18.5911C6.63675 18.7587 6.24134 18.9241 5.8119 19.0697C6.14218 19.1402 6.48586 19.198 6.84078 19.2417C8.61136 19.4594 10.5821 19.3126 12.4249 18.6792C14.2614 18.0479 15.9589 16.9385 17.2289 15.2312C18.497 13.5262 19.382 11.1667 19.5007 7.96291C19.51 7.71067 19.6144 7.47129 19.7929 7.29281C20.2425 6.84316 20.6141 6.32777 20.7969 5.7143C20.477 5.81403 20.1168 5.90035 19.6878 5.98237C19.3623 6.04459 19.0272 5.94156 18.7929 5.70727C18.0284 4.94274 16.5164 4.43998 15.2599 4.77822C14.6686 4.93741 14.1311 5.28203 13.7274 5.89906C13.3153 6.52904 13 7.51045 13 8.9999C13 9.28288 12.8801 9.5526 12.6701 9.74221C12.1721 10.1917 11.334 9.92603 10.7484 9.80845Z" fill="#0F0F0F"/>
+</svg>
+</file>
+
+<file path=".prettierrc">
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "semi": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "endOfLine": "lf"
+}
+</file>
+
+<file path="AGENTS.md">
+# Portfolio — OpenCode Agent Guide
+
+## Developer Commands (root)
+
+| Command | Does |
+|---------|------|
+| `npm run dev` | Start Next.js dev server at http://localhost:3000 |
+| `npm run build` | Run Next.js build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run format:check` | Check Prettier formatting |
+| `npm run format:write` | Auto-format with Prettier |
+
+## Environment Variables
+
+Create `.env.local` (gitignored) with these required vars:
+
+```
+DB_URI=your_mongodb_connection_string
+ADMIN_EMAIL=your_admin_email@example.com
+GITHUB_ID=your_github_oauth_client_id
+GITHUB_SECRET=your_github_oauth_client_secret
+AWS_ACCESS_KEY_ID=your_aws_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret
+AWS_REGION=your_aws_region (e.g. us-east-1)
+AWS_S3_BUCKET_NAME=your_s3_bucket_name
+```
+
+Without these, the app will fail to start (DB connect, auth, S3).
+
+## Architecture Overview
+
+- **Entry point**: `app/layout.tsx` (Next.js App Router root). Sets metadata from `config/siteConfig`, wraps with `ThemeProvider`, renders `Toaster`/`Analytics`.
+- **Public pages**: under `app/(main)/` — `page.tsx` (home), `projects/page.tsx`, `archieve/page.tsx`, plus `education`, `skills`, `achievements`, `hero` components.
+- **Admin**: under `app/admin/` — `login/page.tsx`, `dashboard/page.tsx`. Protected by `middleware.ts` (GitHub OAuth + `ADMIN_EMAIL` match).
+- **API routes** (`app/api/*`):
+  - `auth/[...nextauth]/route.ts` → NextAuth GitHub OAuth handlers (`auth.ts`)
+  - `image/route.ts` → S3 image proxy: extracts key from S3 `.amazonaws.com/` URL, returns binary with `Cache-Control: max-age=31536000`
+  - `resume/route.ts` → GET downloads resume PDF from S3; PUT/DELETE require admin auth via `getAuthStatus()`
+- **Database**: MongoDB via Mongoose. `lib/connectDB.ts` (singleton pattern). Models: `models/Project.ts` (slug, title, description, image, tags, links, status, timestamps), `models/ArchiveNote.ts` (slug, title, Topics, info, Source, date, visibility).
+- **Authentication**: next-auth v5 (`auth.ts` with GitHub provider). Session checked in `middleware.ts` + `app/actions/auth.ts` (`getAuthStatus` validates `session.user.email` matches `ADMIN_EMAIL`). Admin routes in middleware require both login + email match.
+- **Storage**: AWS S3 (`lib/s3.ts`) for project images (`public/projects/<slug>-<timestamp><ext>`), resume (`public/Resume_Dipanshu_Choksi.pdf`), and archive markdown (`archieve/*.md`).
+- **No app-level tests** exist. Extensive test suites are in `OmniRoute/` (separate gateway project). This repo has no test scripts in `package.json`.
+
+## High-Signal Conventions
+
+- **Middleware** (`middleware.ts`): protects `/admin/*` (redirect unauthenticated to `/admin/login`, unauthorized to `/`). Allows `/api/auth/*`. Redirects authorized admin from login to `/admin/dashboard`. Pattern: `req.nextUrl.pathname.startsWith('/admin') && !isLoginRoute`.
+- **Server Actions** (`app/actions/*`): marked `'use server'`. Import `getAuthStatus` to check admin privileges. All CRUD actions (`handleProject`, `deleteProject`, `saveMarkdownNote`, `deleteMarkdownNote`, `uploadResume`) gate on `canEdit` from `getAuthStatus()`.
+- **S3 key patterns**: 
+  - Projects: `public/projects/<unique-filename>`
+  - Resume: `public/Resume_Dipanshu_Choksi.pdf` (constant `RESUME_KEY`)
+  - Archive: `archieve/<slug>.md`
+- **Slug generation**: `title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')` — fallback to `project-<timestamp>` or `note-<timestamp>` if empty.
+- **Revalidation**: All mutations call `revalidatePath('/')` or `revalidatePath('/projects')` or `revalidatePath('/archieve')` to keep SSG in sync.
+
+## Directory Ownership
+
+| Directory | Purpose |
+|-----------|---------|
+| `app/` | Next.js routes & pages (App Router) |
+| `app/(main)/*` | Public-facing portfolio pages |
+| `app/admin/*` | Admin dashboard & content management |
+| `app/api/*` | API routes (auth, image, resume) |
+| `app/actions/*` | Next.js Server Actions (db mutations, uploads, auth) |
+| `components/` | UI & layout components (shadcn/ui, Radix) |
+| `lib/` | Utilities: `connectDB.ts`, `s3.ts`, `utils.ts` |
+| `models/` | Mongoose schemas: `Project.ts`, `ArchiveNote.ts` |
+| `config/` | `siteConfig` export |
+| `interfaces/` | TypeScript interfaces |
+| `consts/` | Static content data |
+| `omniroute/` | Separate AI gateway project (extensive test suites) |
+
+## Common Gotchas
+
+- **Missing env vars** cause hard crashes: `process.exit(1)` in `connectDB.ts` if DB connection fails; S3 client warns but continues if creds missing.
+- **Admin auth is strict**: `getAuthStatus()` requires `session.user.email.trim().toLowerCase() === process.env.ADMIN_EMAIL.trim().toLowerCase()`. Just being logged in via GitHub is not enough — email must match.
+- **Middleware runs on every request**: be careful not to redirect in ways that cause loops. The `isApiAuthRoute` check (`req.nextUrl.pathname.startsWith('/api/auth')`) prevents redirect loops on auth endpoints.
+- **S3 image proxy** (`app/api/image/route.ts`): extracts key by splitting on `.amazonaws.com/`. If key not found, returns 400. Always sets `Cache-Control: public, max-age=31536000, immutable`.
+- **Resumé upload** (`app/api/resume/route.ts`): PUT/DELETE require admin auth. Body must be `multipart/form-data` with field `file`.
+- **Archive notes** (`app/actions/archive.ts`): `saveMarkdownNote` does upsert on `ArchiveNote` by slug, writes markdown to S3. `deleteMarkdownNote` deletes from S3 and DB; errors caught silently (logs only).
+- **Project image upload** (`app/actions/project.ts`): `uploadImageIfPresent` uploads to S3 with content-type detection by extension. Returns URL that gets stored as the project's `image` field.
+- **No typecheck script** in `package.json`. `tsc` would run via `npx tsc` but the repo relies on `typescript: { ignoreBuildErrors: false }` in `next.config.mjs`. ESLint catches most issues.
+
+## How to Investigate
+
+1. Start with `README.md` — it has the most up-to-date setup and feature overview.
+2. If architecture is unclear, inspect `app/layout.tsx`, `middleware.ts`, and `auth.ts` first — these wire the system together.
+3. Env vars are the #1 integration point. If something doesn't work, check `.env.local` matches the README list.
+4. Server Actions in `app/actions/` are the primary way to mutate data. They `await connectDB()` then act on Mongoose models.
+5. S3 is used for all media. If uploads/downloads fail, check `lib/s3.ts` creds and bucket name, and that the key format matches what the app expects.
+</file>
+
+<file path="auth.ts">
+import NextAuth from "next-auth";
+import GitHub from "next-auth/providers/github";
+</file>
+
+<file path="next.config.mjs">
+/** @type {import('next').NextConfig} */
+</file>
+
+<file path="tailwind.config.js">
+
+</file>
+
+<file path="app/admin/projects/page.tsx">
+import ProjectCard from "@/components/ProjectCard";
+import { projectContent } from "@/consts";
+import { Plus } from "lucide-react";
+import Link from "next/link";
+import connectDB from "@/lib/connectDB";
+import Project from "@/models/Project";
+⋮----
+export default async function AdminProjectsPage()
+⋮----
+{/* Background decoration */}
+</file>
+
+<file path="app/api/image/route.ts">
+import { NextRequest, NextResponse } from "next/server";
+import { s3Client, S3_BUCKET } from "@/lib/s3";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+⋮----
+export async function GET(req: NextRequest)
+⋮----
+// Extract the key from the S3 URL
+</file>
+
+<file path="components/public/header.tsx">
+import Link from "next/link";
+import { MobileNav } from "@/components/public/mobile-nav";
+import { useState } from "react";
+import { navLinks } from "@/consts";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "../ui/navigation-menu";
+import useIntersectionObserver from "@/hooks/useIntersectionOberver";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { SettingsMenu } from "../settings-menu";
+⋮----
+// Scrolled state is true if user has moved past the hero section (or scrolled down on subpages)
+⋮----
+{/* Logo */}
+⋮----
+{/* Desktop Navigation */}
+⋮----
+<span className=
+⋮----
+if (isSectionLink)
+setActiveSection(sectionId);
+⋮----
+{/* Right Section */}
+⋮----
+{/* Mobile Menu Button */}
+</file>
+
+<file path="components/NotAuthorized.tsx">
+import Link from 'next/link';
+⋮----
+export default function NotAuthorized(
+</file>
+
+<file path="content/archieve/dsa-question-patterns.md">
+Start typing your note here...
+</file>
+
+<file path="hooks/useIntersectionOberver.tsx">
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+⋮----
+export default function useIntersectionObserver()
+</file>
+
+<file path="lib/connectDB.ts">
+import { ConnectionObj } from "@/interfaces/db";
+import mongoose from "mongoose";
+⋮----
+async function connectDB(): Promise<void>
+</file>
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+todo
+*.excalidraw
+*.rest
+todo.txt
+req.http
+</file>
+
+<file path="components.json">
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-nova",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "rtl": false,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "registries": {}
+}
+</file>
+
+<file path="app/actions/auth.ts">
+import { signIn, signOut, auth } from '@/auth';
+⋮----
+export async function login()
+⋮----
+export async function logout()
+⋮----
+export async function getAuthStatus()
+</file>
+
+<file path="app/actions/project.ts">
+import { revalidatePath } from 'next/cache';
+import connectDB from '@/lib/connectDB';
+import Project from '@/models/Project';
+import { s3Client, S3_BUCKET } from '@/lib/s3';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { getAuthStatus } from '@/app/actions/auth';
+⋮----
+async function uploadImageIfPresent(file: File | null): Promise<
+⋮----
+export async function handleProject(formData: FormData, slug?: string)
+⋮----
+export async function deleteProject(slug: string)
+</file>
+
+<file path="app/admin/page.tsx">
+import { redirect } from "next/navigation";
+⋮----
+export default function AdminPage()
+</file>
+
+<file path="components/ui/button.tsx">
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+⋮----
+import { cn } from "@/lib/utils";
+⋮----
+className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+</file>
+
+<file path="components/ui/sheet.tsx">
+import { XIcon } from "lucide-react";
+⋮----
+import { cn } from "@/lib/utils";
+⋮----
+function SheetOverlay({
+  className,
+  ...props
+}: React.ComponentProps<typeof SheetPrimitive.Overlay>)
+⋮----
+className=
+⋮----
+function SheetHeader(
+</file>
+
+<file path="components/ReadThisWeekComponent.tsx">
+import { ArchiveItem } from "@/interfaces/archieve"
+import Link from "next/link";
+</file>
+
+<file path="eslint.config.js">
+// Override default ignores of eslint-config-next.
+⋮----
+// Default ignores of eslint-config-next:
+</file>
+
+<file path="app/(main)/layout.tsx">
+import Header from "@/components/public/header";
+import Footer from "@/components/public/footer";
+import { getAuthStatus } from "@/app/actions/auth";
+async function MainLayout(
+</file>
+
+<file path="app/actions/archive.ts">
+import { revalidatePath } from 'next/cache';
+import connectDB from '@/lib/connectDB';
+import ArchiveNote from '@/models/ArchiveNote';
+import { s3Client, S3_BUCKET } from '@/lib/s3';
+import { PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
+⋮----
+export async function saveMarkdownNote(
+    slug: string,
+    content: string,
+    visibility: 'public' | 'private' = 'public',
+    metadata?: { title?: string; info?: string; Topics?: string[]; Source?: { title: string; url: string; } }
+)
+⋮----
+export async function deleteMarkdownNote(slug: string)
+</file>
+
+<file path="content/archieve/title.md">
+Start typing your note here Hiii...
+</file>
+
+<file path="README.md">
+# Portfolio
+
+A fast, elegant personal site to showcase who I am, what I build, and what I know.  
+Built with **Next.js 14**, **TypeScript**, **shadcn/ui**, and **MongoDB**. Deployed on **Vercel**.
+
+> Performance first. Developer-friendly. Full-stack capabilities.
+
+<p align="left">
+  <a href="https://nextjs.org/"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-14-black?logo=nextdotjs"></a>
+  <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white"></a>
+  <a href="https://ui.shadcn.com/"><img alt="shadcn/ui" src="https://img.shields.io/badge/shadcn/ui-Components-000?logo=radixui"></a>
+  <a href="https://www.mongodb.com/"><img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb"></a>
+  <a href="https://aws.amazon.com/s3/"><img alt="AWS S3" src="https://img.shields.io/badge/AWS_S3-Storage-569A31?logo=amazons3"></a>
+  <a href="https://vercel.com/"><img alt="Vercel" src="https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel"></a>
+</p>
+
+---
+
+## Why this exists
+
+I wanted a portfolio that feels **modern**, loads **instantly**, and is **fun to build on**. Most importantly, it includes a robust backend that allows me to manage my content seamlessly without touching code.
+
+---
+
+## Core Capabilities
+
+- **Lightning-fast public portfolio** with clean architecture
+- **Admin Dashboard**: Secure login area to create, edit, and delete Projects, Archive entries, and Resume.
+- **Dynamic Data**: Powered by MongoDB (Mongoose) and Next.js Server Actions.
+- **Media Storage**: Direct uploads of images and resume PDFs to AWS S3.
+- **Theme toggle**: Persistent Dark / Light mode support.
+
+---
+
+## Tech Stack
+
+| Category      | Stack                                     |
+| :------------ | :---------------------------------------- |
+| **Languages** | TypeScript                                |
+| **Frontend**  | Next.js, React, shadcn/ui, Tailwind CSS   |
+| **Backend**   | Next.js Server Actions, MongoDB, Mongoose |
+| **Storage**   | AWS S3 (@aws-sdk/client-s3)               |
+| **Dev Tools** | Git, ESLint, Vercel                       |
+
+---
+
+## Features at a glance
+
+- **Next.js 14 App Router** with file-based routing and Server Actions.
+- **Accessible UI** powered by **shadcn/ui** + **Radix** primitives.
+- **Responsive design** from mobile → ultrawide.
+- **Admin Authentication** with JWT/Cookie-based session management.
+- **S3 File Management** for dynamic image rendering and resume downloads.
+- **Type-safe** across the entire stack.
+
+---
+
+## Project Structure
+
+```text
+├── app                       # Routes & pages (App Router)
+│ ├── (main)                  # Public-facing portfolio pages
+│ ├── admin                   # Admin dashboard and content management
+│ ├── actions                 # Next.js Server Actions (db mutations, uploads, auth)
+│ └── api                     # API routes (e.g., streaming resume/images from S3)
+│
+├── components                # UI & layout components
+│ ├── ui                      # Reusable shadcn/ui wrappers
+│ └── ...                     # Feature components (ProjectEditor, AdminHeader, etc.)
+│
+├── lib                       # Utilities (db connection, S3 client)
+├── models                    # Mongoose database schemas (Project, Note)
+├── hooks                     # Custom React hooks (useAuthStatus)
+├── public                    # Static assets
+└── styles                    # Global styles (Tailwind CSS)
+```
+
+## Local Development
+
+Clone the repository, install dependencies, and set up your `.env` file with MongoDB and AWS credentials.
+
+1. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables:**
+   Create a `.env.local` file with the following variables:
+
+   ```env
+   DB_URI=your_mongodb_connection_string
+   ADMIN_EMAIL=your_admin_email
+   GITHUB_ID=your_github_id
+   GITHUB_SECRET=your_github_secret
+   AWS_ACCESS_KEY_ID=your_aws_key
+   AWS_SECRET_ACCESS_KEY=your_aws_secret
+   AWS_REGION=your_aws_region
+   AWS_S3_BUCKET_NAME=your_bucket_name
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+Then visit [http://localhost:3000](http://localhost:3000) to view the public site, and `/login` to access the admin portal.
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "target": "ES6",
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "OmniRoute"]
+}
+</file>
+
+<file path="app/(main)/archieve/page.tsx">
+import ReadThisWeekComponent from "@/components/ReadThisWeekComponent";
+import { ArchiveItem } from "@/interfaces/archieve";
+import connectDB from "@/lib/connectDB";
+import ArchiveNote from "@/models/ArchiveNote";
+⋮----
+type Props = {
+    searchParams: { filter?: string };
+};
+⋮----
+export default async function ArchievePage(props: Props)
+</file>
+
+<file path="app/(main)/projects/page.tsx">
+import ProjectCard from "@/components/ProjectCard";
+import { projectContent } from "@/consts";
+import connectDB from "@/lib/connectDB";
+import Project from "@/models/Project";
+⋮----
+{/* Background decoration */}
+</file>
+
+<file path="components/ui/navigation-menu.tsx">
+import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu"
+import { cva } from "class-variance-authority"
+import { cn } from "cn"
+import { ChevronDownIcon } from "lucide-react"
+⋮----
+className=
+⋮----
+function NavigationMenuTrigger({
+  className,
+  children,
+  ...props
+}: NavigationMenuPrimitive.Trigger.Props)
+⋮----
+function NavigationMenuContent({
+  className,
+  ...props
+}: NavigationMenuPrimitive.Content.Props)
+⋮----
+function NavigationMenuLink({
+  className,
+  ...props
+}: NavigationMenuPrimitive.Link.Props)
+</file>
+
+<file path="components/ProjectCard.tsx">
+import { project } from "@/interfaces";
+import { ExternalLink, Github, Edit, X } from "lucide-react";
+import { useState } from "react";
+import ProjectEditor from "./ProjectEditor";
+⋮----
+onClick=
+</file>
+
+<file path="components/skills.tsx">
+import { skillsSection } from "@/interfaces";
+import { Server, Database, Layers, Terminal } from "lucide-react";
+⋮----
+const getCategoryIcon = (iconName?: string) =>
+⋮----
+{/* Section Header */}
+⋮----
+{/* 2x2 Skills Grid */}
+⋮----
+{/* Category Header with Icon & Title */}
+⋮----
+{/* Subtitle */}
+⋮----
+{/* Skill Badges */}
+</file>
+
+<file path="app/admin/layout.tsx">
+import { ReactNode } from "react";
+import { AdminHeader } from "@/components/admin/adminHeader";
+⋮----
+export default async function AdminLayout(
+</file>
+
+<file path="components/NoteEditor.tsx">
+import { useState } from 'react';
+import { saveMarkdownNote, deleteMarkdownNote } from '@/app/actions/archive';
+import { Save, X, Trash } from 'lucide-react';
+import Link from 'next/link';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { useAuthStatus } from '@/hooks/useAuthStatus';
+import { ArchiveItem } from '@/interfaces/archieve';
+import NotAuthorized from './NotAuthorized';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+⋮----
+type NoteFormValues = z.infer<typeof noteSchema>;
+⋮----
+interface NoteEditorProps {
+    initialContent: string;
+    slug: string;
+    initialVisibility?: 'public' | 'private';
+    initialMetadata?: Partial<ArchiveItem>;
+}
+⋮----
+// Auth state
+⋮----
+const handleDelete = async () =>
+⋮----
+const onSubmit = async (data: NoteFormValues) =>
+⋮----
+<form onSubmit=
+</file>
+
+<file path="components/ProjectEditor.tsx">
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useAuthStatus } from "@/hooks/useAuthStatus";
+import NotAuthorized from "./NotAuthorized";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+⋮----
+import { deleteProject, handleProject } from "@/app/actions/project";
+⋮----
+type ProjectFormValues = z.infer<typeof projectSchema>;
+⋮----
+const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+⋮----
+setImage(URL.createObjectURL(file)); // Local preview
+⋮----
+const onSubmit = async (data: ProjectFormValues) =>
+⋮----
+const handleDelete = async () =>
+⋮----
+<form onSubmit=
+</file>
+
+<file path="components/projects.tsx">
+import { projectSection } from "@/interfaces";
+import { Layers } from "lucide-react";
+⋮----
+{/* Section Header */}
+⋮----
+{/* <Link
+            href="/projects"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors group self-start sm:self-auto"
+          >
+            <span>View All Projects</span>
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </Link> */}
+⋮----
+{/* Bento Grid Layout */}
+⋮----
+{/* Featured Project Card */}
+⋮----
+{/* Visual Preview */}
+⋮----
+// featured.image.startsWith("http")
+//   ? `/api/image?url=${encodeURIComponent(featured.image)}`
+//   : featured.image
+⋮----
+{/* Header: Title + Featured Badge */}
+⋮----
+{/* Description (What it does) */}
+⋮----
+{/* 3. Engineering Decisions / Highlight */}
+{/* {featured.engineering && (
+                <p className="text-xs sm:text-[13px] text-muted-foreground/90 leading-relaxed mb-4 max-w-3xl">
+                  <span className="font-semibold text-foreground/90">Engineering: </span>
+                  {featured.engineering}
+                </p>
+              )} */}
+⋮----
+{/* Tags & Inspection Links (Bottom action row) */}
+⋮----
+{/* 4. Inspection Links */}
+⋮----
+{/* Secondary 2-Column Cards Grid (16-20px gap, 24px padding, 16:9 preview) */}
+⋮----
+{/* Compact Preview Window (16:9 aspect ratio) */}
+⋮----
+{/* 1. What did you build? */}
+⋮----
+{/* Description (What it does) */}
+⋮----
+{/* 3. Engineering Decisions */}
+{/* {proj.engineering && (
+                    <p className="text-xs text-muted-foreground/90 leading-relaxed mb-3">
+                      <span className="font-semibold text-foreground/90">Engineering: </span>
+                      {proj.engineering}
+                    </p>
+                  )} */}
+⋮----
+{/* Footer: Tags & Inspection (Bottom action row aligned via mt-auto) */}
+⋮----
+{/* 4. Can I inspect it? Independent clickable links */}
+</file>
+
+<file path="interfaces/index.ts">
+import { LucideProps } from "lucide-react";
+import { ForwardRefExoticComponent, ReactElement, RefAttributes } from "react";
+⋮----
+export interface educationSection {
+  description: string;
+  history: {
+    school: string;
+    degree: string;
+    period: string;
+    description?: string;
+  }[];
+}
+⋮----
+export interface projectSection {
+  description: string;
+  projects: project[];
+}
+⋮----
+export interface project {
+  title: string;
+  description: string;
+  problem?: string;
+  engineering?: string;
+  image: string;
+  tags: string[];
+  slug?: string;
+  links: {
+    github: string;
+    live: string;
+  };
+  status: "Active" | "WIP";
+}
+⋮----
+export interface heroSection {
+  name: string;
+  role: string;
+  image_path: string;
+  description: string;
+  call_to_action: {
+    name: string;
+    url: string;
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
+  }[];
+}
+⋮----
+export interface skillsSection {
+  title?: string;
+  tagline?: string;
+  description: string;
+  skills_items: {
+    category: string;
+    subtitle?: string;
+    icon?: string;
+    skills: string[];
+  }[];
+  principles?: string[];
+}
+⋮----
+export type aboutSection = string[];
+⋮----
+export interface achievementsSection {
+  hackathons: {
+    title: string;
+    event: string;
+    year: string;
+    description: string;
+    certificateUrl?: string;
+  }[];
+  certifications: {
+    title: string;
+    issuer: string;
+    year: string;
+    description: string;
+    certificateUrl?: string;
+  }[];
+}
+⋮----
+export interface NavItem {
+  label: string;
+  href?: string;
+  description?: string;
+  children?: {
+    label: string;
+    href: string;
+    description?: string;
+  }[];
+}
+</file>
+
+<file path="styles/globals.css">
+@plugin "@tailwindcss/typography";
+⋮----
+@custom-variant dark (&:where(.dark, .dark *));
+⋮----
+/* Core Colors */
+⋮----
+/* Soft Orange background */
+⋮----
+/* Vibrant Orange accent */
+⋮----
+/* Semantic Tokens */
+⋮----
+/* Interactive */
+⋮----
+/* Muted / Neutral */
+⋮----
+/* Destructive */
+⋮----
+/* Borders & Rings */
+⋮----
+/* Charts */
+⋮----
+/* Radius */
+⋮----
+/* Sidebar */
+⋮----
+.dark {
+⋮----
+/* Deep muted orange for dark mode */
+⋮----
+/* Brighter orange for dark mode visibility */
+⋮----
+@theme inline {
+⋮----
+/* Fonts */
+⋮----
+/* Core */
+⋮----
+/* Surfaces */
+⋮----
+/* Brand & Interactive */
+⋮----
+/* Neutral & Borders */
+⋮----
+@layer base {
+⋮----
+* {
+⋮----
+body {
+⋮----
+html {
+⋮----
+.prose {
+⋮----
+@layer components {
+⋮----
+.nav-link-underline {
+⋮----
+@apply relative;
+⋮----
+.nav-link-underline::after {
+⋮----
+.group\/nav-link:hover .nav-link-underline::after,
+</file>
+
+<file path="app/(main)/archieve/[slug]/page.tsx">
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import connectDB from "@/lib/connectDB";
+import ArchiveNote from "@/models/ArchiveNote";
+import RenderMarkdown from "@/components/RenderMarkdown";
+import { ArchiveItem } from "@/interfaces/archieve";
+import NoteActions from "@/components/NoteActions";
+import NotAuthorized from "@/components/NotAuthorized";
+import { getAuthStatus } from "@/app/actions/auth";
+import { s3Client, S3_BUCKET } from "@/lib/s3";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+</file>
+
+<file path="app/(main)/page.tsx">
+import Hero from "@/components/public/hero";
+import About from "@/components/public/about";
+import Education from "@/components/public/education";
+import Achievements from "@/components/public/achievements";
+import Certifications from "@/components/public/certifications";
+import Projects from "@/components/projects";
+import Skills from "@/components/skills";
+import {
+  aboutContent,
+  achievementsContent,
+  educationContent,
+  heroContent,
+  projectContent,
+  skillContent,
+} from "@/consts";
+⋮----
+import { SnapEnforcer } from "@/components/snap-enforcer";
+⋮----
+import connectDB from "@/lib/connectDB";
+import Project from "@/models/Project";
+import { project, projectSection } from "@/interfaces";
+⋮----
+export default async function Home()
+⋮----
+// Combine DB projects and static projects, preventing duplicate titles
+</file>
+
+<file path="app/layout.tsx">
+import type React from "react";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+⋮----
+import { siteConfig } from "@/config";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
+import { Download } from "lucide-react";
+⋮----
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>)
+</file>
+
+<file path="consts/index.ts">
+import { Briefcase, Mail } from "lucide-react";
+import type { projectSection, NavItem, skillsSection } from "../interfaces";
+⋮----
+// {
+//   title: "Influx",
+//   description:
+//     "An offline-first local media server that streams and syncs audio, video, and files across personal devices without internet connectivity.",
+//   problem:
+//     "Centralized cloud streaming often fails in low-bandwidth or offline environments and risks data privacy across personal media libraries.",
+//   engineering:
+//     "Engineered chunked multi-threaded streaming, automatic mDNS peer discovery, and an optimized local metadata cache for sub-100ms playback startup.",
+//   image: "/placeholder.svg",
+//   tags: ["React", "Node.js", "MongoDB", "TypeScript"],
+//   links: {
+//     github: "https://github.com/DipanshuChoksi/Influx",
+//     live: "https://github.com/DipanshuChoksi/Influx",
+//   },
+//   status: "Active",
+// },
+⋮----
+// {
+//   title: "DC-Tools",
+//   description:
+//     "A modular developer infrastructure toolkit for ingestion, automation, and AI workflows.",
+//   problem:
+//     "Repetitive ingestion and pipeline plumbing across internal services slows down iterative software development.",
+//   engineering:
+//     "Architected a pluggable TypeScript monorepo with CLI automation, robust error boundaries, and benchmarked ingestion throughput.",
+//   image: "/placeholder.svg",
+//   tags: ["TypeScript", "Node.js", "Monorepo", "Infrastructure"],
+//   links: {
+//     github: "https://github.com/DipanshuChoksi/DC-Tools",
+//     live: "https://github.com/DipanshuChoksi/DC-Tools",
+//   },
+//   status: "Active",
+// },
+</file>
+
+<file path="package.json">
+{
+  "name": "@dipanshuchoksi/portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "eslint .",
+    "start": "next start",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1106.0",
+    "@base-ui/react": "^1.9.0",
+    "@hookform/resolvers": "^5.5.7",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@tailwindcss/typography": "^0.5.19",
+    "@vercel/analytics": "^2.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cn": "^0.5.0",
+    "lucide-react": "^0.561.0",
+    "mongoose": "^9.0.2",
+    "next": "^16.2.4",
+    "next-auth": "^5.0.0-beta.32",
+    "next-themes": "^0.4.6",
+    "postcss-load-config": "^6.0.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-hook-form": "^7.83.0",
+    "react-markdown": "^10.1.0",
+    "shadcn": "^4.22.1",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^25",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.4",
+    "postcss": "^8.5",
+    "prettier": "^3.8.3",
+    "tw-animate-css": "1.4.0",
+    "typescript": "^5"
+  }
+}
+</file>
+
+</files>
